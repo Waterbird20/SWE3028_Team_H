@@ -1,0 +1,56 @@
+\subsection{Problem Statement}
+
+
+
+\subsection{Proposed Solutions}
+\subsubsection{LSTM}
+Long Short-Term Memory(LSTM) is an advanced Recurrent Neural Network (RNN) architecture 
+as shown in the Figure. 
+LSTMs were introduced to address some of the limitations of traditional RNNs, 
+which struggle with capturing long-range dependencies in sequential data due to the vanishing gradient problem.
+
+LSTM has three gates: input gate, forget gate, and output gate.
+\begin{enumerate}
+	\item Input gate: 	Input gate is denoted by orange box. It decides what new information should be stored in the cell.
+	\item Forget gate:	Forget gate is denoted by blue box. It determines what information from the previous state should be discarded or reflected.
+	\item Output gate:	Output gate is denoted by gray box. The actual outputs are $h_{i}$ and $y_{i}$, which are same and $c_{i}$ represents the status of the cell. It specifies what information from the cell should be used to generate the output.
+\end{enumerate}
+
+Compared to the traditional RNN, LSTM performs various mathematical operations, including including element-wise multiplication and addition, to control the flow of information and perform updates to the memory cell and hidden state.
+
+Through this architecture and characteristics, LSTM can handle the long sequential data by maintaining a memory cell with gates to control information flow, 
+making it capable of capturing long-term dependencies and patterns in the data.
+
+\subsubsection{GRU}
+
+A Gated Recurrent Unit(GRU) is another type of recurrent neural network (RNN) architecture, 
+similar to the Long Short-Term Memory (LSTM) network. 
+GRUs are simpler in structure compared to LSTMs but have been found to be highly effective in various applications. 
+GRU is also designed to address the vanishing gradient problem and enable RNNs to better capture long-range dependencies in sequential data. 
+Compared to LSTM, GRU does not distinguish between cell status and the output.
+
+% Input gate, forget gate?
+GRU has two gates: reset gate and update gate.
+\begin{enumerate}
+	\item Reset gate: Reset gate is denoted by color box. It decides how much of the past information to forget.
+	\item Update gate: Update gate is denoted by color box. It decides how much of the past information to remember.
+\end{enumerate}
+
+GRUs also perform mathematical operations, including element-wise multiplications and additions, to control the flow of information and update the hidden state.
+
+Through this architecture and characteristics, GRU can also handle the long sequential data by maintaining a memory cell with gates to control information flow, 
+making it capable of capturing long-term dependencies and patterns in the data.
+
+
+\subsubsection{One-dimensional CNN}
+
+A Convolutional Neural Network(CNN) is a neural network architecture widely employed for processing and analyzing one-dimensional data sequences. 
+In the context of stock price prediction, which inherently involves one-dimensional data, the utilization of a one-dimensional CNN is particularly relevant and effective.
+
+Compared to other recurrent neural network (RNN) variants like LSTM and GRU, CNNs offer a notably simpler structural design. 
+Also it seems possible to analyse the various patterns of stock price data through the convolutional layers.
+As the stock price data is characterized by its non-stationary nature, exhibiting evolving trends and patterns over time, 
+it is probable that CNN excels the performance of LSTM, and GRU.
+
+\subsubsection{Transformer}
+
