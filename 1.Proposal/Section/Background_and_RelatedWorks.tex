@@ -9,76 +9,17 @@ In the banking industry and financial services sector, teams of analysts are ded
 A substantial amount of information regarding stock trends is extracted from the extensive corpus of textual and quantitative data involved in such analysis.
 
 \subsubsection{Research Trends}
-Recent research trends in stock price prediction include advancements in deep learning-based regression models. 
+Recent research trends in stock price prediction include advancements in deep learning-based regression models. \cite{li2019dp}
 These models often utilize Long Short-Term Memory (LSTM) networks and innovative validation techniques, such as walk-forward validation, to enhance their predictive capabilities.
 
-In addition, some researchers have explored Particle Filter Recurrent Neural Networks (PF-RNNs), a new RNN family explicitly designed to model uncertainty within their internal structure. 
+In addition, some researchers have explored Particle Filter Recurrent Neural Networks (PF-RNNs), a new RNN family explicitly designed to model uncertainty within their internal structure. \cite{ma2020particle}
 Unlike traditional RNNs that rely on a deterministic latent state vector, PF-RNNs maintain a latent state distribution approximated as a set of particles. 
 To enable effective learning, researchers have introduced a fully differentiable particle filter algorithm that updates the PF-RNN latent state distribution based on Bayes' rule. 
 Experimental results have shown that PF-RNNs can outperform conventional gated RNNs across various domains, 
 including synthetic robot localization datasets and real-world sequence prediction tasks, which is stock price prediction.
 
-Furthermore, recent studies have proposed novel approaches, such as the development of a sentiment-ARMA model, which combines the autoregressive moving average model (ARMA) with sentiment analysis of financial news articles. 
+Furthermore, recent studies have proposed novel approaches, such as the development of a sentiment-ARMA model, which combines the autoregressive moving average model (ARMA) with sentiment analysis of financial news articles. \cite{mehtab2021stock}
 This model is integrated into an LSTM-based deep neural network consisting of three components: LSTM, VADER model, and a differential privacy (DP) mechanism. 
 The proposed DP-LSTM scheme has demonstrated the potential to reduce prediction errors and enhance model robustness. Extensive experiments conducted on S\&P 500 stocks have indicated promising results, 
 including a 0.32\% improvement in mean Mean Percentage Absolute Error (MPA) 
 and a significant up to 65.79\% reduction in Mean Squared Error (MSE) for the prediction of the market index S\&P 500.
-
-% \subsection{Background and Related Works}
-
-% \subsubsection{Stock price prediction}
-% Stock Price Prediction is the task of forecasting future stock prices based on historical data and various market indicators. 
-% It involves using statistical models and machine learning algorithms to analyze financial data and make predictions about the future performance of a stock. 
-% Stocks' trends are affected by a lot of factors such as interest rates, inflation rates and financial news.
-% To predict stock prices accurately, one must use these variable information. In particular, in the
-% banking industry and financial services, analysts' armies are dedicated to pouring over, analyzing,
-% and attempting to quantify qualitative data from news. A large amount of stock trend information is
-% extracted from the large amount of text and quantitative information that is involved in the analysis.
-
-% \subsubsection{Research trend}
-% We, then, augment the
-% predictive power of our forecasting framework by building four deep learning-
-% based regression models using long-and short-term memory (LSTM) networks
-% with a novel approach of walk-forward validation.
-
-% Particle Filter Recurrent Neural Networks (PF-RNNs),
-% a new RNN family that explicitly models uncertainty in its in-
-% ternal structure: while an RNN relies on a long, deterministic
-% latent state vector, a PF-RNN maintains a latent state distribu-
-% tion, approximated as a set of particles. For effective learning,
-% we provide a fully differentiable particle filter algorithm that
-% updates the PF-RNN latent state distribution according to the
-% Bayes rule. Experiments demonstrate that the proposed PF-
-% RNNs outperform the corresponding standard gated RNNs
-% on a synthetic robot localization dataset and 10 real-world se-
-% quence prediction datasets for text classification, stock price
-% prediction, etc.
-
-% First, based on the autoregressive moving average model (ARMA), a sentiment-
-% ARMA is formulated by taking into consideration the information of financial
-% news articles in the model. Then, an LSTM-based deep neural network is designed,
-% which consists of three components: LSTM, VADER model and differential privacy
-% (DP) mechanism. The proposed DP-LSTM scheme can reduce prediction errors
-% and increase the robustness. Extensive experiments on S&P 500 stocks show that (i)
-% the proposed DP-LSTM achieves 0.32\% improvement in mean MPA of prediction
-% result, and (ii) for the prediction of the market index S&P 500, we achieve up to
-% 65.79\% improvement in MSE.	
-
-
-
-
-
-% https://paperswithcode.com/task/stock-price-prediction 
-% 사이트를 참고하였습니다
-
-% https://arxiv.org/ftp/arxiv/papers/2009/2009.10819.pdf
-% LSTM을 이용하여 일일 단위 고가/저가를 예측한 모델입니다. 데이터 구성에는 일일 단위로 시가, 고가, 저가 , 종가, 거래량이 있네요. LSTM 모델 구현할 때 참고할 만 합니다.
-
-% https://arxiv.org/pdf/1905.12885v2.pdf
-% Particle Filtering을 적용한 LSTM과 GRU에 대해 설명하는 논문입니다. Particle Filtering은 비가우시안 통계를 따르는 데이터를 가우시안 통계로 근사하는 알고리즘인 것으로 이해했는데, 이를 적용하면 sequence 예측 성능이 개선되는 것 같아 고려할만한 LSTM과 GRU모델이 될 것 같습니다.
-
-% https://arxiv.org/pdf/1912.10806v1.pdf
-% 예측 모델로는 ARMA모델을 사용했는데, Sentiment Analysis 부분에서 참고할만한 내용이 있어서 선정하게 되었습니다. Sentiment Analysis 부분에서는 VADER를 사용했는데, 기업 공시 혹은 뉴스 정보도 예측에 사용한다면 도움이 될 것 같습니다.
-% VADER 모델은 Sentiment Analysis을 수행하는 NLP모델입니다. 사전 학습이 되어 있어 따로 학습시킬 필요 없이 바로 사용할 수 있고, VADER 출력에 대해 적절히 임베딩만 해준다면 사용하기 간편할 것 같습니다.
-
-% (논문이 거의 다 LSTM 뿐이네요... GRU도 조금만 보이고, CNN과 Transformer는 찾아볼 수 없었습니다ㅠㅠ 근데 우선 저정도로 하면 학습 방식 혹은 감성 분석 시 적용할 기술에 대해서는 참고할 양이 충분한 것 같습니다)

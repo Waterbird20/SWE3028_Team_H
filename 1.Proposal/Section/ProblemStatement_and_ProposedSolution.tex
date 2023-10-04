@@ -2,8 +2,8 @@
 
 \subsubsection{Determining Data Set}
 
-Data collection will be conducted using the FinanceDataReader package in Python (\url{https://github.com/FinanceData/FinanceDataReader}). 
-This package serves as a data crawler, extracting information from \url{https://data.krx.co.kr} for Korean stock data and \url{http://old.nasdaq.com} for US stock data. 
+Data collection will be conducted using the FinanceDataReader package in Python\cite{FinanceDataReader}. 
+This package serves as a data crawler, extracting information from Korea Exchange\cite{KRX} for Korean stock data and NASDAQ\cite{NASDAQ} for US stock data. 
 It provides access to historical and up-to-date data, making it suitable for both prediction and training/validation/testing purposes.
 
 \subsubsection{Determining Model}
@@ -17,27 +17,6 @@ The choice of a loss function and evaluation metric hinges on the nature of our 
 If we are predicting only daily price movements (rise/fall), the appropriate loss function will be Cross Entropy, and the evaluation metric will be Accuracy. 
 Conversely, if we aim to predict specific values such as closing prices, the preferred loss function will be Huber Loss or Mean Squared Error (MSE), 
 and the evaluation metric will be Mean Absolute Error (MAE) or Root Mean Square Error (RMSE).
-
-
-% (Loss Function과 평가 지표는 저희가 어떤 방식으로 예측할 것인가에 따라 달렸는데, 
-% 일일 상승/하락만 예측한다면 Loss Function은 Cross Entropy, 평가 지표는 Accuracy로 갈 것이고, 
-% 값(종가)을 예측한다면 Loss Function은 Huber Loss혹은 MSE로 갈 것이고, 평가 지표는 Mean Absolute Error 혹은 Root Mean Squared Error로 가면 될 것 같습니다. 예측 방식도 논의를 해 봐야 할 것 같네요. Proposal 발표 때에는 일일 상승/하락을 예측할 예정이라고 발표했던 기억이 희미하게 납니다.)
-
-% Loss Function 중 생소하실만한 Huber Loss에 대해 간략하게 설명하자면, 
-% Huber Loss는 Mean Squared Error와 Mean Absolute Error를 합친 Loss Function입니다. 
-% 오차를 절댓값으로 계산한다면 0인 지점에서 미분이 불가한 문제가 발생하고, 
-% Mean Squared Error를 사용하자니 Loss가 순식간에 커진다는 단점이 있습니다. 
-% Huber Loss는 0 부근에서는 MSE, 그 밖에는 MAE를 사용하여 MSE와 MAE가 만나는 지점은 조정을 통해 미분 가능하도록 계수를 조정한 Loss Function입니다. 
-% 두 마리 토끼를 다 잡는 셈이죵
-
-% \subsubsection{Deploying the Model}
-
-% 모델 선정 후, AWS 서버 구축을 통해 서비스를 배포한다
-
-% 라는 식으로 Problem Statement는 작성하면 좋을 것 같습니다!
-
-
-
 
 \subsection{Proposed Solutions}
 \subsubsection{LSTM}
@@ -91,5 +70,36 @@ it is probable that CNN excels the performance of LSTM, and GRU.
 
 \subsubsection{Transformer}
 
-Transformers, known for their effectiveness in natural language processing, have also shown promise in sequence-to-sequence tasks. 
+Transformer is a neural network architecture that has been widely used in natural language processing (NLP) tasks and is Encoder-Decoder model using Attention mechanism.
+Transformers, known for their effectiveness in natural language processing, have also shown promise in time series prediction. 
+In the Encoder-Decoder architecture, the Encoder takes an input sequence and represents the information from that sequence as a single context vector. 
+The Decoder, on the other hand, takes the context vector extracted by the Encoder and generates an output sequence. 
+Within the model structure, you can see something called "embedding," which represents the process of converting input values into a single vector.
+The attention mechanism used in the Transformer assigns weights to each element in the input sequence, emphasizing more on important information, 
+and reflects this importance in the output. The Transformer utilizes this mechanism to explore the significance of the entire input sequence when generating the output.
+
+Using Transformer model, it is expected that it performs the best and reflects the other information such as news, stock index and corporate disclosure unlike the other models.
+
+
+
 We can explore transformer-based models for capturing complex relationships in stock price data.
+
+
+\subsection{Transformer in Stock Price Prediction}
+
+The Transformer is a neural network architecture that has gained significant prominence in natural language processing (NLP) tasks 
+due to its remarkable effectiveness. Transformers have exhibited promising potential in the domain of time series prediction.
+
+Transformer operates as an Encoder-Decoder model, leveraging an attention mechanism.
+In the Encoder-Decoder architecture, the Encoder takes an input sequence and encodes the information into a single context vector. 
+Conversely, the Decoder utilizes this context vector to generate an output sequence.
+Within the model structure, a crucial component is the "embedding" process. 
+This process involves the conversion of input values into a unified vector representation.
+
+The attention mechanism employed by the Transformer is a key feature. 
+It assigns varying weights to elements within the input sequence, placing greater emphasis on pertinent information. 
+This emphasis is then reflected in the model's output. 
+The Transformer employs this mechanism to comprehensively evaluate the significance of the entire input sequence when generating the output.
+
+The utilization of the Transformer model holds the promise of delivering superior performance. 
+It has the capacity to incorporate diverse sources of information such as news, stock indices, and corporate disclosures, distinguishing it from other models.

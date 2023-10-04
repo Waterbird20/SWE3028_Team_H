@@ -8,6 +8,11 @@
 \usepackage{lipsum}
 \usepackage{kotex}
 \usepackage{url}
+\usepackage{indentfirst}
+\usepackage{bibentry}
+\nobibliography*
+% \bibliographystyle{plainnat}
+\bibliographystyle{splncs04}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -54,10 +59,6 @@ Sungkyunkwan University, Department of Physcis, Republic of Korea
 \label{sec:Introduction}
 \input{Section/Introduction.tex}
 
-\section{Motivation and Objective}
-\label{sec:MotivationAndObjective}
-\input{Section/Motivation_and_Objective.tex}
-
 \section{Background and Related Works}
 \label{sec:BackgroundAndRelatedWorks}
 \input{Section/Background_and_RelatedWorks.tex}
@@ -69,5 +70,8 @@ Sungkyunkwan University, Department of Physcis, Republic of Korea
 \section{Planning in Detail}
 \label{sec:PlanningInDetail}
 \input{Section/Planning_in_Detail.tex}
+
+
+\bibliography{reference}
 
 \end{document}
