@@ -32,6 +32,10 @@ LSTM has three gates: input gate, forget gate, and output gate.
 	\item Output gate:	Output gate is denoted by gray box. The actual outputs are $h_{i}$ and $y_{i}$, which are same and $c_{i}$ represents the status of the cell. It specifies what information from the cell should be used to generate the output.
 \end{enumerate}
 
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[width=0.4\textwidth]{Fig/LSTM.jpg}
+	\caption{LSTM model structure}
+\end{wrapfigure}
 Compared to the traditional RNN, LSTM performs various mathematical operations, including including element-wise multiplication and addition, to control the flow of information and perform updates to the memory cell and hidden state.
 
 Through this architecture and characteristics, LSTM can handle the long sequential data by maintaining a memory cell with gates to control information flow, 
@@ -39,13 +43,16 @@ making it capable of capturing long-term dependencies and patterns in the data.
 
 \subsubsection{GRU}
 
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[width=0.4\textwidth]{Fig/GRU.jpg}
+	\caption{GRU model structure}
+\end{wrapfigure}
 A Gated Recurrent Unit(GRU) is another type of recurrent neural network (RNN) architecture, 
 similar to the Long Short-Term Memory (LSTM) network. 
 GRUs are simpler in structure compared to LSTMs but have been found to be highly effective in various applications. 
 GRU is also designed to address the vanishing gradient problem and enable RNNs to better capture long-range dependencies in sequential data. 
 Compared to LSTM, GRU does not distinguish between cell status and the output.
 
-% Input gate, forget gate?
 GRU has two gates: reset gate and update gate.
 \begin{enumerate}
 	\item Reset gate: Reset gate is denoted by color box. It decides how much of the past information to forget.
@@ -60,6 +67,10 @@ making it capable of capturing long-term dependencies and patterns in the data.
 
 \subsubsection{One-dimensional CNN}
 
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[width=0.4\textwidth]{Fig/CNN.jpg}
+	\caption{CNN model structure}
+\end{wrapfigure}
 A Convolutional Neural Network(CNN) is a neural network architecture widely employed for processing and analyzing one-dimensional data sequences. 
 In the context of stock price prediction, which inherently involves one-dimensional data, the utilization of a one-dimensional CNN is particularly relevant and effective.
 
@@ -68,25 +79,12 @@ Also it seems possible to analyse the various patterns of stock price data throu
 As the stock price data is characterized by its non-stationary nature, exhibiting evolving trends and patterns over time, 
 it is probable that CNN excels the performance of LSTM, and GRU.
 
-\subsubsection{Transformer}
+\subsection{Transformer}
 
-Transformer is a neural network architecture that has been widely used in natural language processing (NLP) tasks and is Encoder-Decoder model using Attention mechanism.
-Transformers, known for their effectiveness in natural language processing, have also shown promise in time series prediction. 
-In the Encoder-Decoder architecture, the Encoder takes an input sequence and represents the information from that sequence as a single context vector. 
-The Decoder, on the other hand, takes the context vector extracted by the Encoder and generates an output sequence. 
-Within the model structure, you can see something called "embedding," which represents the process of converting input values into a single vector.
-The attention mechanism used in the Transformer assigns weights to each element in the input sequence, emphasizing more on important information, 
-and reflects this importance in the output. The Transformer utilizes this mechanism to explore the significance of the entire input sequence when generating the output.
-
-Using Transformer model, it is expected that it performs the best and reflects the other information such as news, stock index and corporate disclosure unlike the other models.
-
-
-
-We can explore transformer-based models for capturing complex relationships in stock price data.
-
-
-\subsection{Transformer in Stock Price Prediction}
-
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[width=0.4\textwidth]{Fig/Transformer.jpg}
+	\caption{Transformer model structure}
+\end{wrapfigure}
 The Transformer is a neural network architecture that has gained significant prominence in natural language processing (NLP) tasks 
 due to its remarkable effectiveness. Transformers have exhibited promising potential in the domain of time series prediction.
 
