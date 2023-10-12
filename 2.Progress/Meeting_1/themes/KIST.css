@@ -1,0 +1,226 @@
+/* @theme KIST */
+
+/*
+  ============================================
+    Created by Paulo Cunha
+    version: 1.0
+    last update: 08.fev.2023
+  ============================================       
+*/
+
+/* Importing COLOR SCHEMA */
+
+@import "default";
+@import "schema";
+@import "structure";
+
+/***************** COMMON STRUCTURE **********************/
+
+:root {
+  /* font-family: Cochin, Georgia; */
+  /* font-family: 'Times New Roman', Times, serif; */
+  /* font-family: "Fira Sans Light"; */
+  font-family: 'Tahoma'; 
+  font-family: 'Open Sans';
+  font-family: 'Segoe UI'; 
+  font-family: 'Garamond';
+
+  font-weight: initial;
+  
+  /* -- Bodytext FONT color */
+  color: #494545;
+
+  /* -- Slides BACKGROUND color */
+  background-color            : white;
+
+  /* -- BOLD font color */
+  --bold-color                : rgb(105, 120, 151);
+  --bold-color                : rgb(71, 111, 184);
+  --bold-color                : rgb(71, 107, 184);
+
+  --italic-color              : rgb(96, 89, 89);
+
+  --italic-background-color   : rgba(142, 145, 146, 0.172);
+
+  /* --background-color          : #fdf6e3; */
+  --list-item-color           : rgb(255, 212, 95);
+
+  --after-color               : rgb(201, 198, 198);
+
+  --table-font-color          : black;
+
+  --table-header-color        : rgb(128, 137, 146);
+
+  --border-color              : #014385;
+
+  --main-color                : rgb(228, 65, 38);
+
+  --darker-color              : rgb(109, 110, 103);
+
+  --lighter-color             : #080a0a;
+
+  --extra-back-color          : rgb(71, 69, 69);
+
+  --letter-spacing            : 0.125px;
+
+  --cool-list-color           : rgb(135, 157, 179);
+
+  --author-align              : right;
+}
+
+:root h1 {
+  
+  /* background-color: #1098db2d; */
+  
+  --border-color              : rgb(209, 193, 193);
+  
+  color: #2b2c2e;
+
+  font-weight: 600;
+
+  padding-top: 10pt;
+  padding-left: 60pt;
+
+  margin-left: -60pt;
+  margin-right: -60pt;
+
+  letter-spacing: -0.5px;
+
+}
+
+:root h1 strong {
+  color: rgb(255, 52, 52);
+}
+
+:root p {
+  font-size: 34px;
+  font-family: 'Segoe UI'; 
+  font-family: 'Open Sans';
+  font-family: 'Garamond';
+
+  letter-spacing: -0.3px;
+}
+/* ------------------- TITLEPAGE -----------------------------*/
+section{
+	justify-content: start;
+}
+
+section.titlepage{
+	justify-content: center;
+}
+
+/* Titlepage made with <titlepage> */
+
+section.titlepage .title strong {
+  color: rgb(255, 52, 52);
+}
+
+section.titlepage .title {
+  /* border-bottom: 1px solid rgb(179, 176, 176); */
+  border-bottom: 2px solid #8c714c;
+  letter-spacing: -0.3px;
+  font-weight: 600;
+  font-size: 1.5em;
+  
+}
+
+
+
+section.titlepage .subtitle {
+  font-weight: 300;
+}
+
+section.titlepage .author{
+    font-weight: 600;
+}
+
+section.titlepage .author,
+section.titlepage .date,
+section.titlepage .organization {
+  font-size: 1.1em;
+  text-align: left;
+}
+
+
+/* Titlepage made with # */
+
+section.titlepage h1 {
+
+  border-bottom: 1px solid rgb(179, 176, 176);
+
+  /* color: #3878b8; */
+  /* background-color: initial; */
+ 
+  padding-top: 0pt;
+  padding-left: 0pt;
+
+  margin-left: 0pt;
+  margin-right: 0pt;
+
+}
+
+section.titlepage h2 {
+  font-weight: 300;
+}
+
+section.titlepage h3,
+section.titlepage h4,
+section.titlepage h5 {
+  text-align: right;
+}
+
+/* -------------------- TRANSITION ---------------------------------*/
+section.transition {
+
+  --transitionpage-color: rgb(23, 148, 197);
+  --transitionpage-color: rgb(129, 127, 127);
+  --transitionpage-color: rgb(155, 153, 153);
+  
+  justify-content: flex-start;
+
+  font-weight: bold;
+  font-family: serif, sans-serif, "Libre Baskerville", serif;
+  font-family: 'Open Sans';
+  font-family: 'Segoe UI';  
+
+
+
+  /* font-size: 200%; */
+  /* text-shadow: 4px 4px 0 rgb(77, 61, 61); */
+}
+
+/* ------------------- CITE -----------------------------*/
+
+section.cite p {
+  
+  color: #fffbfe;
+
+  font-size: 36px;
+  font-family: "Libre Baskerville", serif; 
+  font-style: italic;
+  line-height: 140%;
+
+}
+
+section.cite {
+  
+  --background-color: rgb(92, 121, 163);
+  --background-color: rgb(116, 135, 161);
+  --strong-color:     #d3ff11;
+}
+
+section.cite strong{
+
+  font-weight: 100;
+
+}
+
+
+.image {
+	margin-left:auto;
+	margin-right:auto;
+	float: right;
+	display: block;
+	text-align: right;
+	padding: 1%;
+}
