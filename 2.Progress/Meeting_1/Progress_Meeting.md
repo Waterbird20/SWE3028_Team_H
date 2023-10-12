@@ -110,7 +110,7 @@ To clarify this point, let's consider our target users. I presume that many of y
 ![bg width:65% height:62%](./imgs/TSLA.png)
 
 <!-- 
-We do not want to dive deep into analyzing a company's fundamentals, studying financial statements, or tracking various news events. Instead, we aim to predict the short-term movement of blue-chip stocks. It is known to be a common and successful strategy for short time ranging from a few days to a few months. So, our project's focus is on predicting stock prices in the short term, but not in real-time, and for a limited number of stocks. I think it may be helpful for general users and much easier to predict stock price than before. 
+We do not want to dive deep into analyzing a company's fundamentals, studying financial statements, or tracking various news events. Instead, we aim to predict the short-term movement of blue-chip stocks. It is known to be a common and successful strategy for short time ranging from a few days to a few months. So, our focus is on predicting stock prices in the short term, but not in real-time. I think it may be helpful for general users and much easier to predict stock price than before. 
 
 Well, it is still difficult. But I beileve our team can make it.
  -->
@@ -186,6 +186,20 @@ On the back-end, we've made progress in building our dataset. For SAMSUNG Electr
 ---
 
 ## Back-end Progress : Implementation LSTM
+
+<div class="grid grid-cols-2">
+
+<div>
+
+### LSTM : Long Short-Term Memory
+
+Solves gradient vanishing problem of RNN when input data is too long
+
+</div>
+<div>
+	<img src="./imgs/LSTM.jpg" class="image" style="height:100%">
+</div>
+</div>
 
 <!-- 
 As mentioned in our previous presentation, we have four potential models in mind. 
