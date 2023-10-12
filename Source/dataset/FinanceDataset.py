@@ -16,6 +16,7 @@ import FinanceDataReader as fdr
         test : 2022~2023
 
     Author : Chan-young Lee
+
 """
 class FinanceDataset(Dataset):
 
@@ -67,10 +68,12 @@ class FinanceDataset(Dataset):
 
         self.len = len(self.X)
 
+
     def __len__(self):
         
         return self.len
     
+
     def __getitem__(self, idx):
 
         x = torch.FloatTensor(self.X[idx])
