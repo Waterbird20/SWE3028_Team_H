@@ -36,6 +36,7 @@ Sungkyunkwan University
 
 <!-- 
 Morning. This is Team H, and I'am Donghun Jung
+Let me start our progress meeting
  -->
 ---
 
@@ -97,8 +98,11 @@ As you see in this figure, most of you wondered about mainly two things.
 
 
 <!-- 
-To clarify this point, let's consider our target users. We believe that many of you may not be familiar with how expert fund managers or individual investors work. For professionals, asset allocation is often more crucial than predicting the exact stock price. Therefore, most stock price prediction systems focus on asset allocation, which involves recommending when to buy or sell stocks or forecasting the price's future trends based on numerous variables. These systems tend to be quite complex and geared towards experienced users. In contrast, our project caters to the everyday person who typically relies on simple chart analysis and intuition.
+So, first What's the difference. 
+
+To clarify this point, let's consider our target users. I presume that many of you may not be familiar with how expert level fund managers or individual investors work. For professionals, generally, asset allocation is more crucial than predicting the exact stock price. Therefore, most stock price prediction systems focus on asset allocation. Of course, it involves recommending when to buy or sell, and forecasting the price's future trends based on many variables. But these systems tend to be quite complex and focused towards experienced users. In contrast, our projects typically target normal people who rely on simple chart analysis and intuition.
  -->
+
 ---
 
 ## Predicting stock prices is difficult.
@@ -106,7 +110,9 @@ To clarify this point, let's consider our target users. We believe that many of 
 ![bg width:65% height:62%](./imgs/TSLA.png)
 
 <!-- 
-We won't dive deep into analyzing a company's fundamentals, studying financial statements, or tracking various news events. Instead, we aim to predict the short-term movement of blue-chip stocks, which is known to be a successful strategy for time frames ranging from a few days to a few months. So, our project's focus is on predicting stock prices in the short term, not in real-time, and for a limited number of stocks. I think it may be helpful for general users and much easier to predict than before. 
+We do not want to dive deep into analyzing a company's fundamentals, studying financial statements, or tracking various news events. Instead, we aim to predict the short-term movement of blue-chip stocks. It is known to be a common and successful strategy for short time ranging from a few days to a few months. So, our project's focus is on predicting stock prices in the short term, but not in real-time, and for a limited number of stocks. I think it may be helpful for general users and much easier to predict stock price than before. 
+
+Well, it is still difficult. But I beileve our team can make it.
  -->
 
 ---
@@ -126,7 +132,8 @@ We won't dive deep into analyzing a company's fundamentals, studying financial s
 </div>
 
 <!-- 
-Our front-end development is underway, but it's still in the early stages. We've set up an EC2 instance on Amazon AWS and installed Django, which will serve as the foundation for our web application. 
+Our front-end development is underway, but it's still in the early stages. 
+We've set up an EC2 instance on Amazon AWS and installed Django, which will serve as the foundation for our web application. 
  -->
 
 ---
@@ -136,7 +143,8 @@ Our front-end development is underway, but it's still in the early stages. We've
 ![10% center](./imgs/sample.png)
 
 <!-- 
-we're actively discussing how to present the data. We plan to display the expected range of the highest and lowest stock prices each day from tomorrow for about a week. 
+we're now discussing how to present the data. We plan to display the expected range of the highest and lowest stock prices each day from tomorrow to about a week. 
+Note that it is just a sample image.
 -->
 
 ---
@@ -146,7 +154,7 @@ we're actively discussing how to present the data. We plan to display the expect
 ![10% center](./imgs/sample2.png)
 
 <!-- 
-Additionally, if possible, we hope to provide predictions categorized as "strong probable," "probable," and "less probable" to make it easier for users to make informed decisions.
+Additionally, if possible, we hope to provide predictions categorized as "strong probable," "probable," and "less probable" to make it easier for users to make  decisions.
  -->
 
 ---
@@ -165,15 +173,14 @@ class FinanceDataset(Dataset):
                 df = fdr.DataReader('005930','2000','2022')
             elif mode == 'test':
                 df = fdr.DataReader('005930','2022','2023')
-            else:
-                raise ValueError(f'Invalid dataset mode : \"{mode}\"')
-            
-            df.drop('Change', axis=1)
 	...
+    df = df[['Open', 'High', 'Low', 'Volume', 'Close']]
+    scaler = MinMaxScaler()
+    df = scaler.fit_transform(df)
 ```
 
 <!-- 
-On the back-end, we've made progress in building our dataset. We're going to use several key variables, including Open price, High price, Low price, Volume, and Close price, to train our machine learning model. 
+On the back-end, we've made progress in building our dataset. For SAMSUNG Electronics, We'll use data from 2000 to 2022 as train data, data from this year as test data. We're going to use several key variables, including Open price, High price, Low price, Trading volume, and Close price, to train our machine learning model. 
  -->
 
 ---
@@ -182,7 +189,7 @@ On the back-end, we've made progress in building our dataset. We're going to use
 
 <!-- 
 As mentioned in our previous presentation, we have four potential models in mind. 
-Among them, we've started implementing the LSTM model, although it hasn't been trained yet. For reminding, LSTM, which is called Long Short term memory, it is one of our candidate model. It resolves gradient vanishing problem as the size of time-sequencial data increases.
+Among them, we've started implementing the LSTM model. For reminding, LSTM, which is Long Short term memory. It is known to be able to resolve gradient vanishing problem as the size of time-sequencial data increases.
  -->
 
 
