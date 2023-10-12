@@ -25,6 +25,7 @@ class FinanceDataset(Dataset):
         self.stock_id = data_args.stock_id
         self.seq_length = data_args.seq_length
         self.output_length = data_args.output_length
+        self.predict_type = data_args.predict_type
 
         df = None
         self.X = []
@@ -57,9 +58,18 @@ class FinanceDataset(Dataset):
         scaler = MinMaxScaler()
         df = scaler.fit_transform(df)
 
+        predict_index = None
+
+        if self.predict_type == 'high':
+            predict_index = 1
+        elif self.predict_type == 'low':
+            predict_index = 2
+        else:
+            raise ValueError(f'Invalid predict type : \"{self.predict_type}\"')
+        
         for i in range(len(df) - self.seq_length - self.output_length):
             self.X.append(df.iloc[i : i+self.seq_length,:])
-            self.y.append(df.iloc[i+self.seq_length : i+self.seq_length+self.output_length,-1])
+            self.y.append(df.iloc[i+self.seq_length : i+self.seq_length+self.output_length, predict_index])
         
         self.X = np.array(self.X)
         self.y = np.array(self.y)
