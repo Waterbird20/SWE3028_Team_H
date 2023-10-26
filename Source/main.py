@@ -3,6 +3,7 @@ from common.FinanceTrainer import FinanceTrainer
 from common.FinanceArguments import LSTMArgs, DataArgs, TrainerArgs
 from dataset.FinanceDataset import FinanceDataset
 from models.FinanceLSTM import FinanceLSTM
+from models.FinanceGRU import FinanceGRU
 
 
 device = None

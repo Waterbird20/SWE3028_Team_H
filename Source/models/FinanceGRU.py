@@ -12,10 +12,9 @@ class FinanceGRU(nn.Module):
         self.input_size = model_args.input_size
         self.hidden_size = model_args.hidden_size
         self.fc_hidden_size = model_args.fc_hidden_size
-        self.dropout = model_args.dropout
 
         self.gru = nn.GRU(input_size = self.input_size, hidden_size = self.hidden_size,
-                            num_layers = self.num_layers, dropout = self.dropout, batch_first = True)
+                            num_layers = self.num_layers, batch_first = True)
         self.fc1 = nn.Linear(self.hidden_size, self.fc_hidden_size)
         self.fc2 = nn.Linear(self.fc_hidden_size, self.output_length)
         self.relu = nn.ReLU()
