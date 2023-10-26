@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+import pandas as pd
 from torch.utils.data import Dataset
 from sklearn.preprocessing import MinMaxScaler
 import FinanceDataReader as fdr
@@ -30,6 +31,9 @@ class FinanceDataset(Dataset):
         df = None
         self.X = []
         self.y = []
+        
+        self.min = None
+        self.max = None
 
         if self.stock_id == 'samsung':
             if mode == 'train':
@@ -54,33 +58,48 @@ class FinanceDataset(Dataset):
         else:
             raise ValueError(f'Invalid stock name : {self.stock_id}')
         
-        df = df[['Open', 'High', 'Low', 'Volume', 'Close']]
-        scaler = MinMaxScaler()
-        df = scaler.fit_transform(df)
-
+        
         predict_index = None
 
         if self.predict_type == 'high':
             predict_index = 1
+            self.min = min(df['High'])
+            self.max = max(df['High'])
+
         elif self.predict_type == 'low':
             predict_index = 2
+            self.min = min(df['Low'])
+            self.max = max(df['Low'])
+
         else:
             raise ValueError(f'Invalid predict type : \"{self.predict_type}\"')
         
+
+        scaler = MinMaxScaler()
+        df = df[['Open', 'High', 'Low', 'Volume', 'Close']]
+        scale_cols = ['Open', 'High', 'Low', 'Volume', 'Close']
+        scaled_array = scaler.fit_transform(df[scale_cols])
+        df = pd.DataFrame(scaled_array, columns = scale_cols)
+        
+
         for i in range(len(df) - self.seq_length - self.output_length):
-            self.X.append(df.iloc[i : i+self.seq_length,:])
-            self.y.append(df.iloc[i+self.seq_length : i+self.seq_length+self.output_length, predict_index])
+            x = np.array(df.iloc[i : i+self.seq_length,:])
+            y = np.array(df.iloc[i+self.seq_length : i+self.seq_length+self.output_length, predict_index])
+            self.X.append(x)
+            self.y.append(y)
         
         self.X = np.array(self.X)
         self.y = np.array(self.y)
-        
+        print(self.X.shape, self.y.shape)
         assert len(self.X) == len(self.y)
 
         self.len = len(self.X)
 
 
-    def __len__(self):
-        
+    def inverse_transform(self, x):
+        return np.array(self.min + (self.max - self.min) * x).squeeze(0)
+
+    def __len__(self):     
         return self.len
     
 
