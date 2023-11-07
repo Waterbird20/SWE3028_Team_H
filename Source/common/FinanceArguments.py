@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Tuple
 
 @dataclass
-class LSTMArgs:
+class ModelArgs:
     output_length: int
     num_layers: int
     input_size: Tuple[int, int]

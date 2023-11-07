@@ -30,3 +30,4 @@ class FinanceGRU(nn.Module):
         logits = self.fc2(logits)
 
         return logits
+

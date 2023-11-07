@@ -27,8 +27,9 @@ class FinanceDataset(Dataset):
         self.seq_length = data_args.seq_length
         self.output_length = data_args.output_length
         self.predict_type = data_args.predict_type
+        self.mode = mode
 
-        df = None
+        self.df = None
         self.X = []
         self.y = []
         
@@ -37,23 +38,23 @@ class FinanceDataset(Dataset):
 
         if self.stock_id == 'samsung':
             if mode == 'train':
-                df = fdr.DataReader('005930','2000','2022')
+                self.df = fdr.DataReader('005930','2000','2022')
             elif mode == 'test':
-                df = fdr.DataReader('005930','2022','2023')
+                self.df = fdr.DataReader('005930','2022','2023')
             else:
                 raise ValueError(f'Invalid dataset mode : \"{mode}\"')
             
-            df.drop('Change', axis=1)
+            self.df.drop('Change', axis=1)
         
         elif self.stock_id == 'tesla':
             if mode == 'train':
-                df = fdr.DataReader('TSLA','2010','2022')
+                self.df = fdr.DataReader('TSLA','2010','2022')
             elif mode == 'test':
-                df = fdr.DataReader('TSLA','2022','2023')
+                self.df = fdr.DataReader('TSLA','2022','2023')
             else:
                 raise ValueError(f'Invalid dataset mode : \"{mode}\"')
             
-            df.drop('Adj Close', axis=1)
+            self.df.drop('Adj Close', axis=1)
             
         else:
             raise ValueError(f'Invalid stock name : {self.stock_id}')
@@ -63,41 +64,41 @@ class FinanceDataset(Dataset):
 
         if self.predict_type == 'high':
             predict_index = 1
-            self.min = min(df['High'])
-            self.max = max(df['High'])
+            self.min = min(self.df['High'])
+            self.max = max(self.df['High'])
 
         elif self.predict_type == 'low':
             predict_index = 2
-            self.min = min(df['Low'])
-            self.max = max(df['Low'])
+            self.min = min(self.df['Low'])
+            self.max = max(self.df['Low'])
 
         else:
             raise ValueError(f'Invalid predict type : \"{self.predict_type}\"')
         
+        self.predict_index = predict_index
 
         scaler = MinMaxScaler()
-        df = df[['Open', 'High', 'Low', 'Volume', 'Close']]
+        self.df = self.df[['Open', 'High', 'Low', 'Volume', 'Close']]
         scale_cols = ['Open', 'High', 'Low', 'Volume', 'Close']
-        scaled_array = scaler.fit_transform(df[scale_cols])
-        df = pd.DataFrame(scaled_array, columns = scale_cols)
+        scaled_array = scaler.fit_transform(self.df[scale_cols])
+        self.df = pd.DataFrame(scaled_array, columns = scale_cols)
         
 
-        for i in range(len(df) - self.seq_length - self.output_length):
-            x = np.array(df.iloc[i : i+self.seq_length,:])
-            y = np.array(df.iloc[i+self.seq_length : i+self.seq_length+self.output_length, predict_index])
+        for i in range(1, len(self.df) - self.seq_length - self.output_length):
+            x = np.array(self.df.iloc[i : i+self.seq_length,:]) - np.array(self.df.iloc[i-1 : i+self.seq_length-1,:])
+            y = np.array(self.df.iloc[i+self.seq_length : i+self.seq_length+self.output_length, predict_index]) - np.array(self.df.iloc[i+self.seq_length-1 : i+self.seq_length+self.output_length-1, predict_index])
             self.X.append(x)
             self.y.append(y)
         
         self.X = np.array(self.X)
         self.y = np.array(self.y)
-        print(self.X.shape, self.y.shape)
         assert len(self.X) == len(self.y)
 
         self.len = len(self.X)
 
 
     def inverse_transform(self, x):
-        return np.array(self.min + (self.max - self.min) * x).squeeze(0)
+        return np.array(self.min + (self.max - self.min) * x.cpu()).squeeze(0)
 
     def __len__(self):     
         return self.len
@@ -105,8 +106,14 @@ class FinanceDataset(Dataset):
 
     def __getitem__(self, idx):
 
-        x = torch.FloatTensor(self.X[idx])
-        y = torch.FloatTensor(self.y[idx])
+        if self.mode == 'train':
+            x = torch.FloatTensor(self.X[idx])
+            y = torch.FloatTensor(self.y[idx])
+        elif self.mode == 'test':
+            x = torch.FloatTensor(self.X[idx])
+            y = torch.FloatTensor(self.y[idx])
+            y_origin = torch.FloatTensor(np.array(self.df.iloc[idx+self.seq_length : idx+self.seq_length+self.output_length, self.predict_index]))
+            return x, y, y_origin
         return x,y
         
 
