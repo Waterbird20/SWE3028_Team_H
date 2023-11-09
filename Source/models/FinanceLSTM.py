@@ -3,7 +3,7 @@ import torch.nn as nn
 
 class FinanceLSTM(nn.Module):
 
-    def __init__(self, model_args, device):
+    def __init__(self, model_args):
 
         super(FinanceLSTM, self).__init__()
 
@@ -12,7 +12,7 @@ class FinanceLSTM(nn.Module):
         self.input_size = model_args.input_size
         self.hidden_size = model_args.hidden_size
         self.fc_hidden_size = model_args.fc_hidden_size
-        self.device = device
+        self.device = model_args.device
         
         self.net = nn.ModuleList()
         self.lstm = nn.LSTM(input_size = self.input_size, hidden_size = self.hidden_size,

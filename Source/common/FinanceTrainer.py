@@ -12,7 +12,7 @@ class CustomLoss(_Loss):
 
     __constants__ = ['alpha', 'epsilon', 'delta', 'reduction']
 
-    def __init__(self, reduction: str = 'mean', alpha: float = 0.1, epsilon: float = 1e-5, delta: float = 1.0):
+    def __init__(self, reduction: str = 'mean', alpha: float = 0.1, epsilon: float = 1e-4, delta: float = 1.0):
         super().__init__(reduction= reduction)
         self.alpha = alpha
         self.epsilon = epsilon
@@ -24,13 +24,17 @@ class CustomLoss(_Loss):
 
 class FinanceTrainer:
 
-    def __init__(self, trainer_args, data_args, model, dataset, predict_index, device):
+    def __init__(self, trainer_args, data_args, model, dataset):
 
 
         self.batch_size = trainer_args.batch_size
         self.lr = trainer_args.learning_rate
         self.num_epoch = trainer_args.num_epoch
-        self.predict_index = predict_index
+        self.predict_index = None
+        if data_args.predict_type == 'high':
+            self.predict_index = 1
+        elif data_args.predict_type == 'low':
+            self.predict_index = 2
 
         self.train_dataset = None
         self.train_dataloader = None
@@ -38,8 +42,8 @@ class FinanceTrainer:
         self.test_dataloader = None
 
         self.loss_fn = CustomLoss()
-        self.device = device
-        self.model = model.to(device)
+        self.device = trainer_args.device
+        self.model = model.to(self.device)
 
         self.optim = torch.optim.Adam(model.parameters(), lr = self.lr)
 
@@ -88,24 +92,24 @@ class FinanceTrainer:
 
         self.model.eval()
         avg_delta = 0.
+        x = np.linspace(1, len(self.test_dataloader)-1,len(self.test_dataloader)-1)
         label_y = []
         pred_y = []
         for j, data in enumerate(self.test_dataloader):
 
-            if j == 0: pass
+            if j == 0: continue
             inputs, labels, labels_origin = data
             logits = self.model(inputs.to(self.device))
 
-            label_y.append(labels.item() + labels_origin.item())
-            pred_y.append(logits.item() + labels_origin.item())
-
-            label_price = self.test_dataset.inverse_transform(labels.to(self.device))
-            pred_price = self.test_dataset.inverse_transform(logits.detach())
+            label_price = self.test_dataset.inverse_transform(labels)
+            pred_price = self.test_dataset.inverse_transform(logits.detach().cpu())
+            label_y.append(label_price + labels_origin.item())
+            pred_y.append(pred_price + labels_origin.item())
             avg_delta += np.average(np.abs(pred_price - label_price))
 
         plt.cla()
-        plt.plot(label_y, label='Actual')
-        plt.plot(pred_y, label='Predict')
+        plt.plot(x,label_y, label='Actual')
+        plt.plot(x,pred_y, label='Predict')
         plt.legend()
         plt.show()
 

@@ -8,7 +8,7 @@ class ModelArgs:
     input_size: Tuple[int, int]
     hidden_size: int
     fc_hidden_size: int
-    dropout: float = 0.25
+    device: str
 
 @dataclass
 class DataArgs:
@@ -24,3 +24,4 @@ class TrainerArgs:
     num_epoch: int
     do_train: bool
     do_test: bool
+    device: str

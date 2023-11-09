@@ -78,7 +78,12 @@ class FinanceDataset(Dataset):
         self.predict_index = predict_index
 
         scaler = MinMaxScaler()
+        self.df_origin = None
         self.df = self.df[['Open', 'High', 'Low', 'Volume', 'Close']]
+        if predict_index == 1:
+            self.df_origin = self.df['High']
+        else:
+            self.df_origin = self.df['Low']
         scale_cols = ['Open', 'High', 'Low', 'Volume', 'Close']
         scaled_array = scaler.fit_transform(self.df[scale_cols])
         self.df = pd.DataFrame(scaled_array, columns = scale_cols)
@@ -98,7 +103,7 @@ class FinanceDataset(Dataset):
 
 
     def inverse_transform(self, x):
-        return np.array(self.min + (self.max - self.min) * x.cpu()).squeeze(0)
+        return np.array((self.max - self.min) * x).squeeze(0)
 
     def __len__(self):     
         return self.len
@@ -112,7 +117,7 @@ class FinanceDataset(Dataset):
         elif self.mode == 'test':
             x = torch.FloatTensor(self.X[idx])
             y = torch.FloatTensor(self.y[idx])
-            y_origin = torch.FloatTensor(np.array(self.df.iloc[idx+self.seq_length : idx+self.seq_length+self.output_length, self.predict_index]))
+            y_origin = torch.FloatTensor(np.array([self.df_origin.iloc[idx-1]]))
             return x, y, y_origin
         return x,y
         

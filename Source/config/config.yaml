@@ -1,0 +1,39 @@
+
+# Model arguments
+
+# output_length : how many dates will model predict? (shared with DataArgs)
+# num_layers    : how many LSTM/GRU layers does model have?
+# input_size    : input size(fixed, [open, high, low, close, volume])
+# hidden_size   : hidden state/cell state size?
+# fc_hidden_size: fc layer hidden size?
+output_length   : 1
+num_layers      : 1
+input_size      : 5
+hidden_size     : 384
+fc_hidden_size  : 512
+device          : cuda
+
+
+# Data arguments
+
+# stock_id      : which stock to load?
+# seq_length    : how many days for prediction? 
+# output_length : shared with ModelArgs
+# predict_type  : high or low?
+stock_id        : samsung
+seq_length      : 30
+predict_type    : high
+
+
+# Trainer arguments
+
+# batch_size    : batch size?
+# learning_rate : learning_rate?
+# num_epoch     : how many epochs?
+# do_train      : train model?
+# do_test       : test model?
+batch_size      : 8
+learning_rate   : 1.0e-3
+num_epoch       : 50
+do_train        : true
+do_test         : true
