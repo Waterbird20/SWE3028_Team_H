@@ -117,7 +117,7 @@ class FinanceDataset(Dataset):
         elif self.mode == 'test':
             x = torch.FloatTensor(self.X[idx])
             y = torch.FloatTensor(self.y[idx])
-            y_origin = torch.FloatTensor(np.array([self.df_origin.iloc[idx-1]]))
+            y_origin = torch.FloatTensor(np.array([self.df_origin.iloc[idx+self.seq_length]]))
             return x, y, y_origin
         return x,y
         

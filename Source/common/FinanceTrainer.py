@@ -19,7 +19,7 @@ class CustomLoss(_Loss):
         self.delta = delta
 
     def forward(self, input: Tensor, target: Tensor, origin: Tensor) -> Tensor:
-        return F.huber_loss(input, target, reduction=self.reduction, delta=self.delta) + self.alpha * torch.mean(torch.sqrt((torch.abs(input-target)/(torch.abs(origin-target) + self.epsilon))**2))
+        return self.alpha * torch.mean(torch.sqrt((torch.abs(input-target)/(torch.abs(target-origin) + self.epsilon))**2))
 
 
 class FinanceTrainer:
@@ -112,7 +112,6 @@ class FinanceTrainer:
         plt.plot(x,pred_y, label='Predict')
         plt.legend()
         plt.show()
-
         print(f'MAE in KRW = {avg_delta/len(self.test_dataloader)}')
     
     def start(self):

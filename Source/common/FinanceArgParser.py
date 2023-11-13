@@ -8,7 +8,6 @@ class FinanceParser:
         self.arg = None
         with open(file_path) as f:
             self.arg = yaml.safe_load(f)
-            print(self.arg)
 
     def parse_model_args(self):
         return ModelArgs(output_length=self.arg['output_length'], num_layers=self.arg['num_layers'], input_size=self.arg['input_size'], hidden_size=self.arg['hidden_size'], fc_hidden_size=self.arg['fc_hidden_size'], device=self.arg['device'])
