@@ -1,13 +1,13 @@
 
 # Model arguments
 
-# is_transformer: false(fixed)
+# is_transformer: true(fixed)
 # output_length : how many dates will model predict? (shared with DataArgs)
 # num_layers    : how many LSTM/GRU layers does model have?
 # input_size    : input size(fixed, [open, high, low, close, volume])
 # hidden_size   : hidden state/cell state size?
 # fc_hidden_size: fc layer hidden size?
-is_transformer  : false
+is_transformer  : true
 output_length   : 1
 num_layers      : 1
 input_size      : 5

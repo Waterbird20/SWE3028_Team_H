@@ -30,6 +30,10 @@ class FinanceTrainer:
         self.batch_size = trainer_args.batch_size
         self.lr = trainer_args.learning_rate
         self.num_epoch = trainer_args.num_epoch
+        self.device = trainer_args.device
+        self.is_transformer = trainer_args.is_transformer
+        self.resolution = trainer_args.resolution
+
         self.predict_index = None
         if data_args.predict_type == 'high':
             self.predict_index = 1
@@ -42,7 +46,6 @@ class FinanceTrainer:
         self.test_dataloader = None
 
         self.loss_fn = CustomLoss()
-        self.device = trainer_args.device
         self.model = model.to(self.device)
 
         self.optim = torch.optim.Adam(model.parameters(), lr = self.lr)
@@ -58,32 +61,62 @@ class FinanceTrainer:
             self.test_dataset = dataset(data_args, mode='test')
             self.test_dataloader = DataLoader(self.test_dataset, batch_size=1, shuffle=False)
 
+    def resolution_map(self, input):
+        return torch.LongTensor(list(map(lambda x : torch.round((x+1.0-1/(2*(self.resolution-1)))*(self.resolution-1)/2.0).long(), input)))
+    
     def train(self):
         
         self.model.train()
         loss_y = []
         loss_acc = 0.
-        for i in range(self.num_epoch):
-            
-            print(f'Epoch {i}:')
-            for j, data in enumerate(self.train_dataloader):
-             
-                inputs, labels = data
-                self.optim.zero_grad()
+
+        if self.is_transformer:
+            for i in range(self.num_epoch):
                 
-                logits = self.model(inputs.to(self.device))
-                loss = self.loss_fn(logits, labels.to(self.device), inputs[:,-1,1].unsqueeze(-1).to(self.device))
-                if j % 50 == 49:
-                    loss_y.append(loss_acc/50)
-                    loss_acc = 0.0
-                else:
-                    loss_acc += loss.item()
-                loss.backward()
+                print(f'Epoch {i}:')
+                for j, data in enumerate(self.train_dataloader):
+                
+                    inputs, labels = data
+                    inputs = self.resolution_map(inputs)
+                    self.optim.zero_grad()
+                    
+                    logits = self.model(inputs.to(self.device))
+                    loss = self.loss_fn(logits, labels.to(self.device), inputs[:,-1,1].unsqueeze(-1).to(self.device))
+                    if j % 50 == 49:
+                        loss_y.append(loss_acc/50)
+                        loss_acc = 0.0
+                    else:
+                        loss_acc += loss.item()
+                    loss.backward()
 
-                self.optim.step()
+                    self.optim.step()
 
-                if j % 100 == 99:
-                    print(f'batch {j+1} loss : {loss.item()}')
+                    if j % 100 == 99:
+                        print(f'batch {j+1} loss : {loss.item()}')
+
+        else:
+            for i in range(self.num_epoch):
+                
+                print(f'Epoch {i}:')
+                for j, data in enumerate(self.train_dataloader):
+                
+                    inputs, labels = data
+                    self.optim.zero_grad()
+                    
+                    logits = self.model(inputs.to(self.device))
+                    loss = self.loss_fn(logits, labels.to(self.device), inputs[:,-1,1].unsqueeze(-1).to(self.device))
+                    if j % 50 == 49:
+                        loss_y.append(loss_acc/50)
+                        loss_acc = 0.0
+                    else:
+                        loss_acc += loss.item()
+                    loss.backward()
+
+                    self.optim.step()
+
+                    if j % 100 == 99:
+                        print(f'batch {j+1} loss : {loss.item()}')
+
         plt.plot(loss_y)
         plt.title("Custom Loss")
         plt.show()
@@ -95,17 +128,33 @@ class FinanceTrainer:
         x = np.linspace(1, len(self.test_dataloader)-1,len(self.test_dataloader)-1)
         label_y = []
         pred_y = []
-        for j, data in enumerate(self.test_dataloader):
+        
+        if self.is_transformer:
+            for j, data in enumerate(self.test_dataloader):
 
-            if j == 0: continue
-            inputs, labels, labels_origin = data
-            logits = self.model(inputs.to(self.device))
+                if j == 0: continue
+                inputs, labels, labels_origin = data
+                inputs = self.resolution_map(inputs)
+                logits = self.model(inputs.to(self.device))
 
-            label_price = self.test_dataset.inverse_transform(labels)
-            pred_price = self.test_dataset.inverse_transform(logits.detach().cpu())
-            label_y.append(label_price + labels_origin.item())
-            pred_y.append(pred_price + labels_origin.item())
-            avg_delta += np.average(np.abs(pred_price - label_price))
+                label_price = self.test_dataset.inverse_transform(labels)
+                pred_price = self.test_dataset.inverse_transform(logits.detach().cpu())
+                label_y.append(label_price + labels_origin.item())
+                pred_y.append(pred_price + labels_origin.item())
+                avg_delta += np.average(np.abs(pred_price - label_price))
+
+        else:
+            for j, data in enumerate(self.test_dataloader):
+
+                if j == 0: continue
+                inputs, labels, labels_origin = data
+                logits = self.model(inputs.to(self.device))
+
+                label_price = self.test_dataset.inverse_transform(labels)
+                pred_price = self.test_dataset.inverse_transform(logits.detach().cpu())
+                label_y.append(label_price + labels_origin.item())
+                pred_y.append(pred_price + labels_origin.item())
+                avg_delta += np.average(np.abs(pred_price - label_price))
 
         plt.cla()
         plt.plot(x,label_y, label='Actual')
