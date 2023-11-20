@@ -1,0 +1,3 @@
+seq_length: 30
+output_length: 1
+predict_type: high

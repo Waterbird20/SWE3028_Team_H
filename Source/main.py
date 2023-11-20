@@ -5,6 +5,7 @@ from common.FinanceArgParser import FinanceParser
 from dataset.FinanceDataset import FinanceDataset
 from models.FinanceLSTM import FinanceLSTM
 from models.FinanceGRU import FinanceGRU
+from models.FinanceTransformer import FinanceTransformer
 
 
 if torch.cuda.is_available():
@@ -12,13 +13,13 @@ if torch.cuda.is_available():
 else:
     device = torch.device('cpu')
 
-parser = FinanceParser('./config/config.yaml')
+parser = FinanceParser('./config/trans_config.yaml')
 
-model_args = parser.parse_model_args()
+model_args = parser.parse_transformer_args()
 data_args = parser.parse_data_args()
 trainer_args = parser.parse_trainer_args()
 
-model = FinanceLSTM(model_args)
+model = FinanceTransformer(model_args)
 dataset = FinanceDataset
 trainer = FinanceTrainer(trainer_args, data_args, model, dataset)
 

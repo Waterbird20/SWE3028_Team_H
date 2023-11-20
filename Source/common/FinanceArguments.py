@@ -18,6 +18,7 @@ class TransformerArgs:
     n_layer: int
     fc_hidden_size: int
     output_length: int
+    seq_length: int
 
 @dataclass
 class EmbeddingArgs:
@@ -26,7 +27,7 @@ class EmbeddingArgs:
 
 @dataclass
 class DataArgs:
-    stock_id: str
+    stock_type: str
     seq_length: int
     output_length: int
     predict_type: str
@@ -41,3 +42,9 @@ class TrainerArgs:
     device: str
     is_transformer: bool
     resolution: int
+
+@dataclass
+class DataBuilderArgs:
+    seq_length: int
+    output_length: int
+    predict_type: str

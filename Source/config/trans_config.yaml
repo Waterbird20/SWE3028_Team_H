@@ -2,12 +2,20 @@
 # Model arguments
 
 # is_transformer: true(fixed)
+# resolution    : embedding resolution
+# embed_dim     : embedding dimension
+# n_head        : number of heads
+# n_layer       : number of encoder stacks
 # output_length : how many dates will model predict? (shared with DataArgs)
 # num_layers    : how many LSTM/GRU layers does model have?
 # input_size    : input size(fixed, [open, high, low, close, volume])
 # hidden_size   : hidden state/cell state size?
 # fc_hidden_size: fc layer hidden size?
 is_transformer  : true
+resolution      : 1024
+embed_dim       : 64
+n_head          : 8
+n_layer         : 4
 output_length   : 1
 num_layers      : 1
 input_size      : 5
@@ -18,11 +26,11 @@ device          : cuda
 
 # Data arguments
 
-# stock_id      : which stock to load?
+# stock_type    : which stock to load?
 # seq_length    : how many days for prediction? 
 # output_length : shared with ModelArgs
 # predict_type  : high or low?
-stock_id        : samsung
+stock_type      : ko_stable
 seq_length      : 30
 predict_type    : high
 
@@ -36,6 +44,6 @@ predict_type    : high
 # do_test       : test model?
 batch_size      : 8
 learning_rate   : 1.0e-3
-num_epoch       : 50
+num_epoch       : 7
 do_train        : true
 do_test         : true

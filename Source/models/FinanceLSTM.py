@@ -14,7 +14,6 @@ class FinanceLSTM(nn.Module):
         self.fc_hidden_size = model_args.fc_hidden_size
         self.device = model_args.device
         
-        self.net = nn.ModuleList()
         self.lstm = nn.LSTM(input_size = self.input_size, hidden_size = self.hidden_size,
                             num_layers = self.num_layers, batch_first = True)
         self.fc1 = nn.Linear(self.hidden_size, self.fc_hidden_size)

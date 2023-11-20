@@ -12,14 +12,15 @@ class CustomLoss(_Loss):
 
     __constants__ = ['alpha', 'epsilon', 'delta', 'reduction']
 
-    def __init__(self, reduction: str = 'mean', alpha: float = 0.1, epsilon: float = 1e-4, delta: float = 1.0):
+    def __init__(self, reduction: str = 'mean', alpha: float = 0.1, beta: float = 0.2, epsilon: float = 1e-4, delta: float = 1.0):
         super().__init__(reduction= reduction)
         self.alpha = alpha
+        self.beta = beta
         self.epsilon = epsilon
         self.delta = delta
 
     def forward(self, input: Tensor, target: Tensor, origin: Tensor) -> Tensor:
-        return self.alpha * torch.mean(torch.sqrt((torch.abs(input-target)/(torch.abs(target-origin) + self.epsilon))**2))
+        return (5.0/self.alpha) * F.huber_loss(input, target) + self.alpha * torch.mean(torch.sqrt((torch.abs(input-target)/(torch.abs(target-origin) + self.epsilon))**2)) \
 
 
 class FinanceTrainer:
@@ -61,11 +62,14 @@ class FinanceTrainer:
             self.test_dataset = dataset(data_args, mode='test')
             self.test_dataloader = DataLoader(self.test_dataset, batch_size=1, shuffle=False)
 
+        self.lr_sched = torch.optim.lr_scheduler.StepLR(optimizer = self.optim, step_size = int(((len(self.train_dataset) * self.num_epoch)/self.batch_size)/1000), gamma = (0.001)**(0.001))
     def resolution_map(self, input):
-        return torch.LongTensor(list(map(lambda x : torch.round((x+1.0-1/(2*(self.resolution-1)))*(self.resolution-1)/2.0).long(), input)))
+        return torch.LongTensor(np.array(list(map(lambda x : torch.round((x+1.0-1/(2*(self.resolution-1)))*(self.resolution-1)/2.0).long().numpy(), input))))
     
     def train(self):
         
+        print('Train Started')
+        print(f'Dataset Length : {len(self.train_dataset)}')
         self.model.train()
         loss_y = []
         loss_acc = 0.
@@ -90,9 +94,11 @@ class FinanceTrainer:
                     loss.backward()
 
                     self.optim.step()
+                    self.lr_sched.step()
 
-                    if j % 100 == 99:
+                    if j % 1000 == 999:
                         print(f'batch {j+1} loss : {loss.item()}')
+                        print(self.lr_sched.get_last_lr())
 
         else:
             for i in range(self.num_epoch):
@@ -114,7 +120,7 @@ class FinanceTrainer:
 
                     self.optim.step()
 
-                    if j % 100 == 99:
+                    if j % 1000 == 999:
                         print(f'batch {j+1} loss : {loss.item()}')
 
         plt.plot(loss_y)
@@ -123,6 +129,8 @@ class FinanceTrainer:
 
     def test(self):
 
+        print('Test Started')
+        print(f'Dataset Length : {len(self.test_dataset)}')
         self.model.eval()
         avg_delta = 0.
         x = np.linspace(1, len(self.test_dataloader)-1,len(self.test_dataloader)-1)
@@ -165,9 +173,7 @@ class FinanceTrainer:
     
     def start(self):
         if self.do_train == True:
-            print(f'Training Started')
             self.train()
         if self.do_test == True:
-            print(f'Testing')
             self.test()
 

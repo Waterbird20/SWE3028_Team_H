@@ -12,6 +12,7 @@ class FinanceGRU(nn.Module):
         self.input_size = model_args.input_size
         self.hidden_size = model_args.hidden_size
         self.fc_hidden_size = model_args.fc_hidden_size
+        self.device = model_args.device
 
         self.gru = nn.GRU(input_size = self.input_size, hidden_size = self.hidden_size,
                             num_layers = self.num_layers, batch_first = True)
@@ -21,7 +22,7 @@ class FinanceGRU(nn.Module):
 
     
     def forward(self, x):
-        h_0 = torch.Tensor(torch.zeros(self.num_layers, x.size(0), self.hidden_size))
+        h_0 = torch.Tensor(torch.zeros(self.num_layers, x.size(0), self.hidden_size)).to(self.device)
         output, (hn) = self.gru(x, (h_0))
         hn = hn.view(-1, self.hidden_size)
         logits = self.relu(hn)

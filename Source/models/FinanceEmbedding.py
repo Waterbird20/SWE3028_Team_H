@@ -19,4 +19,4 @@ class FinanceEmbedding(nn.Module):
     '''
 
     def forward(self, x):
-        return self.embed(x)
+        return nn.functional.normalize(self.embed(x))
