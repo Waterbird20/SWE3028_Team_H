@@ -1,0 +1,456 @@
+html {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #37352F;
+    line-height: 16px;
+
+}
+
+* {
+	font-weight: 14px;
+    box-sizing: border-box;
+}
+
+.notion-modal-window {
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    fill: currentcolor;
+    line-height: 1.5;
+    -webkit-font-smoothing: auto;
+	background-color: rgba(248, 92, 112, 0.1);
+	
+}
+
+.modal-window {
+    position: absolute;
+    display: flexbox;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    max-width: 1400px;
+    box-shadow: rgba(15, 15, 15, 0.016) 0px 0px 0px 1px, rgba(15, 15, 15, 0.03) 0px 3px 6px, rgba(15, 15, 15, 0.06) 0px 9px 24px;
+    border-radius: 4px;
+    background-color: white;
+    z-index: 4;
+    overflow-y: scroll;
+    height: calc(100% - 144px);
+    border-radius: 3px;
+    top: 100px;
+    left: 72px;
+    right: 72px;
+}
+
+.modal-window::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    transform: translateZ(0px);
+    z-index: 1;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    overflow: hidden auto;
+}
+
+.modal-window::-webkit-scrollbar-thumb {
+    background: #D3D1CB;
+}
+
+.modal::-webkit-scrollbar {
+    background: transparent;
+}
+
+.modal-window::-webkit-scrollbar-track {
+    background: #EDECE9;
+}
+
+*::selection {
+    background: rgba(35, 131, 226, 0.28);
+}
+
+.modal-window-header {
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    user-select: none;
+    margin-bottom: 2px;
+}
+
+.modal-window-header-left {
+    width: 50px;
+    height: 24px;
+    display: inline-flex;
+    justify-content: space-between;
+
+}
+
+.modal-window-header-right {
+    width: 189.68px;
+    height: 29px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.modal-window-header-left-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    padding: 0px;
+}
+
+.hover:hover {
+    background-color: rgba(55, 43, 47, 0.08);
+}
+
+.svg1 {
+    fill: rgba(55, 53, 47, 0.45);
+    width: 16px;
+    height: 16px;
+    display: block;
+    flex-shrink: 0;
+    backface-visibility: hidden;
+}
+
+.svg2 {
+    fill: rgba(55, 53, 47, 0.85);
+    width: 20px;
+    height: 20px;
+    display: block;
+    flex-shrink: 0;
+    backface-visibility: hidden;
+}
+
+.dots {
+    fill: rgba(55, 53, 47, 0.85);
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    backface-visibility: hidden;
+}
+
+.share {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    height: 28px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.2;
+    min-width: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: rgb(55, 53, 47);
+    margin-right: 2px;
+}
+
+.topbar {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 3px;
+    height: 28px;
+    width: 33px;
+    padding: 0px;
+    margin-right: 2px;
+}
+
+.modal-window-title-wrapper {
+    max-width: 100%;
+    padding-left: calc(126px + env(safe-area-inset-left));
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.hidden {
+    transition: all 0.4s;
+    opacity: 0;
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 3px -1px;
+    height: 24px;
+}
+
+.modal-window-title-wrapper {
+    padding-top: 32px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.modal-window-title-wrapper:hover>.hidden {
+    opacity: 1;
+}
+
+.svg3 {
+    width: 14px;
+    height: 14px;
+    display: block;
+    flex-shrink: 0;
+    backface-visibility: hidden;
+    fill: rgba(55, 53, 47, 0.35);
+    margin-right: 6px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 4px;
+    color: rgba(55, 53, 47, 0.35);
+    padding: 5px;
+}
+
+.title {
+    max-width: 100%;
+    width: 100%;
+    height: 54px;
+    border: 0px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    caret-color: rgb(55, 53, 47);
+    padding: 3px 2px;
+    min-height: 1em;
+    color: rgb(55, 53, 47);
+    -webkit-text-fill-color: rgba(55, 53, 47, 0.15);
+    cursor: text;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    align-items: center;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    user-select: none;
+}
+
+.title:focus {
+    max-width: 100%;
+    width: 100%;
+    height: 54px;
+    border: 0px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    caret-color: rgb(55, 53, 47);
+    padding: 3px 2px;
+    min-height: 1em;
+    color: rgb(55, 53, 47);
+    -webkit-text-fill-color: rgba(55, 53, 47, 0.15);
+    cursor: text;
+    outline: none;
+}
+
+.title.input {
+    margin-top: 3px 2px;
+}
+
+.svg4 {
+    width: 16px;
+    height: 16px;
+    display: block;
+    fill: rgba(55, 53, 47, 0.45);
+    flex-shrink: 0;
+    backface-visibility: hidden;
+    margin-right: 6px;
+}
+
+.svg-item {
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.25em;
+    max-height: 34px;
+    max-width: 160px;
+    padding: 6px 6px;
+    margin-right: 6px;
+}
+
+.modal-window-body {
+    padding: 0 126px;
+}
+
+.body-item {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    max-height: 40px;
+    width: 100%;
+    color: rgba(55, 53, 47, 0.65);
+    margin-bottom: 4px;
+
+}
+
+.input-date {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    border: none;
+    color: rgba(55, 53, 47, 0.5);
+    -webkit-text-fill-color: rgba(55, 53, 47, 0.5);
+    -webkit-text-size-adjust: 18px;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    color: transparent;
+    transition: all 0.3 s;
+    font-weight: 600;
+}
+
+.input-date:focus {
+    border: none;
+    color: rgba(55, 53, 47, 0.85);
+    -webkit-text-fill-color: rgba(55, 53, 47, 0.85);
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    padding: 3px 2px;
+    color: transparent;
+}
+
+
+.right-body-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    width: 100%;
+    height: 34px;
+    padding: 5px 8px 4px;
+    font-size: 14px;
+    overflow: hidden;
+    user-select: none;
+}
+
+.add-property {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    width: 100%;
+    max-width: 160px;
+    height: 34px;
+    margin-top: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 14px;
+    overflow: hidden;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.add-property-text {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0px;
+    line-height: 16px;
+    line-height: 1.5;
+    color: rgba(55, 53, 47, 0.5);
+    user-select: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background: rgba(55, 53, 47, 0.09);
+    margin: 8px 0;
+}
+
+.add-comment {
+    padding: 6px 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.img {
+    display: block;
+    object-fit: cover;
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+.comment {
+    max-width: 100%;
+    border-radius: 0.25em;
+    cursor: pointer;
+    width: 100%;
+    white-space: pre-wrap;
+    word-break: break-word;
+    caret-color: rgb(55, 53, 47);
+    font-size: 14px;
+    padding: 7px 10px 7px 6px;
+    max-height: 70vh;
+    overflow: hidden auto;
+    user-select: auto;
+    min-height: 1em;
+    color: rgb(55, 53, 47);
+    -webkit-text-fill-color: rgba(55, 53, 47, 0.5);
+    border: none;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.comment:focus {
+    border: none;
+    user-select: auto;
+    overflow: hidden auto;
+    cursor: text;
+    outline: none;
+}
+
+.end {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 16px;
+    line-height: 1.5;
+    padding: 12px 2px 24px;
+    color: rgba(55, 53, 47, 0.5);
+    user-select: none;
+    flex-shrink: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 15vh;
+    padding-left: calc(126px + env(safe-area-inset-left));
+    padding-right: calc(126px + env(safe-area-inset-right));
+    min-height: 240px;
+}
+
+.underline {
+    text-decoration: underline 1.5px solid rgba(55, 53, 47, 0.45);
+}

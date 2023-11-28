@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link data-n-head="ssr" rel="stylesheet" href="https://static.hankyung.com/css/www/w/koreamarket.css?v=1695195055054">
+  <title>Test</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.min.js"></script>
+  <style>      
+    html, body, #container { 
+      width: 100%; height: 80%; margin: 0; padding: 0; 
+    } 
+  </style>
+</head>
+<body>  
+  <div class="stock-view-header container">
+    <div class="stock-item-wrap">
+      <div class="stock-item">
+        <div class="interest-check">
+      <!-- <button class="btn-star-toggle">
+      관심종목
+      </button> -->
+      <!-- <div class="fiq-tooltip top">
+      관심종목
+      </div> -->
+    </div>
+    <h2 class="stock-name" id="stock_name"><span href="javascript:;" class="ellip">삼성증권</span></h2>
+    <span class="code txt-num" id="stock_code">016360</span>
+    <!-- <span class="badge-defalut">코스피</span> -->
+    </div> 
+    <p class="table-desc" data-v-21ce79e0="">
+    <!-- <span class="txt-date" data-v-21ce79e0="">2023.11.24</span> </p> -->
+  </div>
+  <div class="stock-data-wrap">
+    <div class="stock-data txt-num down">
+    <p class="price" id="price">38,650</p>
+    <p class="quot">
+      <span class="stock-point" id="tom_change">150</span>
+      <span class="rate" id="tom_rate">-0.39%</span>
+    </p>
+    </div>
+    <div class="stock-data-detail">
+      <div class="col">
+        <dl><dt>Today High</dt>
+        <dd class="txt-num up" id="tod_high">38,950</dd>
+        </dl>
+        <dl><dt>Today Low</dt>
+        <dd class="txt-num down" id="tod_low">38,650</dd>
+        </dl>
+      </div>
+      <div class="col">
+        <dl><dt>Tomorrow High</dt>
+        <dd class="txt-num up" id="tom_high">38,950</dd>
+        </dl>
+        <dl><dt>Tomorrow Low</dt>
+        <dd class="txt-num down" id="tom_low">38,650</dd>
+        </dl>
+      </div>
+
+    </div>
+  </div>
+  </div>
+  <div id="container"></div>
+  <script src="static/stock_test.js"></script>
+</body>
+<script>
+  var chart_data = $.csv.toObjects('static/005930.csv');
+</script>
+
+</html>
