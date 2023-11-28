@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{KRX}
+Korea exchange. \url{http://krx.co.kr/}
+
+\bibitem{NASDAQ}
+Nasdaq: Stock market, data updates, reports \& news.
+  \url{https://www.nasdaq.com/}
+
+\bibitem{FinanceDataReader}
+FinanceData: Financedatareader.
+  \url{https://github.com/FinanceData/FinanceDataReader} (2022)
+
+\bibitem{li2019dp}
+Li, X., Li, Y., Yang, H., Yang, L., Liu, X.Y.: Dp-lstm: Differential
+  privacy-inspired lstm for stock prediction using financial news. arXiv
+  preprint arXiv:1912.10806  (2019)
+
+\bibitem{ma2020particle}
+Ma, X., Karkus, P., Hsu, D., Lee, W.S.: Particle filter recurrent neural
+  networks. In: Proceedings of the AAAI Conference on Artificial Intelligence.
+  vol.~34, pp. 5101--5108 (2020)
+
+\bibitem{mehtab2021stock}
+Mehtab, S., Sen, J., Dutta, A.: Stock price prediction using machine learning
+  and lstm-based deep learning models. In: Machine Learning and Metaheuristics
+  Algorithms, and Applications: Second Symposium, SoMMA 2020, Chennai, India,
+  October 14--17, 2020, Revised Selected Papers 2. pp. 88--106. Springer (2021)
+
+\end{thebibliography}
