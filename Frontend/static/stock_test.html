@@ -23,36 +23,36 @@
       관심종목
       </div> -->
     </div>
-    <h2 class="stock-name" id="stock_name"><span href="javascript:;" class="ellip">삼성증권</span></h2>
-    <span class="code txt-num" id="stock_code">016360</span>
+    <h2 class="stock-name" id="stock_name"><span href="javascript:;" class="ellip">삼성전자</span></h2>
+    <span class="code txt-num" id="stock_code">005930</span>
     <!-- <span class="badge-defalut">코스피</span> -->
     </div> 
     <p class="table-desc" data-v-21ce79e0="">
     <!-- <span class="txt-date" data-v-21ce79e0="">2023.11.24</span> </p> -->
   </div>
   <div class="stock-data-wrap">
-    <div class="stock-data txt-num down">
-    <p class="price" id="price">38,650</p>
+    <div class="stock-data txt-num" id="up_down">
+    <p class="price" id="price_end"></p>
     <p class="quot">
-      <span class="stock-point" id="tom_change">150</span>
-      <span class="rate" id="tom_rate">-0.39%</span>
+      <span class="stock-point" id="tom_change"></span>
+      <span class="rate" id="tom_rate"></span>
     </p>
     </div>
     <div class="stock-data-detail">
       <div class="col">
         <dl><dt>Today High</dt>
-        <dd class="txt-num up" id="tod_high">38,950</dd>
+        <dd class="txt-num up" id="tod_high"></dd>
         </dl>
         <dl><dt>Today Low</dt>
-        <dd class="txt-num down" id="tod_low">38,650</dd>
+        <dd class="txt-num down" id="tod_low"></dd>
         </dl>
       </div>
       <div class="col">
         <dl><dt>Tomorrow High</dt>
-        <dd class="txt-num up" id="tom_high">38,950</dd>
+        <dd class="txt-num up" id="tom_high"></dd>
         </dl>
         <dl><dt>Tomorrow Low</dt>
-        <dd class="txt-num down" id="tom_low">38,650</dd>
+        <dd class="txt-num down" id="tom_low"></dd>
         </dl>
       </div>
 
@@ -60,10 +60,120 @@
   </div>
   </div>
   <div id="container"></div>
-  <script src="static/stock_test.js"></script>
-</body>
-<script>
-  var chart_data = $.csv.toObjects('static/005930.csv');
-</script>
+  <script>
+    var code = '005930';
 
+    anychart.onDocumentReady(function () {
+      // code = '005930';
+      anychart.data.loadCsvFile(
+        // 'https://gist.githubusercontent.com/shacheeswadia/cd509e0b0c03964ca86ae7d894137043/raw/5f336c644ad61728dbac93026f3268b86b8d0680/teslaDailyData.csv',
+        'static/'+ code + '.csv',
+        function (data) {
+        // create data table on loaded data
+        const num_data = data.split('\n').length;
+
+        var tom_high_val = data.split('\n')[num_data-6].split(",")[2];
+        var tom_low_val = data.split('\n')[num_data-6].split(",")[3];
+        var tod_high_val = data.split('\n')[num_data-7].split(",")[2];
+        var tod_low_val = data.split('\n')[num_data-7].split(",")[3];
+        var price_end_val = data.split('\n')[num_data-7].split(",")[4];
+
+        document.getElementById("tom_high").textContent =  tom_high_val;
+        document.getElementById("tom_low").textContent =  tom_low_val;
+        document.getElementById("tod_high").textContent =  tod_high_val;
+        document.getElementById("tod_low").textContent =  tod_low_val;
+        document.getElementById("price_end").textContent =  price_end_val;
+
+        tom_change_val = tom_high_val - price_end_val;
+        change_rate_val = Math.ceil(tom_change_val/price_end_val * 10000)/100;
+
+        document.getElementById("tom_change").textContent =  tom_change_val;
+        document.getElementById("tom_rate").textContent =  change_rate_val + "%";
+
+        if (tom_change_val > 0) {
+          document.getElementById("up_down").className = "stock-data txt-num up";
+        } else {
+          document.getElementById("up_down").className = "stock-data txt-num down";
+        }
+
+        line_data = data.split('\n').slice(0, num_data-6).join('\n');
+        
+    
+        var dataTable = anychart.data.table();
+        dataTable.addData(data);
+    
+        var lineTable = anychart.data.table();
+        lineTable.addData(line_data);
+    
+        // map loaded data for the candlestick series
+        var mapping = lineTable.mapAs({
+          open: 1,
+          high: 2,
+          low: 3,
+          close: 4
+        });
+    
+    
+        // create stock chart
+        var chart = anychart.stock();
+      
+        // create first plot on the chart
+        var plot = chart.plot(0);
+    
+    
+    
+        // Add a range spline series using the data from the computer
+        var bbandsSeries = chart.plot().rangeSplineArea(dataTable, {
+          high: 2,
+          low: 3
+        });
+    
+        // Set name and visual effects
+        bbandsSeries
+        .name('Bands')
+        .fill(anychart.color.lighten('#CDB4DB', 0.7))
+        .highStroke('#FF7F7F')
+        .lowStroke('#ADD8E6');
+    
+        // set grid settings
+        plot.yGrid(true).xGrid(true).yMinorGrid(true).xMinorGrid(true);
+    
+        var series = plot.candlestick(mapping).name('SAMSUMG ELECTRONICS CO.');
+        series.legendItem().iconType('rising-falling');
+        series.risingFill("#E34234");
+        series.risingStroke("#E34234");
+        series.fallingFill("#1E90FF");
+        series.fallingStroke("#1E90FF");
+        
+        // create scroller series with mapped data
+        chart.scroller().candlestick(mapping);
+        
+        // set chart selected date/time range
+        chart.selectRange('2023-11-01', '2023-11-30');
+        
+        // create range picker
+        // var rangePicker = anychart.ui.rangePicker();
+        
+        // init range picker
+        // rangePicker.render(chart);
+        
+        // create range selector
+        var rangeSelector = anychart.ui.rangeSelector();
+        
+        // init range selector
+        rangeSelector.render(chart);
+        
+        // sets the title of the chart
+        // chart.title('Tesla Inc. Stock Chart');
+      
+        // set container id for the chart
+        chart.container('container');
+        
+        // initiate chart drawing
+        chart.draw();
+        }
+      );
+    });
+  </script>
+</body>
 </html>
