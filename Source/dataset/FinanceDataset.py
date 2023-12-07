@@ -22,7 +22,7 @@ import FinanceDataReader as fdr
 
 us_stable = ['KO', 'MCD', 'WM', 'RSG', 'PEP', 'CL', 'WMT', 'CBOE', 'GD', 'KMB', 'PG', 'COR', 'IBM']
 
-us_unstable = ['APPL', 'MSFT', 'AMZN', 'NVDA', 'META', 'AVGO', 'GOOGL', 'GOOG', 'TSLA', 'ADBE', 'COST', 'CSCO', 'NFLX', 'AMD']
+us_unstable = ['AAPL', 'MSFT', 'AMZN', 'NVDA', 'META', 'AVGO', 'GOOGL', 'GOOG', 'TSLA', 'ADBE', 'COST', 'CSCO', 'NFLX', 'AMD']
 
 ko_stable = ['005930', '006400', '033780', '000100', '000660', '005830', '010130', '001450', '138040', '030000', '011070', \
              '004170', '024100', '036570', '058470', '011170', '004370', '012750', '081660']
@@ -31,12 +31,13 @@ ko_unstable = ['005490', '035420', '005380', '051910', '000270', '068270', '1055
 
 class FinanceDataset(Dataset):
 
-    def __init__(self, data_args, mode='train'):
+    def __init__(self, data_args, mode='train', stock_id=None):
 
-        self.stock_type = data_args.stock_type
+        self.data_path = data_args.data_path
         self.seq_length = data_args.seq_length
         self.output_length = data_args.output_length
         self.predict_type = data_args.predict_type
+        self.stock_id = stock_id
         self.mode = mode
 
         self.df = None
@@ -47,18 +48,16 @@ class FinanceDataset(Dataset):
         self.max = None
         self.origin = None
 
-        if self.stock_type not in ['us_stable', 'us_unstable', 'ko_stable', 'ko_unstable']:
-            raise ValueError(f'Invalid Stock Type : {self.stock_type}')
         
         if self.mode == 'train':
-            self.X = np.load('./data/'+self.stock_type+'/'+self.predict_type+'_data.npy')
-            self.y = np.load('./data/'+self.stock_type+'/'+self.predict_type+'_label.npy')
+            self.X = np.load(self.data_path+'/'+self.predict_type+'_data.npy')
+            self.y = np.load(self.data_path+'/'+self.predict_type+'_label.npy')
 
         if self.mode == 'test':
-            self.X = np.load('./data/'+self.stock_type+'/'+self.predict_type+'_test_data.npy')
-            self.y = np.load('./data/'+self.stock_type+'/'+self.predict_type+'_test_label.npy')
-            minmax = np.load('./data/'+self.stock_type+'/'+self.predict_type+'_test_minmax.npy')
-            self.origin = np.load('./data/'+self.stock_type+'/'+self.predict_type+'_test_origin.npy')
+            self.X = np.load(self.data_path+'/test_'+self.predict_type+'/'+self.stock_id+self.predict_type+'_test_data.npy')
+            self.y = np.load(self.data_path+'/test_'+self.predict_type+'/'+self.stock_id+self.predict_type+'_test_label.npy')
+            minmax = np.load(self.data_path+'/test_'+self.predict_type+'/'+self.stock_id+self.predict_type+'_test_minmax.npy')
+            self.origin = np.load(self.data_path+'/test_'+self.predict_type+'/'+self.stock_id+self.predict_type+'_test_origin.npy')
 
             self.min = minmax[0]
             self.max = minmax[1]

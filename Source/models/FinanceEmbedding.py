@@ -19,4 +19,9 @@ class FinanceEmbedding(nn.Module):
     '''
 
     def forward(self, x):
-        return nn.functional.normalize(self.embed(x))
+        embed = self.embed(x)
+        for i in range(5):
+            embed[:,:,i] += embed[:,:,5]
+        embed = embed[:,:,:5,:]
+        embed = torch.reshape(embed, (-1, 30,self.embed_dim*5))
+        return nn.functional.normalize(embed)

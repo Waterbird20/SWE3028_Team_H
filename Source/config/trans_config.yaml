@@ -13,12 +13,12 @@
 # fc_hidden_size: fc layer hidden size?
 is_transformer  : true
 resolution      : 1024
-embed_dim       : 64
-n_head          : 8
+embed_dim       : 128
+n_head          : 2
 n_layer         : 4
 output_length   : 1
 num_layers      : 1
-input_size      : 5
+input_size      : 6
 hidden_size     : 384
 fc_hidden_size  : 512
 device          : cuda
@@ -30,9 +30,10 @@ device          : cuda
 # seq_length    : how many days for prediction? 
 # output_length : shared with ModelArgs
 # predict_type  : high or low?
-stock_type      : ko_stable
+stock_type      : us_stable
 seq_length      : 30
 predict_type    : high
+data_path       : ./data/us_stable_vader
 
 
 # Trainer arguments
@@ -43,7 +44,7 @@ predict_type    : high
 # do_train      : train model?
 # do_test       : test model?
 batch_size      : 8
-learning_rate   : 1.0e-3
-num_epoch       : 7
+learning_rate   : 1.5e-5
+num_epoch       : 5
 do_train        : true
 do_test         : true

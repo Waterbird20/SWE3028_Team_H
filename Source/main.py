@@ -13,13 +13,13 @@ if torch.cuda.is_available():
 else:
     device = torch.device('cpu')
 
-parser = FinanceParser('./config/trans_config.yaml')
+parser = FinanceParser('./config/config.yaml')
 
-model_args = parser.parse_transformer_args()
+model_args = parser.parse_model_args()
 data_args = parser.parse_data_args()
 trainer_args = parser.parse_trainer_args()
 
-model = FinanceTransformer(model_args)
+model = FinanceLSTM(model_args)
 dataset = FinanceDataset
 trainer = FinanceTrainer(trainer_args, data_args, model, dataset)
 

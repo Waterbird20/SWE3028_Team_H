@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1MSuyNJF2lvLoPmk_IAFr2xkzR03Io2Ly
 """
 
-pip install beautifulsoup4            # beautifulsoup installing
 
 import pandas as pd
 import nltk
@@ -26,26 +25,26 @@ def getStockScore(stockName, pageScope):
   scoreList = []
 
   for i in range(1, int(pageScope) + 1):
-    # ¸µÅ© url ¼³Á¤
+    # ï¿½ï¿½Å© url ï¿½ï¿½ï¿½ï¿½
     url = 'https://www.investing.com/equities/' + str(stockName) + '-news/' + str(i)
 
-    # html ÃßÃâ
+    # html ï¿½ï¿½ï¿½ï¿½
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # ³¯Â¥ ÃßÃâ
+    # ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½
     dates = soup.find_all('time', 'ml-2')
     for d in dates:
       dateList.append(d.string)
 
-    # °³º° ´º½º ¸µÅ© ÃßÃâ
+    # ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½
     linkList = []
     links = soup.find_all('a', attrs={'data-test': 'article-title-link'})
     for link in links:
       href = link.attrs['href']
       linkList.append('https://www.investing.com/' + href)
 
-    # ´º½º Á¡¼ö ÃßÃâ
+    # ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     for a in linkList:
       response_a = requests.get(a)
       soup_a = BeautifulSoup(response_a.text, 'html.parser')
