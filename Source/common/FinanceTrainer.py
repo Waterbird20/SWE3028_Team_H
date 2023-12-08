@@ -163,7 +163,8 @@ class FinanceTrainer:
 
         k=0
         mse = 0.0
-        mse_count = 0
+        trend = 0
+        count = 0
         accuracy = 0.0
         for stock_id in self.stock_list:
             i=0 
@@ -180,13 +181,16 @@ class FinanceTrainer:
                     label_price = self.test_dataset.inverse_transform(labels)
                     pred_price = self.test_dataset.inverse_transform(logits.detach().cpu())
                     delta = label_price - pred_price
+                    t1 = label_price - labels_origin
+                    t2 = pred_price - labels_origin
+                    if np.sign(t1) == np.sign(t2): trend += 1
                     if k == 0:
                         label_y.append(label_price + labels_origin.item())
                         pred_y.append(pred_price + labels_origin.item())
                     MPA_list[i] += np.average(np.abs(delta)/(label_price+ labels_origin.item()))
                     mse += ((delta)**2).item()
                     accuracy += 1.0 - (np.abs(delta)/label_price).item()
-                    mse_count += 1
+                    count += 1
                     i+=1
             else:
                 for j, data in enumerate(self.test_dataloader):
@@ -197,12 +201,17 @@ class FinanceTrainer:
 
                     label_price = self.test_dataset.inverse_transform(labels)
                     pred_price = self.test_dataset.inverse_transform(logits.detach().cpu())
+                    delta = label_price - pred_price
+                    t1 = label_price - labels_origin
+                    t2 = pred_price - labels_origin
+                    if np.sign(t1) == np.sign(t2): trend += 1
                     if k == 0:
                         label_y.append(label_price + labels_origin.item())
                         pred_y.append(pred_price + labels_origin.item())
-                    MPA_list[i] += np.average(np.abs(label_price - pred_price)/(label_price+ labels_origin.item()))
-                    mse += ((label_price - pred_price)**2).item()
-                    mse_count += 1
+                    MPA_list[i] += np.average(np.abs(delta)/(label_price+ labels_origin.item()))
+                    mse += ((delta)**2).item()
+                    accuracy += 1.0 - (np.abs(delta)/label_price).item()
+                    count += 1
                     i+=1
             k+=1
 
@@ -210,7 +219,7 @@ class FinanceTrainer:
         x = np.linspace(0, len(MPA_list)-1,len(MPA_list))
         plt.cla()
         plt.plot(x,MPA_list, label='MPA')
-        plt.title(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}\n MSE : {mse/mse_count}\n Average Accuracy : {accuracy/mse_count}\n Mean error percent : {1 - accuracy/mse_count}')
+        plt.title(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}\n MSE : {mse/count}\n Average Accuracy : {accuracy/count}\n Mean error percent : {1 - accuracy/count}\n Trend Accuracy : {trend/count}')
         plt.legend()
         plt.show()
 
