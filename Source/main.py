@@ -19,7 +19,7 @@ model_args = parser.parse_model_args()
 data_args = parser.parse_data_args()
 trainer_args = parser.parse_trainer_args()
 
-model = FinanceLSTM(model_args)
+model = FinanceGRU(model_args)
 dataset = FinanceDataset
 trainer = FinanceTrainer(trainer_args, data_args, model, dataset)
 

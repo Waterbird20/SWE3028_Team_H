@@ -37,7 +37,7 @@ data_path       : ./data/us_stable_vader
 # do_test       : test model?
 batch_size      : 8
 learning_rate   : 1.5e-5
-num_epoch       : 10
+num_epoch       : 15
 do_train        : true
 do_test         : true
 

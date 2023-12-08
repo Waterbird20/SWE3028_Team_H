@@ -30,7 +30,7 @@ class CustomLoss(_Loss):
         self.epsilon = epsilon
 
     def forward(self, input: Tensor, target: Tensor, origin: Tensor) -> Tensor:
-        return (5.0/self.alpha)*F.huber_loss(input, target) + self.alpha * torch.mean(torch.sqrt((torch.abs(input-target)/(torch.abs(target-origin) + self.epsilon))**2))
+        return (3.5/self.alpha)*F.huber_loss(input, target) + self.alpha * torch.mean(torch.sqrt((torch.abs(input-target)/(torch.abs(target-origin) + self.epsilon))**2))
         '''
         sign_true = torch.sign(target)
         sign_pred = torch.sign(input)
@@ -80,8 +80,8 @@ class FinanceTrainer:
             self.train_dataset = dataset(data_args, mode='train')
             self.train_dataloader = DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True)
 
-        self.lr_sched = torch.optim.lr_scheduler.StepLR(optimizer = self.optim, step_size = int(((len(self.train_dataset) * self.num_epoch)/self.batch_size)/1000), gamma = (0.001)**(0.001))
-        #self.lr_sched = torch.optim.lr_scheduler.CosineAnnealingLR(self.optim,1000)
+        #self.lr_sched = torch.optim.lr_scheduler.StepLR(optimizer = self.optim, step_size = int(((len(self.train_dataset) * self.num_epoch)/self.batch_size)/1000), gamma = (0.001)**(0.001))
+        self.lr_sched = torch.optim.lr_scheduler.CosineAnnealingLR(self.optim,500)
 
         self.stock_list = None
         if self.stock_type == 'us_stable':
@@ -154,8 +154,6 @@ class FinanceTrainer:
 
         print('Test Started')
         self.model.eval()
-        label_y = []
-        pred_y = []
 
         self.test_dataset = self.dataset(self.data_args, mode='test', stock_id=self.stock_list[0])
         MPA_list = np.array([0.0 for i in range(len(self.test_dataset)-1)])
@@ -165,9 +163,12 @@ class FinanceTrainer:
         mse = 0.0
         trend = 0
         count = 0
-        accuracy = 0.0
+        total_label_y = []
+        total_pred_y = []
         for stock_id in self.stock_list:
             i=0 
+            label_y = []
+            pred_y = []
             self.test_dataset = self.dataset(self.data_args, mode='test', stock_id=stock_id)
             self.test_dataloader = DataLoader(self.test_dataset, shuffle=False)
             if self.is_transformer:
@@ -181,15 +182,11 @@ class FinanceTrainer:
                     label_price = self.test_dataset.inverse_transform(labels)
                     pred_price = self.test_dataset.inverse_transform(logits.detach().cpu())
                     delta = label_price - pred_price
-                    t1 = label_price - labels_origin
-                    t2 = pred_price - labels_origin
-                    if np.sign(t1) == np.sign(t2): trend += 1
-                    if k == 0:
-                        label_y.append(label_price + labels_origin.item())
-                        pred_y.append(pred_price + labels_origin.item())
+                    if np.sign(label_price) == np.sign(pred_price): trend += 1
+                    label_y.append(label_price + labels_origin.item())
+                    pred_y.append(pred_price + labels_origin.item())
                     MPA_list[i] += np.average(np.abs(delta)/(label_price+ labels_origin.item()))
                     mse += ((delta)**2).item()
-                    accuracy += 1.0 - (np.abs(delta)/label_price).item()
                     count += 1
                     i+=1
             else:
@@ -202,34 +199,36 @@ class FinanceTrainer:
                     label_price = self.test_dataset.inverse_transform(labels)
                     pred_price = self.test_dataset.inverse_transform(logits.detach().cpu())
                     delta = label_price - pred_price
-                    t1 = label_price - labels_origin
-                    t2 = pred_price - labels_origin
-                    if np.sign(t1) == np.sign(t2): trend += 1
-                    if k == 0:
-                        label_y.append(label_price + labels_origin.item())
-                        pred_y.append(pred_price + labels_origin.item())
+                    if np.sign(label_price) == np.sign(pred_price): trend += 1
+                    label_y.append(label_price + labels_origin.item())
+                    pred_y.append(pred_price + labels_origin.item())
                     MPA_list[i] += np.average(np.abs(delta)/(label_price+ labels_origin.item()))
                     mse += ((delta)**2).item()
-                    accuracy += 1.0 - (np.abs(delta)/label_price).item()
                     count += 1
                     i+=1
+            total_label_y.append(label_y)
+            total_pred_y.append(pred_y)
             k+=1
 
         MPA_list = 1 - MPA_list/len(self.stock_list)
         x = np.linspace(0, len(MPA_list)-1,len(MPA_list))
         plt.cla()
         plt.plot(x,MPA_list, label='MPA')
-        plt.title(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}\n MSE : {mse/count}\n Average Accuracy : {accuracy/count}\n Mean error percent : {1 - accuracy/count}\n Trend Accuracy : {trend/count}')
+        plt.title(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}\nMSE : {mse/count}\nTrend Accuracy : {trend/count}')
         plt.legend()
         plt.show()
 
+        '''
         x_graph  = np.linspace(0, len(pred_y)-1,len(pred_y))
         plt.cla()
         plt.plot(x_graph,pred_y, label='Predict')
         plt.plot(x_graph,label_y, label='Actual')
         plt.legend()
         plt.show()
-        print(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}\n MSE : {mse/count}\n Average Accuracy : {accuracy/count}\n Mean error percent : {1 - accuracy/count}\n Trend Accuracy : {trend/count}')
+        print(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}\nMSE : {mse/count}\nTrend Accuracy : {trend/count}')
+        '''
+        np.save('./graph_actual.npy', np.array(total_label_y))
+        np.save('./graph_predict.npy', np.array(total_pred_y))
     
     def start(self):
         if self.do_train == True:
