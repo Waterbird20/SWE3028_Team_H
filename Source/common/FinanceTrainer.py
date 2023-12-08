@@ -229,7 +229,7 @@ class FinanceTrainer:
         plt.plot(x_graph,label_y, label='Actual')
         plt.legend()
         plt.show()
-        #print(f'Average MPA = {1- avg_delta/len(self.test_dataloader)}')
+        print(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}\n MSE : {mse/count}\n Average Accuracy : {accuracy/count}\n Mean error percent : {1 - accuracy/count}\n Trend Accuracy : {trend/count}')
     
     def start(self):
         if self.do_train == True:
