@@ -162,6 +162,8 @@ class FinanceTrainer:
         x_graph = np.linspace(0, len(MPA_list)-2,len(MPA_list)-1)
 
         k=0
+        mse = 0.0
+        mse_count = 0
         for stock_id in self.stock_list:
             i=0 
             self.test_dataset = self.dataset(self.data_args, mode='test', stock_id=stock_id)
@@ -180,6 +182,8 @@ class FinanceTrainer:
                         label_y.append(label_price + labels_origin.item())
                         pred_y.append(pred_price + labels_origin.item())
                     MPA_list[i] += np.average(np.abs(label_price - pred_price)/(label_price+ labels_origin.item()))
+                    mse += ((label_price - pred_price)**2).item()
+                    mse_count += 1
                     i+=1
             else:
                 for j, data in enumerate(self.test_dataloader):
@@ -194,6 +198,8 @@ class FinanceTrainer:
                         label_y.append(label_price + labels_origin.item())
                         pred_y.append(pred_price + labels_origin.item())
                     MPA_list[i] += np.average(np.abs(label_price - pred_price)/(label_price+ labels_origin.item()))
+                    mse += ((label_price - pred_price)**2).item()
+                    mse_count += 1
                     i+=1
             k+=1
 
@@ -201,7 +207,7 @@ class FinanceTrainer:
         x = np.linspace(0, len(MPA_list)-1,len(MPA_list))
         plt.cla()
         plt.plot(x,MPA_list, label='MPA')
-        plt.title(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}')
+        plt.title(f'Average MPA : {np.sum(MPA_list)/len(MPA_list)}\n MSE : {mse/mse_count}')
         plt.legend()
         plt.show()
 
