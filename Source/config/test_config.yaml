@@ -24,7 +24,7 @@ device          : cuda
 # predict_type  : high or low?
 stock_type      : us_stable
 seq_length      : 30
-predict_type    : high
+predict_type    : low
 data_path       : ./data/us_stable_vader
 
 
@@ -36,8 +36,8 @@ data_path       : ./data/us_stable_vader
 # do_train      : train model?
 # do_test       : test model?
 batch_size      : 8
-learning_rate   : 3.5e-6
-num_epoch       : 10
+learning_rate   : 1.5e-5
+num_epoch       : 15
 do_train        : true
 do_test         : true
 save_model      : true
@@ -45,7 +45,7 @@ save_model      : true
 # Run arguments
 
 # model_type    : type of model (LSTM, GRU, TF)
-model_type      : TF
+model_type      : LSTM
 
 
 # Transformer arguments

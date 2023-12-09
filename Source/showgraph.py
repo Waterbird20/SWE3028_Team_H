@@ -14,8 +14,8 @@ def show_graph(a, p, i):
     plt.legend()
     plt.show()
 
-a = np.load('./graph_actual.npy')
-p = np.load('./graph_predict.npy')
+a = np.load('./TF_us_stable_high_graph_actual.npy')
+p = np.load('./TF_us_stable_high_graph_predict.npy')
 
 for i in range(len(a)):
     show_graph(a[i], p[i], i)

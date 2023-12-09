@@ -1,6 +1,5 @@
 import torch
 from common.FinanceTrainer import FinanceTrainer
-from common.FinanceArguments import ModelArgs, DataArgs, TrainerArgs
 from common.FinanceArgParser import FinanceParser
 from dataset.FinanceDataset import FinanceDataset
 from models.FinanceLSTM import FinanceLSTM
@@ -19,7 +18,13 @@ model_args = parser.parse_model_args()
 data_args = parser.parse_data_args()
 trainer_args = parser.parse_trainer_args()
 
-model = FinanceGRU(model_args)
+if parser.arg['model_type'] == 'LSTM':
+    model = FinanceLSTM(model_args)
+elif parser.arg['model_type'] == 'GRU':
+    model = FinanceGRU(model_args)
+elif parser.arg['model_type'] == 'TF':
+    model = FinanceTransformer(model_args)
+
 dataset = FinanceDataset
 trainer = FinanceTrainer(trainer_args, data_args, model, dataset)
 

@@ -9,17 +9,13 @@ class ModelArgs:
     hidden_size: int
     fc_hidden_size: int
     device: str
-
-@dataclass
-class TransformerArgs:
+    seq_length: int
     embed_dim: int
     resolution: int
     n_head: int
     n_layer: int
-    fc_hidden_size: int
-    output_length: int
-    seq_length: int
-    input_size: int
+    tf_fc_hidden_size: int
+    tf_input_size: int
 
 @dataclass
 class EmbeddingArgs:
@@ -41,10 +37,11 @@ class TrainerArgs:
     do_train: bool
     do_test: bool
     device: str
-    is_transformer: bool
     resolution: int
     stock_type: str
-
+    save_model: bool
+    model_type: str
+    
 @dataclass
 class DataBuilderArgs:
     seq_length: int
