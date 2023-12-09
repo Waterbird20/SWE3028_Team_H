@@ -1,21 +1,13 @@
 
 # Model arguments
 
-# is_transformer: true(fixed)
-# resolution    : embedding resolution
-# embed_dim     : embedding dimension
-# n_head        : number of heads
-# n_layer       : number of encoder stacks
+# is_transformer: false(fixed)
 # output_length : how many dates will model predict? (shared with DataArgs)
 # num_layers    : how many LSTM/GRU layers does model have?
 # input_size    : input size(fixed, [open, high, low, close, volume])
 # hidden_size   : hidden state/cell state size?
 # fc_hidden_size: fc layer hidden size?
-is_transformer  : true
-resolution      : 1024
-embed_dim       : 128
-n_head          : 2
-n_layer         : 4
+is_transformer  : false
 output_length   : 1
 num_layers      : 1
 input_size      : 6
@@ -30,10 +22,11 @@ device          : cuda
 # seq_length    : how many days for prediction? 
 # output_length : shared with ModelArgs
 # predict_type  : high or low?
-stock_type      : us_stable
+stock_type      : us_unstable
 seq_length      : 30
 predict_type    : high
-data_path       : ./data/us_stable_vader
+data_path       : ./data/upload/us_unstable_vader
+is_upload       : true
 
 
 # Trainer arguments
@@ -44,7 +37,29 @@ data_path       : ./data/us_stable_vader
 # do_train      : train model?
 # do_test       : test model?
 batch_size      : 8
-learning_rate   : 1.5e-6
+learning_rate   : 3.5e-6
 num_epoch       : 10
-do_train        : true
+do_train        : false
 do_test         : true
+save_model      : true
+
+# Run arguments
+
+# model_type    : type of model (LSTM, GRU, TF)
+model_type      : TF
+
+
+# Transformer arguments
+
+# resolution       : embedding resolution
+# embed_dim        : embedding dimension
+# n_head           : number of heads
+# n_layer          : number of encoder stacks
+# tf_input_size    : input size(fixed, [open, high, low, close, volume])
+# tf_fc_hidden_size: fc layer hidden size?
+resolution         : 1024
+embed_dim          : 128
+n_head             : 2
+n_layer            : 4
+tf_input_size      : 6
+tf_fc_hidden_size  : 512

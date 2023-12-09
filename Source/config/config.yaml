@@ -26,6 +26,7 @@ stock_type      : us_stable
 seq_length      : 30
 predict_type    : high
 data_path       : ./data/us_stable_vader
+is_upload       : false
 
 
 # Trainer arguments

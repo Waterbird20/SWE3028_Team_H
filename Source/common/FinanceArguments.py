@@ -28,6 +28,7 @@ class DataArgs:
     output_length: int
     predict_type: str
     data_path: str
+    is_upload: bool
 
 @dataclass
 class TrainerArgs:

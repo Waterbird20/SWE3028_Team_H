@@ -39,6 +39,7 @@ class FinanceDataset(Dataset):
         self.predict_type = data_args.predict_type
         self.stock_id = stock_id
         self.mode = mode
+        self.is_upload = data_args.is_upload
 
         self.df = None
         self.X = []
@@ -48,12 +49,18 @@ class FinanceDataset(Dataset):
         self.max = None
         self.origin = None
 
-        
-        if self.mode == 'train':
+        if self.is_upload:
+            self.X = np.load(self.data_path+'/'+self.stock_id+self.predict_type+'_test_data.npy')
+            minmax = np.load(self.data_path+'/'+self.stock_id+self.predict_type+'_test_minmax.npy')
+            self.origin = np.load(self.data_path+'/'+self.stock_id+self.predict_type+'_test_origin.npy')
+            self.min = minmax[0]
+            self.max = minmax[1]
+
+        elif self.mode == 'train':
             self.X = np.load(self.data_path+'/'+self.predict_type+'_data.npy')
             self.y = np.load(self.data_path+'/'+self.predict_type+'_label.npy')
 
-        if self.mode == 'test':
+        elif self.mode == 'test':
             self.X = np.load(self.data_path+'/test_'+self.predict_type+'/'+self.stock_id+self.predict_type+'_test_data.npy')
             self.y = np.load(self.data_path+'/test_'+self.predict_type+'/'+self.stock_id+self.predict_type+'_test_label.npy')
             minmax = np.load(self.data_path+'/test_'+self.predict_type+'/'+self.stock_id+self.predict_type+'_test_minmax.npy')
@@ -62,8 +69,10 @@ class FinanceDataset(Dataset):
             self.min = minmax[0]
             self.max = minmax[1]
 
-        assert len(self.X) == len(self.y)
-
+        if not self.is_upload:
+            assert len(self.X) == len(self.y)
+        else:
+            self.X = np.array([self.X])
         self.len = len(self.X)
 
 
@@ -75,7 +84,10 @@ class FinanceDataset(Dataset):
     
 
     def __getitem__(self, idx):
-
+        if self.is_upload:
+            x = torch.FloatTensor(self.X[idx])
+            y_origin = torch.FloatTensor(np.array([self.origin[idx+self.seq_length]]))
+            return x, y_origin
         if self.mode == 'train':
             x = torch.FloatTensor(self.X[idx])
             y = torch.FloatTensor(self.y[idx])
