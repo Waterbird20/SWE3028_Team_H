@@ -1,2 +1,41 @@
 \subsection{Prediction Quality}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Fig/unstable_AAPL.png}
+	\caption{}{}
+	\label{fig:AAPL}
+\end{figure}
+
+As illustrated in Figure \ref{fig:AAPL}, our models demonstrate a tendency to follow the trend of stock prices. 
+If the stock price has been increasing up to the current day, the model predicts a continued increase for the next day, and similarly for a decreasing trend. 
+This indicates that the models are effectively capturing the short-term trend of stock prices rather than merely reflecting random fluctuations. 
+However, it's noteworthy that while the models occasionally attempt to predict price rebounds, these predictions are not consistently successful.
+
+The impact of incorporating VADER for sentiment analysis on stock price prediction is not definitively clear. 
+Although the sentiment score is more aligned with long-term trends, the models still achieve a higher MPA score compared to the BASELINE model, which does not utilize external information. 
+This suggests a potential, albeit indirect, benefit of including sentiment analysis in the prediction process.
+
+A challenge arises when the stock price remains relatively constant with minor fluctuations. 
+In such scenarios, the models often predict in the opposite direction of the actual trend, leading to inaccuracies. 
+This issue is particularly evident in the period from November 16, 2023, to December 1, 2023, as shown in Figure \ref{fig:AAPL}.
+
+Regarding the comparison of LSTM, GRU, and Transformer models, LSTM and GRU exhibit similar prediction quality, but the Transformer model lags slightly behind. 
+As indicated in Table \ref{tab:result}, the Transformer model has a higher MAE and lower scores in MPA, TAC, and ACC compared to LSTM and GRU. 
+Notably, the Transformer model's predicted price range (high to low) is broader and less consistent than the other models, leading to more frequent misses in trend prediction. This results in its lower TAC and ACC scores.
+
+Despite these challenges, the Transformer model holds promise, particularly due to its capability to interpret long-term trends and its flexibility in integrating additional features. 
+In our project, we limited the input features to stock prices and sentiment scores, which may not fully leverage the Transformer model's potential. 
+Future improvements and the inclusion of more diverse features could enhance the Transformer model's applicability in real-world scenarios.
+
+\subsection{Lack of Information}
+
+A significant challenge in our project arises from the constraints in collecting sentiment scores using the VADER model. 
+For this purpose, we sourced news articles from the Investing.com website (\url{investing.com}). However, we encountered a limitation in the availability and distribution of these articles. 
+The website provides approximately 1000 news articles per stock, but this distribution is highly uneven across different stocks. For instance, stocks like AAPL and TSLA have a daily influx of articles, whereas other stocks receive considerably less coverage. 
+This disparity in news frequency is a primary reason why we could not effectively apply the VADER model to stocks in the KODEX 200, limiting our analysis and results.
+
+Another constraint is the temporal availability of news articles. The website only offers access to current day's news, preventing us from utilizing historical data in our training set. 
+The ability to access past news articles would significantly enhance our model's training process, allowing us to incorporate sentiment scores from earlier periods. 
+This would likely improve the model's ability to understand and predict stock price movements based on a more comprehensive historical context.
+Furthermore, access to professional analysts' reports could potentially elevate the prediction quality of our model. 

@@ -1,10 +1,10 @@
 \subsection{Data Set}
 \subsubsection{Stock Selection}
 
-We selected about 15 stocks from KODEX 200 and S\&P 500 for predicttion. 
-Also, we categorized the stocks into two groups: stable stocks and unstable stocks based on the commercial EFT funds holdings.
-The following table shows the stocks we selected.
-
+For our prediction model, we carefully selected approximately 15 stocks from both the KODEX 200 and S\&P 500 indices. 
+o add a layer of analysis, we categorized these stocks into two distinct groups: stable and unstable. 
+This categorization was based on their presence in commercial ETF fund holdings. 
+The table\ref{tab:example} below details the specific stocks chosen for our study.
 
 \begin{table}[h]
 	\label{tab:example}
@@ -23,22 +23,30 @@ The following table shows the stocks we selected.
 
 \subsubsection{Normalization}
 
-
+To standardize the stock price data for analysis, we applied a normalization process. Let $P_{t}$ be the stock price of the $t$-th day, and $P_{i}^{\prime}$ denote the normalized stock price on the same day. The normalization formula is as follows:
+Then, we have
+\begin{equation}
+	P_{t}^{\prime} = \frac{P_{t}}{P_{\max} - P_{\min}}
+\end{equation}
+where $P_{max}$ and $P_{min}$ are the maximum and minimum stock prices within the specified period, respectively. This normalization allows for a more consistent comparison across different stocks and time frames.
 
 \subsubsection{Training Set}
 
-
+Our training dataset comprises various stock price metrics—open price, close price, high price, and low price—from the period of 2021 to 2022. 
+Due to challenges in sourcing older news articles necessary for VADER analysis, the timeframe for our training data is thus constrained.
 
 \subsubsection{Test Set}
 
-
-
+For testing, we utilized stock price data (including open, close, high, and low prices) from the period of February 17, 2023, to December 1, 2023. 
+Our testing approach involved using a set of 30 days' worth of stock prices and sentiment scores to predict the stock price for the subsequent day.
 
 \subsection{UI/UX Design}
 The user experience (UX) and user interface (UI) aspects of the system were prioritized to ensure a seamless and intuitive user interaction. 
 The frontend was designed with a user-centric approach, focusing on usability and visual appeal.
 % User research and feedback were considered to create an intuitive navigation flow, clear information hierarchy and visually pleasing design elements. 
 The UI elements were designed to be responsive and accessible across different devices and screen sizes, enhancing the overall user experience.
+
+
 
 \subsection{Frontend}
 

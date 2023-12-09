@@ -1,20 +1,69 @@
 \subsection{Evaluation Metric}
 
+\subsubsection{Mean Prediction Accuracy (MPA)}
+To assess the effectiveness of our methods, we calculate the Mean Prediction Accuracy (MPA), defined as:
+\begin{align}
+    \label{eq:MPA}
+    \text{MPA}_{t} = 1 - \frac{1}{N} \sum_{i=1}^{N} \frac{|\hat{y}_i - y_i|}{y_i}
+\end{align}
+where $ N $ is the number of stocks, $ \hat{y}_i $ and $ y_i $ represent the predicted and actual high or low prices, respectively, for the $ t $-th day of stock $ i $.
+
+\subsubsection{Mean Absolute Error (MAE)}
+The Mean Absolute Error (MAE) is another metric used to evaluate our methods:
+\begin{align}
+    \label{eq:MAE}
+    \text{MAE}_{t} = \frac{1}{N} \sum_{i=1}^{N} |\hat{y}_i - y_i|
+\end{align}
+Here, $ N $ denotes the number of stocks, with $ \hat{y}_i $ and $ y_i $ being the predicted and actual high or low prices for the $ t $-th day.
+
+\subsubsection{Trend Accuracy (TAC)}
+Given our focus on short-term stock price trends, we also compute the Trend Accuracy (TAC):
+\begin{align}
+    \label{eq:TAC}
+    \text{TA}_{t} = \frac{1}{N} \sum_{i=1}^{N} \mathbb{1}(\text{sign}(\hat{y}_i - \hat{y}_{t-1}) = \text{sign}(y_i - y_{t-1}))
+\end{align}
+where $ N $ is the number of stocks, $ \hat{y}_i $ and $ y_i $ are the predicted and actual high or low prices for the $ t $-th day, and $ \mathbb{1}(\cdot) $ is the indicator function.
+
+\subsubsection{Accuracy}
+To compare the similarity between the predicted and actual price intervals, we calculate the accuracy(ACC):
+\begin{align}
+    \label{eq:accuracy}
+    \text{Accuracy}_{t} = \frac{1}{N} \sum_{i=1}^{N} \frac{\text{length}(\{ y_{\min}<y<y_{\max} \cap \hat{y}_{\min}<y<\hat{y}_{\max} \})}{\max(\text{length}(\hat{y}_{\min}<y<\hat{y}_{\max}), \text{length}(y_{\min}<y<y_{\max}))}
+\end{align}
+where $ N $ is the number of stocks, $ \hat{y}_{\min} $ and $ \hat{y}_{\max} $ are the predicted minimum and maximum prices for the $ t $-th day, and $ y_{\min} $ and $ y_{\max} $ are the actual minimum and maximum prices for the $ t $-th day.
 
 \subsection{Result}
 
+
 \begin{table}[h]
 	\label{tab:result}
-
 	\centering
-	\begin{tabular}{c|rrr}
+	\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
 	\toprule\toprule
-	\textbf{Model} & \textbf{MPA} & \textbf{MSE}  \\ 
+	% \multirow{2}{*}{\textbf{Model}}
+	\multicolumn{2}{c}{}& \multicolumn{4}{|c|}{\textbf{STABLE}} & \multicolumn{4}{c}{\textbf{UNSTABLE}} \\
 	\midrule
-	\textbf{LSTM} &  &   \\ 
-	\textbf{GRU} &  &   \\ 
-	\textbf{Transformer} &  &   \\ 
-	\textbf{LSTM + VADER} &  &   \\ 
+	\multicolumn{2}{c|}{\textbf{Model}} & \textbf{MPA} & \textbf{MAE} & \textbf{TAC} & \textbf{ACC} & \textbf{MPA} & \textbf{MAE} & \textbf{TAC} & \textbf{ACC} \\ 
+	\midrule
+	\multirow{ 2}{*}{\textbf{LSTM}} & High			& 	0.9922& 	1.2179& 	0.5640& \multirow{ 2}{*}{0.4183}
+					  								& 	0.9856& 	4.2027& 	0.5872& \multirow{ 2}{*}{0.4163}	\\ 
+									& Low			& 	0.9921& 	1.1985& 	0.5702& 
+					  								& 	0.9851& 	4.1493& 	0.5711& 							\\ 
+	\multirow{ 2}{*}{\textbf{GRU}} 	& High			& 	0.9929& 	1.1118& 	0.5640& \multirow{ 2}{*}{0.4340}	
+													& 	0.9864& 	3.9909& 	0.5930& \multirow{ 2}{*}{0.4199} 	\\ 
+									& Low			& 	0.9926& 	1.1193& 	0.5659& 	
+													& 	0.9862& 	3.8426& 	0.5747& 							\\ 
+	\multirow{ 2}{*}{\textbf{Transformer}} 	& High	& 	0.9906& 	1.4721& 	0.4743& \multirow{ 2}{*}{0.4295}	
+													& 	0.9827& 	5.2046& 	0.4731& \multirow{ 2}{*}{0.3374} 	\\ 
+											& Low	& 	0.9892& 	1.6502& 	0.5361& 
+													& 	0.9830& 	4.8531& 	0.4616& 							\\ 
+	\midrule
+	\multicolumn{ 2}{c|}{\textbf{BASELINE}}			& 	0.9815& 		 & 		 & 	
+					  								& 	0.9815& 		 & 		 & 									\\
+	\bottomrule
 	\bottomrule
 	\end{tabular}
 \end{table}
+As shown in Table \ref{tab:result}, the performance of our models on the test set is quantified. Incorporating VADER into the model has resulted in MPA surpassing that of the baseline model, which is DP-LSTM. 
+Notably, the model's performance varies based on the stability of the stocks. For unstable stocks, the MAE significantly increases, and ACC decreases.
+Both LSTM and GRU models exhibit similar performance metrics, whereas the Transformer model demonstrates slightly lower performance compared to the other two models. 
