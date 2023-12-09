@@ -1,23 +1,25 @@
-In today's world of capitalism, stocks offer an attractive way to make money, potentially leading to significant profits. 
-Investors are always eager to predict what will happen to stock prices because their financial well-being depends on it. 
-Investors must make prediction about future stock prices, even if they don't have a deep understanding of the stock market.
+In today's capitalist world, stocks present an attractive avenue for financial gain, offering significant profit potential. 
+Investors, regardless of their depth of understanding of the stock market, are constantly seeking reliable methods to predict future stock prices, as their financial well-being often hinges on these predictions.
 
-Predicting stock prices essentially involves trying to figure out the real value of a company. 
-If you know a company's true value, you can decide whether its stock price will go up or down from its current level. 
-However, determining a company's true value is a challenging task. 
-Many factors, both within and beyond a company's control, influence stock prices. 
-Some of these factors include global events and economic conditions. 
+Predicting stock prices is fundamentally about discerning the real value of a company. 
+Knowing a company's true value helps in determining whether its stock price will rise or fall from its current level. 
+However, this is a complex task influenced by a myriad of factors, including global events and economic conditions.
 
-Historically, professional fund managers have played a crucial role in helping people invest wisely and profitably in the stock market. 
-However, because fund managers are human, their predictions and strategies can be influenced by their personal biases. 
-This has led to a growing interest in using machine learning, to predict stock prices. 
-Machine learning is believed to offer a more objective and unbiased approach to forecasting.
+Historically, professional fund managers have been pivotal in guiding investments in the stock market. 
+However, their strategies and predictions are susceptible to personal biases. 
+This limitation has spurred interest in leveraging machine learning for more objective and unbiased stock price forecasting.
 
-These days, numerous services utilize machine learning to predict stock prices. 
-For instance, in Korea, a service known as 'IAM CHART' employs machine learning for this purpose. 
-However, this service comes at a cost and is not open source. 
-With a monthly fee of \$150, it is beyond the means of many potential users.
+While numerous services today use machine learning for this purpose, many are not open-source and are primarily geared towards professional investors. 
+These systems, often complex and tailored for experienced users, focus more on asset allocation than on precise stock price prediction. 
+In contrast, our project targets the general public, who rely more on simple chart analysis and intuition, without delving deep into a company's fundamentals or news events.
 
-In light of this, our intention is to harness machine learning techniques to offer a more accessible solution, 
-thereby contributing to the realms of financial analysis and investment decision-making at a lower price point. 
-Our project's primary objective is to construct a predictive model for the stock prices of SAMSUNG Electronics.
+Our proposal is to predict the short-term movement of blue-chip stocks, a strategy known to be effective over periods ranging from a few days to a few months. 
+We aim to make short-term predictions, not in real-time, to assist general users and simplify the prediction process.
+
+To achieve this, we have employed machine learning techniques, utilizing models such as Long Short-Term Memory(LSTM), Gated Recurrent Unit(GRU), and Transformer. 
+These models have been instrumental in successfully predicting stock prices for the next few days by capturing short-term trends. 
+In addition, we have integrated VADER, a sentiment analysis tool, to reflect recent issues and capture both short- and long-term stock price changes based on current events.
+
+Our system has been deployed as a publicly accessible web service, offering users easy access to our predictive model. 
+This deployment significantly contributes to investment decision-making, lowering the entry barrier for those interested in stock market investments. 
+Empirical evaluations of our system have shown promising results in capturing short-term trend of stock price movements, thereby validating our approach and offering a valuable tool for investors.

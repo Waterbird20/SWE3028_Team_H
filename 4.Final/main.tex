@@ -11,7 +11,12 @@
 \usepackage{indentfirst}
 \usepackage{bibentry}
 \usepackage{wrapfig}
-
+\usepackage{amsmath}
+\newcommand{\rvec}{\mathrm {\mathbf {r}}} 
+\usepackage{subfigure}
+\usepackage{xcolor}
+\usepackage{color, soul}
+\usepackage{booktabs}
 % \bibliographystyle{plainnat}
 \nobibliography*
 \bibliographystyle{splncs04}
@@ -30,9 +35,9 @@
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{Chanyoung Lee\inst{1}{2019313902} \and
-Yujin Seo\inst{2}{2018314589} \and
-Donghun Jung\inst{3}{2020312141}}
+\author{Chanyoung Lee\inst{1}{} \and
+Yujin Seo\inst{2}{} \and
+Donghun Jung\inst{3}{}}
 %
 % \authorrunning{F. Author et al.}
 % First names are abbreviated in the running head.
@@ -54,25 +59,34 @@ Sungkyunkwan University, Department of Physcis, Republic of Korea
 \begin{abstract}
 \input{Section/Abstract.tex}
 \end{abstract}
-%
-%
-%
+
 \section{Introduction}
 \label{sec:Introduction}
 \input{Section/Introduction.tex}
 
-\section{Background and Related Works}
-\label{sec:BackgroundAndRelatedWorks}
-\input{Section/Background_and_RelatedWorks.tex}
+\section{Design for the Proposed System/Solution/Service}
+\label{sec:Design}
+\input{Section/Design.tex}
 
-\section{Problem Statement and Proposed Solution}
-\label{sec:ProblemStatementAndProposedSolution}
-\input{Section/ProblemStatement_and_ProposedSolution.tex}
+\section{Implementation}
+\label{sec:Implementation}
+\input{Section/Implementation.tex}
 
-\section{Planning in Detail}
-\label{sec:PlanningInDetail}
-\input{Section/Planning_in_Detail.tex}
+\section{Evaluation}
+\label{sec:Evaluation}
+\input{Section/Evaluation.tex}
 
+\section{Limitation and Discussions}
+\label{sec:Limitation}
+\input{Section/Limitation_and_Discussions.tex}
+
+\section{Related Work}
+\label{sec:Related_Work}
+\input{Section/Related_Work.tex}
+
+\section{Conclusion}
+\label{sec:Conclusion}
+\input{Section/Conclusion.tex}
 
 \bibliography{reference}
 
