@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="static/assets/vendors/themify-icons/css/themify-icons.css">
 	<!-- Bootstrap + JohnDoe main styles -->
 	<link rel="stylesheet" href="static/assets/css/johndoe.css">
-	<link rel="stylesheet" href="static/assets/css/stock.css">
+	<link rel="stylesheet" href="static/assets/css/stock_han.css">
   <!-- <link data-n-head="ssr" rel="stylesheet" href="https://static.hankyung.com/css/www/w/koreamarket.css?v=1695195055054"> -->
 	<script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
 	<script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -151,13 +151,13 @@
 	<section class="section" id="News">
 		<div class="container">
 			<h3 class="mb-5">Latest <span class="text-danger">News</span>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select_model" onclick="render_chart()">
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select_model" onchange="render_chart()">
           <option value="LSTM">LSTM</option>
           <option value="GRU">GRU</option>
           <option value="TF">Transformer</option>
         </select>
         
-        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id= "select_stock" onclick="render_chart()">
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" style="width:50vw" id= "select_stock" onchange="render_chart()">
           <option value="KO">Coca-Cola Co</option>
           <option value="MCD">McDonald's Corp</option>
           <option value="WM">Waste Management, Inc.</option>
