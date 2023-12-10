@@ -3,10 +3,22 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
 
+\bibitem{KRX}
+Korea exchange. \url{http://krx.co.kr/}
+
+\bibitem{NASDAQ}
+Nasdaq: Stock market, data updates, reports \& news.
+  \url{https://www.nasdaq.com/}
+
 \bibitem{li2019dp}
 Li, X., Li, Y., Yang, H., Yang, L., Liu, X.Y.: Dp-lstm: Differential
   privacy-inspired lstm for stock prediction using financial news. arXiv
   preprint arXiv:1912.10806  (2019)
+
+\bibitem{li2022novel}
+Li, Y., Pan, Y.: A novel ensemble deep learning model for stock prediction
+  based on stock prices and news. International Journal of Data Science and
+  Analytics  (2022)
 
 \bibitem{ma2020particle}
 Ma, X., Karkus, P., Hsu, D., Lee, W.S.: Particle filter recurrent neural

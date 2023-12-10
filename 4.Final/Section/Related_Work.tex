@@ -1,23 +1,7 @@
-% \subsection{Stock Price Prediction}
-% Stock Price Prediction is the task of forecasting future stock prices based on historical data and various market indicators. 
-% It involves the use of statistical models and machine learning algorithms to analyze financial data and make predictions about a stock's future performance. 
-% Stock price trends are influenced by numerous factors, including interest rates, inflation rates, and financial news. 
-% To make accurate stock price predictions, one must leverage this diverse set of information. 
-% In the banking industry and financial services sector, teams of analysts are dedicated to scrutinizing, analyzing, and quantifying qualitative data from news sources. 
-% A substantial amount of information regarding stock trends is extracted from the extensive corpus of textual and quantitative data involved in such analysis.
+Recent trends in stock price prediction research have focused on deep learning-based regression models. 
+LSTM often incorporate advanced validation techniques like walk-forward validation to enhance predictive accuracy \cite{li2019dp}. 
+Additionally, novel approaches such as the sentiment-ARMA model have been proposed, combining the autoregressive moving average model (ARMA) with sentiment analysis of financial news articles, offering a new perspective in this domain \cite{mehtab2021stock}.
+In parallel, there has been exploration into Particle Filter Recurrent Neural Networks (PF-RNNs), a new family of RNNs designed to model internal uncertainty, which are integrated into LSTM-based networks alongside VADER for sentiment analysis and differential privacy mechanisms \cite{ma2020particle}. 
+This integration leverages financial news data and sentiment scores to predict stock market movements \cite{li2019dp}\cite{li2022novel}. 
 
-Recent research trends in stock price prediction include advancements in deep learning-based regression models. \cite{li2019dp}
-These models often utilize Long Short-Term Memory (LSTM) networks and innovative validation techniques, such as walk-forward validation, to enhance their predictive capabilities.
-
-In addition, some researchers have explored Particle Filter Recurrent Neural Networks (PF-RNNs), a new RNN family explicitly designed to model uncertainty within their internal structure. \cite{ma2020particle}
-Unlike traditional RNNs that rely on a deterministic latent state vector, PF-RNNs maintain a latent state distribution approximated as a set of particles. 
-To enable effective learning, researchers have introduced a fully differentiable particle filter algorithm that updates the PF-RNN latent state distribution based on Bayes' rule. 
-Experimental results have shown that PF-RNNs can outperform conventional gated RNNs across various domains, 
-including synthetic robot localization datasets and real-world sequence prediction tasks, which is stock price prediction.
-
-Furthermore, recent studies have proposed novel approaches, such as the development of a sentiment-ARMA model, which combines the autoregressive moving average model (ARMA) with sentiment analysis of financial news articles. \cite{mehtab2021stock}
-This model is integrated into an LSTM-based deep neural network consisting of three components: LSTM, VADER model, and a differential privacy (DP) mechanism. 
-The proposed DP-LSTM scheme has demonstrated the potential to reduce prediction errors and enhance model robustness. Extensive experiments conducted on S\&P 500 stocks have indicated promising results, 
-including a 0.32\% improvement in mean Mean Percentage Absolute Error (MPA) 
-and a significant up to 65.79\% reduction in Mean Squared Error (MSE) for the prediction of the market index S\&P 500.
-
+Our work builds upon these advancements, employing VADER to analyze short-term stock price changes and demonstrating the effectiveness of LSTM, GRU, and Transformer models, particularly on stable stocks.

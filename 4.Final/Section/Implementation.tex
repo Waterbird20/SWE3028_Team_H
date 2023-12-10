@@ -1,22 +1,57 @@
 \subsection{Data Set}
 \subsubsection{Stock Selection}
 
-For our prediction model, we carefully selected approximately 15 stocks from both the KODEX 200 and S\&P 500 indices. 
+For our prediction model, we carefully selected approximately 15 stocks from both the KODEX 200 and S\&P 500 indices \cite{KRX}\cite{NASDAQ}.
 o add a layer of analysis, we categorized these stocks into two distinct groups: stable and unstable. 
 This categorization was based on their presence in commercial ETF fund holdings. 
 The table\ref{tab:example} below details the specific stocks chosen for our study.
 
 \begin{table}[h]
 	\label{tab:example}
-
+	\tiny
 	\centering
-	\begin{tabular}{cccc}
+	\begin{tabular}{cc}
 	\toprule\toprule
-	\textbf{Korea} & \textbf{Korea} & \textbf{US Nasdaq} & \textbf{US Nasdaq} \\ 
-	\textbf{Stable} & \textbf{unstable} & \textbf{Stable} & \textbf{unstable} \\ 
+	\textbf{Korea} & \textbf{Korea} \\ 
+	\textbf{Stable} & \textbf{unstable}  \\ 
 	\midrule
-	Item 1 & Item 2 & Item 3 & Item 4 \\
-	Item 1 & Item 2 & Item 3 & Item 4\\
+	Samsung Electronics Co Ltd					&	Posco Holdings Inc				\\
+	Samsung SDI Co Ltd							&	Naver Corp						\\
+	KT\&G Corp									&	Hyundai Motor Co				\\
+	Yuhan Corp									&	LG Chem Ltd						\\
+	SK Hynix Inc								&	Kia Corp						\\
+	DB Insurance Co Ltd							&	Celltrion Inc					\\
+	Korea Zinc Inc								&	KB Financial Group Inc			\\
+	Fila Holdings Corp							&	Shinhan Financial Group Co Ltd	\\
+	Meritz Financial Group Inc					&	LG Energy Solution Ltd			\\
+	Cheil Worldwide Inc							&	Kakao Corp						\\
+	LG Innotek Co Ltd							&	HYUNDAI MOBIS CO., LTD.			\\
+	Shinsegae Inc								&	Samsung C\&T Corp				\\
+	IBK											&	Samsung Biologics Co Ltd		\\
+	NCSoft Corp									&	LG Electronics Inc				\\
+	Lotte Chemical Corp							&	Hana Financial Group Inc		\\
+	Leeno Industrial Inc						&									\\
+	Nongshim Co Ltd								&									\\
+	S1 Corp										&									\\
+	Hyundai Marine \& Fire Insurance Co. Ltd.	&									\\
+	\midrule
+	\textbf{US Nasdaq} & \textbf{US Nasdaq} \\ 
+	\textbf{Stable} & \textbf{unstable} \\ 
+	\midrule
+	Coca-Cola Co					&	Apple Inc											\\
+	McDonald's Corp					&	Microsoft Corp										\\
+	Waste Management, Inc.			&	Amazon.com Inc										\\
+	Republic Services Inc			&	NVIDIA Corp											\\
+	PepsiCo, Inc.					&	Meta Platforms Inc									\\
+	Colgate-Palmolive Company		&	Broadcom Inc										\\
+	Walmart Inc						&	Alphabet Inc Class A								\\
+	Cboe Global Markets Inc			&	Alphabet Inc Class C								\\
+	General Dynamics Corp			&	Tesla Inc											\\
+	Kimberly-Clark Corp				&	Adobe Inc											\\
+	Procter \& Gamble Co			&	Costco Wholesale Corporation						\\
+	Cencora Inc						&	Cisco Systems Inc									\\
+	IBM Common Stock				&	Netflix Inc											\\
+									&	Advanced Micro Devices, Inc.						\\
 	\bottomrule
 	\end{tabular}
 \end{table}
@@ -49,10 +84,19 @@ The UI elements were designed to be responsive and accessible across different d
 
 
 \subsection{Frontend}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Fig/Front.png}
+	\caption{UI design of the main page}
+	\label{fig:fig1}
+\end{figure}
+
+The frontend development involved translating the UI designs into HTML and CSS code.
+JavaScript was used for client-side scripting and implementing interactive features as seen in the Figure \ref{fig:fig1}.
+We employ anychart packages for visualizing stock price data.
+
 
 \subsection{Backend}
 Django, a Python web framework, was employed for server-side development.
-% It handles user authentication, routing and business logic implementation. 
-% The backend interacts with the database, utilizing SQLite for data storage and retrieval. External APIs are integrated to fetch relevant information for the exchange program and university details. 
-% NLP libraries of KoT5 and GPT-4 are utilized for text summarization and analysis. AWS Lightsail provides the infrastructure for hosting the backend server, ensuring reliable and scalable performance. 
-% We chose to use AWS server with 1GB RAM, 1 vCPU, and 40GB SSD, as it offers a lightweight and suitable solution for our initial deployment, despite its limitations.
+It enables us to build a robust and scalable backend server, which is essential for our project.
+We chose to use AWS EC2 instance, t2.micro, with 1GB RAM, 1 vCPU, as it offers a lightweight and suitable solution for our initial deployment.

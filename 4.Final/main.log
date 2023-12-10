@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.8.13)  10 DEC 2023 03:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.8.13)  10 DEC 2023 18:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -427,33 +427,56 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) (./Section/Abstract.tex) (./Section/Introduction.tex [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./Section/Design.tex [2] [3]
-<Fig/Transformer.jpg, id=26, 202.28337pt x 308.69095pt>
-File: Fig/Transformer.jpg Graphic file (type jpg)
-<use Fig/Transformer.jpg>
-Package pdftex.def Info: Fig/Transformer.jpg  used on input line 79.
-(pdftex.def)             Requested size: 138.84729pt x 211.88536pt.
- [4 <./Fig/Transformer.jpg>] [5] [6]) (./Section/Implementation.tex [7]) (./Section/Evaluation.tex
+Overfull \hbox (5.14838pt too wide) in paragraph at lines 75--80
+ \OT1/cmr/bx/n/10 Overview of Trans-former[] \OT1/cmr/m/n/10 Trans-former op-er-ates as an Encoder-Decoder model,
+ []
+
+<Fig/loss_function.png, id=26, 1011.78pt x 289.08pt>
+File: Fig/loss_function.png Graphic file (type png)
+<use Fig/loss_function.png>
+Package pdftex.def Info: Fig/loss_function.png  used on input line 95.
+(pdftex.def)             Requested size: 277.69987pt x 79.34065pt.
+[4] [5 <./Fig/loss_function.png>]) (./Section/Implementation.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6] [7]
+<Fig/Front.png, id=45, 1656.1875pt x 924.45375pt>
+File: Fig/Front.png Graphic file (type png)
+<use Fig/Front.png>
+Package pdftex.def Info: Fig/Front.png  used on input line 89.
+(pdftex.def)             Requested size: 277.69987pt x 154.99683pt.
+) (./Section/Evaluation.tex [8 <./Fig/Front.png>]
 LaTeX Font Info:    Trying to load font information for U+bbold on input line 24.
- (/usr/share/texlive/texmf-dist/tex/latex/bbold/Ubbold.fd) [8]) (./Section/Limitation_and_Discussions.tex
-<Fig/unstable_AAPL.png, id=45, 1156.32pt x 361.35pt>
+ (/usr/share/texlive/texmf-dist/tex/latex/bbold/Ubbold.fd)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./Section/Limitation_and_Discussions.tex
+<Fig/unstable_AAPL.png, id=50, 1156.32pt x 361.35pt>
 File: Fig/unstable_AAPL.png Graphic file (type png)
 <use Fig/unstable_AAPL.png>
 Package pdftex.def Info: Fig/unstable_AAPL.png  used on input line 5.
 (pdftex.def)             Requested size: 277.69987pt x 86.7809pt.
- [9] [10 <./Fig/unstable_AAPL.png>]) (./Section/Related_Work.tex) (./Section/Conclusion.tex [11]) (./main.bbl) [12] (./main.aux) ) 
+ [9] [10 <./Fig/unstable_AAPL.png>]) (./Section/Related_Work.tex
+Overfull \hbox (1.73802pt too wide) in paragraph at lines 1--6
+[]\OT1/cmr/m/n/10 Recent trends in stock price pre-dic-tion re-search have fo-cused on deep learning-
+ []
+
+) [11] (./Section/Conclusion.tex) (./main.bbl) [12] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 4695 strings out of 478287
- 76003 string characters out of 5849289
- 482322 words of memory out of 5000000
- 22759 multiletter control sequences out of 15000+600000
- 478846 words of font info for 63 fonts, out of 8000000 for 9000
+ 4711 strings out of 478287
+ 76237 string characters out of 5849289
+ 480649 words of memory out of 5000000
+ 22774 multiletter control sequences out of 15000+600000
+ 479013 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,11n,77p,469b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb>
-Output written on main.pdf (12 pages, 2010353 bytes).
+ 68i,11n,77p,407b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb>
+Output written on main.pdf (12 pages, 3296240 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 151 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

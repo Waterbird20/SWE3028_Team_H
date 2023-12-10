@@ -4,20 +4,20 @@ LSTM is a sophisticated architecture within Recurrent Neural Networks (RNNs), de
 a challenge often compounded by the vanishing gradient problem. The hidden layer of an LSTM consists of memory cells interconnected through a series of gates: the input gate, forget gate, and output gate, which collectively facilitate short-term memory storage.
 
 \begin{enumerate}
-	\item Forget gate:	Marked by a blue box in the figure, the forget gate determines which information from the previous state should be discarded or retained. Mathematically, it is represented as:
+	\item Forget gate:	The forget gate determines which information from the previous state should be discarded or retained. Mathematically, it is represented as:
 	\begin{align}
 		f_{t} &= \sigma(W_{f}x_{t} + U_{f}h_{t-1} + b_{f})
 	\end{align}
 	where $f_{t}$ is the output of the forget gate layer at the time step $t$, $W_{f}$, $U_{f}$, $b_{f}$ are the weight matrices and bias vectors for the forget gate computation, respectively.
 
-	\item Denoted by an orange box, the input gate decides what new information should be stored in the cell. It operates as follows:
+	\item The input gate decides what new information should be stored in the cell. It operates as follows:
 	\begin{align}
 		i_{t} &= \sigma(W_{i}x_{t} + U_{i}h_{t-1} + b_{i}) \\
 		g_{t} &= tanh(W_{c}x_{t} + U_{c}h_{t-1} + b_{c}) 
 	\end{align}
 	where $i_{t}$ is the output of the input gate layer at the time step $t$, $g_{t}$ is the candidate value to be added to the output layer at the time step $t$, $W_{i}$, $W_{c}$, $U_{i}$, $U_{c}$, $b_{i}$, $b_{c}$ are the weight matrices and bias vectors for the input gate and candiate value computation, respectively.
 	
-	\item Output gate:	Shown as a gray box, the output gate determines which information from the cell should be used to generate the output. It is defined by:
+	\item The output gate determines which information from the cell should be used to generate the output. It is defined by:
 	\begin{align}
 		o_{t} &= \sigma(W_{o}x_{t} + U_{o}h_{t-1} + b_{o}) \\
 		c_{t} &= f_{t} \odot c_{t-1} + i_{t} \odot g_{t} \\
@@ -35,10 +35,6 @@ This architecture enables LSTMs to effectively handle long sequential data, maki
 Stock prices are typically regarded as time series data, characterized by their sequential nature and the presence of temporal dependencies. 
 LSTM is particularly well-suited for modeling such data due to their ability to capture both short-term and long-term dependencies and patterns. 
 This capability stems from their unique architecture, which allows them to remember information over extended periods and forget irrelevant data, a critical feature for analyzing the often volatile and non-linear patterns observed in stock market data.
-
-In the context of stock price prediction, LSTMs can learn from historical price data, identifying underlying trends and patterns that are indicative of future movements. 
-This makes them a powerful tool for financial analysts and investors seeking to make informed decisions based on predictive analytics. The use of LSTM in this domain is driven by the hypothesis that past stock performance, 
-along with other relevant financial indicators, can provide valuable insights into future price trajectories.
 
 \subsection{GRU}
 \subsubsection{Overview of GRU}
@@ -67,18 +63,14 @@ enabling it to capture dependencies over different time scales effectively.
 Similar to LSTMs, GRUs are employed with the expectation that they can capture both short-term and long-term dependencies and patterns in sequential data. 
 GRU, with their simplified structure, offers an efficient way to model these complexities.
 
-The choice of GRU for stock price prediction is motivated by its efficiency in training and its effectiveness in handling sequences where the gap between the relevant information and the point where it is needed is unknown or variable. 
-This makes GRUs particularly suitable for analyzing financial time series data, where they can learn from historical price movements to predict future trends and patterns.
-
-
 \subsection{Transformer}
 
 The Transformer is a neural network architecture that has revolutionized the field of natural language processing (NLP) and has shown promising potential in time series prediction tasks. 
 Unlike traditional RNN-based models like LSTM and GRU, the Transformer relies entirely on an attention mechanism.
-\begin{wrapfigure}{r}{0.4\textwidth}
-	\includegraphics[width=0.4\textwidth]{Fig/Transformer.jpg}
-	\caption{Transformer model structure}
-\end{wrapfigure}
+% \begin{wrapfigure}{r}{0.4\textwidth}
+% 	\includegraphics[width=0.4\textwidth]{Fig/Transformer.jpg}
+% 	\caption{Transformer model structure}
+% \end{wrapfigure}
 \subsubsection{Overview of Transformer}
 Transformer operates as an Encoder-Decoder model, leveraging an attention mechanism.
 In the Encoder-Decoder architecture, the Encoder takes an input sequence and encodes the information into a single context vector. 
@@ -91,15 +83,19 @@ It assigns varying weights to elements within the input sequence, placing greate
 This emphasis is then reflected in the model's output. 
 The Transformer employs this mechanism to comprehensively evaluate the significance of the entire input sequence when generating the output.
 
-The utilization of the Transformer model holds the promise of delivering superior performance. 
-It has the capacity to incorporate diverse sources of information such as news, stock indices, and corporate disclosures, distinguishing it from other models.
-
 \subsubsection{Background of employing Transformer}
 
-The decision to employ the Transformer model in stock price prediction stems from its advanced capabilities in handling sequential data. While LSTM and GRU have made significant strides in addressing the vanishing gradient problem, they still have limitations, particularly in their sequential processing nature and in fully capturing long-range dependencies.
+The decision to employ the Transformer model in stock price prediction stems from its advanced capabilities in handling sequential data. 
+While LSTM and GRU have made significant strides in addressing the vanishing gradient problem, they still have limitations, particularly in their sequential processing nature and in fully capturing long-range dependencies.
 The expectation is that the Transformer, with its advanced architecture, will outperform traditional models like LSTM and GRU in capturing the intricate patterns and dependencies inherent in stock price data, leading to more accurate and reliable predictions.
 
 \subsection{Loss function}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Fig/loss_function.png}
+	\caption{Huber loss function}
+	\label{fig:huber_loss}
+\end{figure}
 
 \subsubsection{Overview of Loss function}
 In our model, the loss function is defined as:
@@ -118,7 +114,7 @@ The Huber loss function is given by:
 
 The Huber loss function is chosen for its balanced approach, combining the robustness of the L1 norm with the smoothness of the L2 norm. 
 This makes it differentiable and less sensitive to outliers in the data. 
-Visually, the Huber loss resembles the L2 norm for smaller errors but transitions to an L1 norm-like behavior for larger errors, effectively handling outliers.
+Visually, the Huber loss resembles the L2 norm for smaller errors but transitions to an L1 norm-like behavior for larger errors, effectively handling outliers as seen in the Figure \ref{fig:huber_loss}.
 
 Additionally, we incorporated a regularization term into the loss function. 
 This term is designed to provide some leniency for rapid changes in stock prices. 
