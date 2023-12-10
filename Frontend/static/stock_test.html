@@ -23,8 +23,8 @@
       관심종목
       </div> -->
     </div>
-    <h2 class="stock-name" id="stock_name"><span href="javascript:;" class="ellip">삼성전자</span></h2>
-    <span class="code txt-num" id="stock_code">005930</span>
+    <h2 class="stock-name" id="stock_name"><span href="javascript:;" class="ellip"></span></h2>
+    <span class="code txt-num" id="stock_code"></span>
     <!-- <span class="badge-defalut">코스피</span> -->
     </div> 
     <p class="table-desc" data-v-21ce79e0="">
@@ -61,30 +61,74 @@
   </div>
   <div id="container"></div>
   <script>
-    var code = '005930';
+    var model = 'LSTM';
+    var code = 'KO';
+
+    const stock_code ={
+      'KO': "Coca-Cola Co",
+      'MCD': "McDonald's Corp",
+      'WM': "Waste Management, Inc.",
+      'RSG': "Republic Services Inc",
+      'PEP': "PepsiCo, Inc.",
+      'CL': "Colgate-Palmolive Company",
+      'WMT': "Walmart Inc",
+      'CBOE': "Cboe Global Markets Inc",
+      'GD': "General Dynamics Corp",
+      'KMB': "Kimberly-Clark Corp",
+      'PG': "Procter & Gamble Co",
+      'COR': "Cencora Inc",
+      'IBM': "IBM Common Stock",
+      'AAPL': "Apple Inc",
+      'MSFT': "Microsoft Corp",
+      'AMZN': "Amazon.com Inc",
+      'NVDA': "NVIDIA Corp",
+      'META': "Meta Platforms Inc",
+      'AVGO': "Broadcom Inc",
+      'GOOGL': "Alphabet Inc Class A",
+      'GOOG': "Alphabet Inc Class C",
+      'TSLA': "Tesla Inc",
+      'ADBE': "Adobe Inc",
+      'COST': "Costco Wholesale Corporation",
+      'CSCO': "Cisco Systems Inc",
+      'NFLX': "Netflix Inc",
+      'AMD': "Advanced Micro Devices, Inc.",
+    }
 
     anychart.onDocumentReady(function () {
       // code = '005930';
       anychart.data.loadCsvFile(
         // 'https://gist.githubusercontent.com/shacheeswadia/cd509e0b0c03964ca86ae7d894137043/raw/5f336c644ad61728dbac93026f3268b86b8d0680/teslaDailyData.csv',
-        'static/'+ code + '.csv',
+        'static/'+ code + "_" + model + '.csv',
         function (data) {
         // create data table on loaded data
         const num_data = data.split('\n').length;
 
-        var tom_high_val = data.split('\n')[num_data-6].split(",")[2];
-        var tom_low_val = data.split('\n')[num_data-6].split(",")[3];
-        var tod_high_val = data.split('\n')[num_data-7].split(",")[2];
-        var tod_low_val = data.split('\n')[num_data-7].split(",")[3];
-        var price_end_val = data.split('\n')[num_data-7].split(",")[4];
+        var tom_high_val = Math.ceil(data.split('\n')[num_data-2].split(",")[2]*100)/100;
+        var tom_low_val = Math.ceil(data.split('\n')[num_data-2].split(",")[3]*100)/100;
+        var tod_high_val = Math.ceil(data.split('\n')[num_data-3].split(",")[2]*100)/100;
+        var tod_low_val = Math.ceil(data.split('\n')[num_data-3].split(",")[3]*100)/100;
+        var price_end_val = Math.ceil(data.split('\n')[num_data-3].split(",")[4]*100)/100;
+        console.log(data.split('\n')[num_data-1].split(","));
+
+        if (tom_high_val < tom_low_val) {
+          var temp = tom_high_val;
+          tom_high_val = tom_low_val;
+          tom_low_val = temp;
+          last_row = data.split('\n')[num_data-2].split(",");
+          last_row[2] = tom_high_val;
+          last_row[3] = tom_low_val;
+          data = data.split('\n').slice(0, num_data-2).join('\n') + '\n' + last_row.join(",");
+        }
 
         document.getElementById("tom_high").textContent =  tom_high_val;
         document.getElementById("tom_low").textContent =  tom_low_val;
         document.getElementById("tod_high").textContent =  tod_high_val;
         document.getElementById("tod_low").textContent =  tod_low_val;
         document.getElementById("price_end").textContent =  price_end_val;
+        document.getElementById("stock_name").textContent =  stock_code[code];
+        document.getElementById("stock_code").textContent =  code;
 
-        tom_change_val = tom_high_val - price_end_val;
+        tom_change_val = Math.ceil((tom_high_val - price_end_val)*100)/100;
         change_rate_val = Math.ceil(tom_change_val/price_end_val * 10000)/100;
 
         document.getElementById("tom_change").textContent =  tom_change_val;
@@ -96,14 +140,14 @@
           document.getElementById("up_down").className = "stock-data txt-num down";
         }
 
-        line_data = data.split('\n').slice(0, num_data-6).join('\n');
-        
+        predict = data.split('\n').slice(1, num_data).join('\n');
+        actual = data.split('\n').slice(1, num_data-1).join('\n');
     
         var dataTable = anychart.data.table();
         dataTable.addData(data);
     
         var lineTable = anychart.data.table();
-        lineTable.addData(line_data);
+        lineTable.addData(predict);
     
         // map loaded data for the candlestick series
         var mapping = lineTable.mapAs({
@@ -138,7 +182,7 @@
         // set grid settings
         plot.yGrid(true).xGrid(true).yMinorGrid(true).xMinorGrid(true);
     
-        var series = plot.candlestick(mapping).name('SAMSUMG ELECTRONICS CO.');
+        var series = plot.candlestick(mapping).name(stock_code[code]);
         series.legendItem().iconType('rising-falling');
         series.risingFill("#E34234");
         series.risingStroke("#E34234");
@@ -149,7 +193,7 @@
         chart.scroller().candlestick(mapping);
         
         // set chart selected date/time range
-        chart.selectRange('2023-11-01', '2023-11-30');
+        chart.selectRange('2023-11-01', '2023-12-15');
         
         // create range picker
         // var rangePicker = anychart.ui.rangePicker();

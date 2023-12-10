@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="static/assets/vendors/themify-icons/css/themify-icons.css">
 	<!-- Bootstrap + JohnDoe main styles -->
 	<link rel="stylesheet" href="static/assets/css/johndoe.css">
+	<link rel="stylesheet" href="static/assets/css/stock.css">
+  <!-- <link data-n-head="ssr" rel="stylesheet" href="https://static.hankyung.com/css/www/w/koreamarket.css?v=1695195055054"> -->
 	<script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
 	<script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 	<!-- Remember to include jQuery :) -->
@@ -35,15 +37,19 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.min.js"></script>
+  <style>      
+    html, body, #container { 
+      width: 100%; height: 80%; margin: 0; padding: 0; 
+    } 
+  </style>
 
-
-  <script>
+  <!-- <script>
     $(document).ready(function(){
        
        $('#chart').load("static/stock_test.html");
     
     });
-  </script>
+  </script> -->
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
@@ -106,59 +112,38 @@
 				<span class="line mb-5"></span>
 				<h5 class="mb-3"></h5>
 				<p class="para">
-					Our model ...
+          Our project has focused on predicting the short-term movements of blue-chip stocks, a strategy that has proven effective over periods ranging from a few days to a few months. To achieve this, we have leveraged advanced machine learning techniques, employing models such as Long Short-Term Memory (LSTM), Gated Recurrent Unit (GRU), and Transformer. These models have been pivotal in accurately predicting stock prices for the following day by effectively capturing short-term trends.
 				</p>
 				<p class="para">
-					We show that ...
+          Additionally, we integrated VADER, a sentiment analysis tool, to incorporate the impact of recent events and news on stock prices. This integration aimed to capture both short- and long-term changes in stock prices influenced by current events. While our results have been promising, there is potential for further improvement. Enhancing the feature set, particularly for the Transformer model, could yield more accurate predictions. Access to historical news articles and professional analysts' reports would also significantly enrich our dataset, potentially leading to more nuanced and informed predictions.
 				</p>
-
-				<p class="para">
-					We expect that ...
-				</p>
-				<button class="btn btn-outline-danger"><a href="./static/assets/files/Resume.pdf"
-						download="./static/assets/files/Resume.pdf"><i class="icon-down-circled2 ">Download My
-							Resume</i></a></button>
+        <button class="btn btn-outline-danger"><a href="/static/assets/files/Final_Report.pdf"
+          download="/static/assets/files/Resume.pdf"><i class="icon-down-circled2 ">Download Our Report</i></a></button>
+        <span class="navbar-toggler-icon"></span>
 			</div>
 			<div class="col-lg-4 about-card">
 				<h3 class="font-weight-light">Our Model</h3>
 				<span class="line mb-5"></span>
 				<h6 class="mb-3"> LSTM</h6>
-				{% comment %} <ul class="info">
-					<li> Si Sample Spot Detection Method in Transmission Electron Microscopy</li>
-				</ul> {% endcomment %}
+
 				<p class="para">
-					LSTM is ... 
+					LSTM is a type of Recurrent Neural Network (RNN) specifically designed to overcome the limitations of traditional RNNs in handling long-term dependencies. It achieves this through its unique structure of gates: the input gate, forget gate, and output gate. These gates regulate the flow of information, allowing the network to retain important long-term data while discarding irrelevant information. This makes LSTMs particularly effective in applications where understanding long-term context and dependencies within sequential data is crucial, such as in time series analysis or natural language processing.
 				</p>
 				<h6 class="mb-3"> GRU</h6>
 				<p class="para">
-					GRU is ... 
+					GRU is another variant of RNNs, similar to LSTM but with a more streamlined architecture. It consists of two gates: the reset gate and the update gate. The reset gate determines how to combine new input with past information, while the update gate defines how much of the past information to keep. GRU provides a balance between computational efficiency and the ability to capture dependencies in sequential data. 
 				</p>
-				<h6 class="mb-3"> Transformer</h6>
-				<p class="para">
-					Transformer is ... 
-				</p>
+
 
 			</div>
 			<div class="col-lg-4 about-card">
-				<h3 class="font-weight-light">Our Model</h3>
-				<span class="line mb-5"></span>
-				<h6 class="mb-3"> LSTM</h6>
-				{% comment %} <ul class="info">
-					<li> Si Sample Spot Detection Method in Transmission Electron Microscopy</li>
-				</ul> {% endcomment %}
-				<p class="para">
-					LSTM is ... 
-				</p>
-				<h6 class="mb-3"> GRU</h6>
-				<p class="para">
-					GRU is ... 
-				</p>
 				<h6 class="mb-3"> Transformer</h6>
 				<p class="para">
-					Transformer is ... 
+          The Transformer model represents a significant shift from traditional RNNs, as it completely eschews recurrence and instead utilizes an attention mechanism. This mechanism allows the model to process different parts of the input sequence in parallel and weigh them based on their relevance to the current context. The Transformer consists of an encoder and decoder structure, each comprising multiple layers of attention and feed-forward networks. Its ability to handle long-range dependencies and process inputs in parallel makes it highly effective for complex tasks like language translation and text generation, where understanding the broader context is key.
 				</p>
 
 			</div>
+
 
 		</div>
 	</div>
@@ -166,21 +151,375 @@
 	<section class="section" id="News">
 		<div class="container">
 			<h3 class="mb-5">Latest <span class="text-danger">News</span>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-          <option value="A1">KODEX 200</option>
-          <option value="A2">S&P 500</option>
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select_model" onclick="render_chart()">
+          <option value="LSTM">LSTM</option>
+          <option value="GRU">GRU</option>
+          <option value="TF">Transformer</option>
         </select>
         
-        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-          <option value="KR1">Samsung Electronics Co Ltd</option>
-          <option value="KR2">One</option>
-          <option value="KR3">Two</option>
-          <option value="KR4">Three</option>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id= "select_stock" onclick="render_chart()">
+          <option value="KO">Coca-Cola Co</option>
+          <option value="MCD">McDonald's Corp</option>
+          <option value="WM">Waste Management, Inc.</option>
+          <option value="RSG">Republic Services Inc</option>
+          <option value="PEP">PepsiCo, Inc.</option>
+          <option value="CL">Colgate-Palmolive Company</option>
+          <option value="WMT">Walmart Inc</option>
+          <option value="CBOE">Cboe Global Markets Inc</option>
+          <option value="GD">General Dynamics Corp</option>
+          <option value="KMB">Kimberly-Clark Corp</option>
+          <option value="PG">Procter & Gamble Co</option>
+          <option value="COR">Cencora Inc</option>
+          <option value="IBM">IBM Common Stock</option>
+          <option value="AAPL">Apple Inc</option>
+          <option value="MSFT">Microsoft Corp</option>
+          <option value="AMZN">Amazon.com Inc</option>
+          <option value="NVDA">NVIDIA Corp</option>
+          <option value="META">Meta Platforms Inc</option>
+          <option value="AVGO">Broadcom Inc</option>
+          <option value="GOOGL">Alphabet Inc Class A</option>
+          <option value="GOOG">Alphabet Inc Class C</option>
+          <option value="TSLA">Tesla Inc</option>
+          <option value="ADBE">Adobe Inc</option>
+          <option value="COST">Costco Wholesale Corporation</option>
+          <option value="CSCO">Cisco Systems Inc</option>
+          <option value="NFLX">Netflix Inc</option>
+          <option value="AMD">Advanced Micro Devices, Inc.</option>
         </select>
       </h3>
 
       <div class="row">
-        <div id="chart" class="container" style="height:700px"></div>
+        <div class="stock-view-header container">
+          <div class="stock-item-wrap">
+          <div class="stock-item">
+
+          <h2 class="stock-name" id="stock_name"><span href="javascript:;" class="ellip"></span></h2>
+          <span class="code txt-num" id="stock_code"></span>
+          <!-- <span class="badge-defalut">코스피</span> -->
+          </div> 
+          <p class="table-desc" data-v-21ce79e0="">
+          <!-- <span class="txt-date" data-v-21ce79e0="">2023.11.24</span> </p> -->
+          </div>
+          <div class="stock-data-wrap">
+          <div class="stock-data txt-num" id="up_down">
+          <p class="price" id="price_end"></p>
+          <p class="quot">
+            <span class="stock-point" id="tom_change"></span>
+            <span class="rate" id="tom_rate"></span>
+          </p>
+          </div>
+          <div class="stock-data-detail">
+            <div class="col">
+              <!-- <dl><dt>Today High</dt>
+              </dl>
+              <dd class="txt-num up" id="tod_high"></dd>
+              <dl><dt>Today Low</dt>
+              </dl>
+              <dd class="txt-num down" id="tod_low"></dd>
+            </div> -->
+            <div class="col">
+              <dl><dt>Tomorrow High</dt>
+                <dd class="txt-num up" id="tom_high"></dd>
+              </dl>
+              <dl><dt>Tomorrow Low</dt>
+                <dd class="txt-num down" id="tom_low"></dd>
+              </dl>
+            </div>
+      
+          </div>
+        </div>
+        </div>
+        <div id="container" style="height:60vh "></div>
+        <script>
+
+          const stock_code ={
+            'KO': "Coca-Cola Co",
+            'MCD': "McDonald's Corp",
+            'WM': "Waste Management, Inc.",
+            'RSG': "Republic Services Inc",
+            'PEP': "PepsiCo, Inc.",
+            'CL': "Colgate-Palmolive Company",
+            'WMT': "Walmart Inc",
+            'CBOE': "Cboe Global Markets Inc",
+            'GD': "General Dynamics Corp",
+            'KMB': "Kimberly-Clark Corp",
+            'PG': "Procter & Gamble Co",
+            'COR': "Cencora Inc",
+            'IBM': "IBM Common Stock",
+            'AAPL': "Apple Inc",
+            'MSFT': "Microsoft Corp",
+            'AMZN': "Amazon.com Inc",
+            'NVDA': "NVIDIA Corp",
+            'META': "Meta Platforms Inc",
+            'AVGO': "Broadcom Inc",
+            'GOOGL': "Alphabet Inc Class A",
+            'GOOG': "Alphabet Inc Class C",
+            'TSLA': "Tesla Inc",
+            'ADBE': "Adobe Inc",
+            'COST': "Costco Wholesale Corporation",
+            'CSCO': "Cisco Systems Inc",
+            'NFLX': "Netflix Inc",
+            'AMD': "Advanced Micro Devices, Inc.",
+          };
+
+          model = document.getElementById("select_model").value;
+          code = document.getElementById("select_stock").value;
+      
+          anychart.onDocumentReady(function () {
+            anychart.data.loadCsvFile(
+              // 'https://gist.githubusercontent.com/shacheeswadia/cd509e0b0c03964ca86ae7d894137043/raw/5f336c644ad61728dbac93026f3268b86b8d0680/teslaDailyData.csv',
+              'static/'+ code + "_" + model + '.csv',
+              function (data) {
+              // create data table on loaded data
+              const num_data = data.split('\n').length;
+      
+              var tom_high_val = Math.ceil(data.split('\n')[num_data-2].split(",")[2]*100)/100;
+              var tom_low_val = Math.ceil(data.split('\n')[num_data-2].split(",")[3]*100)/100;
+              var tod_high_val = Math.ceil(data.split('\n')[num_data-3].split(",")[2]*100)/100;
+              var tod_low_val = Math.ceil(data.split('\n')[num_data-3].split(",")[3]*100)/100;
+              var price_end_val = Math.ceil(data.split('\n')[num_data-3].split(",")[4]*100)/100;
+      
+              if (tom_high_val < tom_low_val) {
+                var temp = tom_high_val;
+                tom_high_val = tom_low_val;
+                tom_low_val = temp;
+                last_row = data.split('\n')[num_data-2].split(",");
+                last_row[2] = tom_high_val;
+                last_row[3] = tom_low_val;
+                data = data.split('\n').slice(0, num_data-2).join('\n') + '\n' + last_row.join(",");
+              }
+      
+              document.getElementById("tom_high").textContent =  tom_high_val;
+              document.getElementById("tom_low").textContent =  tom_low_val;
+              //document.getElementById("tod_high").textContent =  tod_high_val;
+              //document.getElementById("tod_low").textContent =  tod_low_val;
+              document.getElementById("price_end").textContent =  price_end_val;
+              document.getElementById("stock_name").textContent =  stock_code[code];
+              document.getElementById("stock_code").textContent =  code;
+      
+              tom_change_val = Math.ceil((tom_high_val - price_end_val)*100)/100;
+              change_rate_val = Math.ceil(tom_change_val/price_end_val * 10000)/100;
+      
+              document.getElementById("tom_change").textContent =  tom_change_val;
+              document.getElementById("tom_rate").textContent =  change_rate_val + "%";
+      
+              if (tom_change_val > 0) {
+                document.getElementById("up_down").className = "stock-data txt-num up";
+              } else {
+                document.getElementById("up_down").className = "stock-data txt-num down";
+              }
+      
+              predict = data.split('\n').slice(1, num_data).join('\n');
+              actual = data.split('\n').slice(1, num_data-1).join('\n');
+          
+              var dataTable = anychart.data.table();
+              dataTable.addData(data);
+          
+              var lineTable = anychart.data.table();
+              lineTable.addData(predict);
+          
+              // map loaded data for the candlestick series
+              var mapping = lineTable.mapAs({
+                open: 1,
+                high: 2,
+                low: 3,
+                close: 4
+              });
+          
+          
+              // create stock chart
+              var chart = anychart.stock();
+            
+              // create first plot on the chart
+              var plot = chart.plot(0);
+          
+          
+          
+              // Add a range spline series using the data from the computer
+              var bbandsSeries = chart.plot().rangeSplineArea(dataTable, {
+                high: 2,
+                low: 3
+              });
+          
+              // Set name and visual effects
+              bbandsSeries
+              .name('Bands')
+              .fill(anychart.color.lighten('#CDB4DB', 0.7))
+              .highStroke('#FF7F7F')
+              .lowStroke('#ADD8E6');
+          
+              // set grid settings
+              plot.yGrid(true).xGrid(true).yMinorGrid(true).xMinorGrid(true);
+          
+              var series = plot.candlestick(mapping).name(stock_code[code]);
+              series.legendItem().iconType('rising-falling');
+              series.risingFill("#E34234");
+              series.risingStroke("#E34234");
+              series.fallingFill("#1E90FF");
+              series.fallingStroke("#1E90FF");
+              
+              // create scroller series with mapped data
+              chart.scroller().candlestick(mapping);
+              
+              // set chart selected date/time range
+              chart.selectRange('2023-11-01', '2023-12-15');
+              
+              // create range picker
+              // var rangePicker = anychart.ui.rangePicker();
+              
+              // init range picker
+              // rangePicker.render(chart);
+              
+              // create range selector
+              var rangeSelector = anychart.ui.rangeSelector();
+              
+              // init range selector
+              rangeSelector.render(chart);
+              
+              // sets the title of the chart
+              // chart.title('Tesla Inc. Stock Chart');
+            
+              // set container id for the chart
+              chart.container('container');
+              
+              // initiate chart drawing
+              chart.draw();
+              }
+            );
+          });
+
+          function render_chart(){
+            var stock_chart_container = document.getElementById("container");
+            stock_chart_container.innerHTML = "";
+
+            model = document.getElementById("select_model").value;
+            code = document.getElementById("select_stock").value;
+        
+            anychart.onDocumentReady(function () {
+              anychart.data.loadCsvFile(
+                // 'https://gist.githubusercontent.com/shacheeswadia/cd509e0b0c03964ca86ae7d894137043/raw/5f336c644ad61728dbac93026f3268b86b8d0680/teslaDailyData.csv',
+                'static/'+ code + "_" + model + '.csv',
+                function (data) {
+                // create data table on loaded data
+                const num_data = data.split('\n').length;
+        
+                var tom_high_val = Math.ceil(data.split('\n')[num_data-2].split(",")[2]*100)/100;
+                var tom_low_val = Math.ceil(data.split('\n')[num_data-2].split(",")[3]*100)/100;
+                var tod_high_val = Math.ceil(data.split('\n')[num_data-3].split(",")[2]*100)/100;
+                var tod_low_val = Math.ceil(data.split('\n')[num_data-3].split(",")[3]*100)/100;
+                var price_end_val = Math.ceil(data.split('\n')[num_data-3].split(",")[4]*100)/100;
+        
+                if (tom_high_val < tom_low_val) {
+                  var temp = tom_high_val;
+                  tom_high_val = tom_low_val;
+                  tom_low_val = temp;
+                  last_row = data.split('\n')[num_data-2].split(",");
+                  last_row[2] = tom_high_val;
+                  last_row[3] = tom_low_val;
+                  data = data.split('\n').slice(0, num_data-2).join('\n') + '\n' + last_row.join(",");
+                }
+        
+                document.getElementById("tom_high").textContent =  tom_high_val;
+                document.getElementById("tom_low").textContent =  tom_low_val;
+                //document.getElementById("tod_high").textContent =  tod_high_val;
+                //document.getElementById("tod_low").textContent =  tod_low_val;
+                document.getElementById("price_end").textContent =  price_end_val;
+                document.getElementById("stock_name").textContent =  stock_code[code];
+                document.getElementById("stock_code").textContent =  code;
+        
+                tom_change_val = Math.ceil((tom_high_val - price_end_val)*100)/100;
+                change_rate_val = Math.ceil(tom_change_val/price_end_val * 10000)/100;
+        
+                document.getElementById("tom_change").textContent =  tom_change_val;
+                document.getElementById("tom_rate").textContent =  change_rate_val + "%";
+        
+                if (tom_change_val > 0) {
+                  document.getElementById("up_down").className = "stock-data txt-num up";
+                } else {
+                  document.getElementById("up_down").className = "stock-data txt-num down";
+                }
+        
+                predict = data.split('\n').slice(1, num_data).join('\n');
+                actual = data.split('\n').slice(1, num_data-1).join('\n');
+            
+                var dataTable = anychart.data.table();
+                dataTable.addData(data);
+            
+                var lineTable = anychart.data.table();
+                lineTable.addData(predict);
+            
+                // map loaded data for the candlestick series
+                var mapping = lineTable.mapAs({
+                  open: 1,
+                  high: 2,
+                  low: 3,
+                  close: 4
+                });
+            
+            
+                // create stock chart
+                var chart = anychart.stock();
+              
+                // create first plot on the chart
+                var plot = chart.plot(0);
+            
+            
+            
+                // Add a range spline series using the data from the computer
+                var bbandsSeries = chart.plot().rangeSplineArea(dataTable, {
+                  high: 2,
+                  low: 3
+                });
+            
+                // Set name and visual effects
+                bbandsSeries
+                .name('Bands')
+                .fill(anychart.color.lighten('#CDB4DB', 0.7))
+                .highStroke('#FF7F7F')
+                .lowStroke('#ADD8E6');
+            
+                // set grid settings
+                plot.yGrid(true).xGrid(true).yMinorGrid(true).xMinorGrid(true);
+            
+                var series = plot.candlestick(mapping).name(stock_code[code]);
+                series.legendItem().iconType('rising-falling');
+                series.risingFill("#E34234");
+                series.risingStroke("#E34234");
+                series.fallingFill("#1E90FF");
+                series.fallingStroke("#1E90FF");
+                
+                // create scroller series with mapped data
+                chart.scroller().candlestick(mapping);
+                
+                // set chart selected date/time range
+                chart.selectRange('2023-11-01', '2023-12-15');
+                
+                // create range picker
+                // var rangePicker = anychart.ui.rangePicker();
+                
+                // init range picker
+                // rangePicker.render(chart);
+                
+                // create range selector
+                var rangeSelector = anychart.ui.rangeSelector();
+                
+                // init range selector
+                rangeSelector.render(chart);
+                
+                // sets the title of the chart
+                // chart.title('Tesla Inc. Stock Chart');
+              
+                // set container id for the chart
+                chart.container('container');
+                
+                // initiate chart drawing
+                chart.draw();
+                }
+              );
+            });
+          };
+
+        </script>
 
 			</div>
 		</div>
@@ -210,5 +549,8 @@
 
 
 </body>
+<script>
 
+
+</script>
 </html>

@@ -1,3 +1,1662 @@
+@charset "UTF-8";
+
+/* 증권 개편, 2022 */
+
+/* common */
+.btn-top-wrap .btn-position {right:-630px}
+.ellip {display:block; display:-webkit-box; word-break:break-all; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:1; -webkit-box-orient:vertical; padding-right:1px}
+
+/* stock colors */
+.up,
+.up a {color:#ff0000}
+.down,
+.down a {color:#2175ff}
+.hold,
+.hold a {color:#888}
+.stock-point::before {content:''; display:inline-block; margin-right:4px}
+.up .stock-point::before {width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-bottom:9px solid #ff0000; vertical-align:1px}
+.down .stock-point::before {width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:9px solid #2175ff; vertical-align:baseline}
+.hold .stock-point::before {width:10px; height:4px; background:#888; vertical-align:3px}
+
+.bg-dark .up,
+.bg-dark .up a {color:#ff4040}
+.bg-dark .down,
+.bg-dark .down a {color:#5897ff}
+.bg-dark .hold,
+.bg-dark .hold a {color:#888}
+.bg-dark .stock-point::before {content:''; display:inline-block; margin-right:4px}
+.bg-dark .up .stock-point::before {width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-bottom:9px solid #ff4040; vertical-align:1px}
+.bg-dark .down .stock-point::before {width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:9px solid #5897ff; vertical-align:baseline}
+.bg-dark .hold .stock-point::before {width:10px; height:4px; background:#888; vertical-align:3px}
+
+
+/* 공통 콘텐츠 */
+.news-tit,
+.lead {overflow:hidden; display:block; display:-webkit-box; text-overflow:clip; /*word-wrap:break-word; word-break:keep-all;*/ -webkit-box-orient:vertical; font-weight:normal}
+.lead {color:#666}
+
+.thumb {position:relative; overflow:hidden; border-radius:10px}
+.thumb > a {display:block; position:relative; width:100%; height:100%}
+.thumb img {width:100%; min-height:100%; object-fit:cover; object-position:top}
+
+.thumb > .thumb-icon {position:absolute; right:15px; bottom:15px; width:50px; height:50px; overflow:hidden; background-repeat:no-repeat; background-position:right bottom; background-size:contain; color:transparent; text-indent:-9999px; pointer-events:none; transform-origin:right bottom}
+.thumb-icon.thumb-vod {background-image:url('https://static.hankyung.com/resource/www/common/img/icon/icon-thumb-video.svg')}
+.thumb-icon.thumb-audio {background-image:url('https://static.hankyung.com/resource/www/common/img/icon/icon-thumb-audio.svg')}
+.thumb-icon.thumb-graph {background-image:url('https://static.hankyung.com/resource/www/common/img/icon/icon-thumb-graph.svg')}
+.thumb-icon.thumb-photo {background-image:url('https://static.hankyung.com/resource/www/common/img/icon/icon-thumb-photo.svg')}
+.thumb-icon.thumb-slide {background-image:url('https://static.hankyung.com/resource/www/common/img/icon/icon-thumb-slide.svg')}
+
+.main-top-major .thumb > .thumb-icon {right:10px; bottom:10px; width:24px; height:24px}
+
+.iframe-youtube {position:relative; height:0; padding-bottom:56.25%; overflow:hidden}
+.iframe-youtube iframe {position: absolute; top:0; left:0; width:100%; height:100%}
+
+/* ad */
+.aside-ad {text-align:center}
+
+/* layout */
+/* .page__full : 와이드(푸터포함), .page__full--container : 와이드(콘테이너 영역만) */
+#container > .inner {padding:0 0 30px}
+#wrap:not(.page__full) #container > .inner {padding:40px 0 30px}
+#wrap:not(.page__full):not(.page__full--container) #container > .inner,
+.page__full--container .txt-etc {max-width:1180px; min-width:1180px; margin:0 auto}
+/* .page__full .foot-inner {width:100% !important; max-width:100% !important; padding-left:110px !important; padding-right:120px !important; min-width:1180px; box-sizing:border-box} */
+/* .page__full .txt-etc {padding-left:110px !important; padding-right:120px !important; box-sizing:border-box} */
+/* .page__full .ad-bottom {max-width:unset; margin:0 110px 30px} */
+.page__full .txt-etc {max-width:1180px; margin:0 auto}
+
+
+.container-inner {max-width:1180px; min-width:1180px; margin:0 auto}
+
+.cont-wrap {display:flex; justify-content:space-between}
+.cont-wrap .contents {flex:0 0 auto; width:780px}
+.cont-wrap .aside {flex:0 0 auto; width:300px}
+.cont-wrap.type-bar {margin-top:30px; padding-top:30px; border-top:1px solid #ddd}
+
+.cont-wrap.cont-sticky-wrap {display:block}
+.cont-wrap.cont-sticky-wrap .contents {flex:none; float:left}
+.cont-wrap.cont-sticky-wrap .aside {flex:none; position:sticky; top:0; float:right; width:300px}
+.cont-wrap.cont-sticky-wrap::after {content:''; display:block; clear:both}
+
+.bg-dark {background:#262931; color:#fff}
+.bg-dark a {color:#fff}
+.bg-light {background:#f7f7f7}
+
+.main-module {margin-top:30px}
+.main-module > .layout-inner {position:relative; border-top:2px solid #121212}
+.main-module > .layout-inner::before {content:''; display:block; width:100%; height:1px; margin:2px 0 30px; background-color:#121212}
+.main-module.bg-light {padding:35px 0}
+.main-module.bg-light.swiper-stock-module {padding:35px 0 20px}
+
+.main-module.bg-light + .main-module > .layout-inner {border-top:none}
+.main-module.bg-light + .main-module > .layout-inner::before {display:none}
+
+.main-module.type-bar > .container-inner {margin-top:30px; padding-top:30px; border-top:1px solid #ddd}
+
+.main-tit {margin-bottom:10px; font-size:20px}
+.main-stit {margin-bottom:5px; font-size:16px}
+
+.main-tit-wrap {display:flex; align-items:center; position:relative; margin-bottom:13px}
+.main-tit-wrap .main-tit,
+.main-tit-wrap .main-stit {margin:0}
+.main-tit-wrap .tit-info-area {margin-left:15px; font-size:14px; letter-spacing:-.045em}
+.main-tit-wrap .tit-info-area .txt-info {color:#888; font-size:12px}
+.main-tit-wrap .tit-etc-area {position:absolute; top:0; right:0}
+
+.main-module.bg-dark {padding:35px 0}
+.main-module.bg-dark .main-tit,
+.main-module.bg-dark .main-tit a {color:#fff}
+
+
+.cont-module {margin:45px 0}
+.cont-module.line-type {margin:40px 0 0; padding-top:27px; border-top:1px solid #ddd}
+
+.chart-wrap .txt-info {color:#888; font-size:12px; text-align:right}
+.chart-wrap .chart-area + .txt-info {margin-top:10px}
+
+.chart-wrap .chart-info .col-lt {float:left}
+.chart-wrap .chart-info .col-rt {float:right}
+.chart-wrap .chart-info::after {content:''; display:block; clear:both}
+.chart-area + .chart-info {margin-top:10px}
+.chart-info .chart-legend {display:flex; align-items:center; font-size:14px}
+.chart-info .chart-legend > li + li {margin-left:30px}
+.chart-info .chart-legend [class^="icon-legend"] {display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; margin-right:10px; padding-bottom:2px; border-radius:100%; font-weight:bold; font-size:13px; box-sizing:border-box}
+.chart-info .icon-legend-n {border:1px solid #3e9149; background:#6dcc78}
+.chart-info .icon-legend-c {border:1px solid #bd5618; background:#f68847; color:#fff}
+
+.chart-data dt {font-weight:bold; font-size:20px}
+
+.cont-box {border:1px solid #ddd; border-radius:10px}
+.cont-box .itme-list {display:flex}
+.cont-box .itme-list > li {position:relative; flex:0 0 auto; padding:29px; box-sizing:border-box}
+.cont-box .itme-list > li::before {content:''; position:absolute; top:29px; bottom:29px; left:-.5px; width:1px; background-color:#ddd;}
+.cont-box .itme-list > li:first-child::before {display:none}
+.cont-box .itme-list + .itme-list {border-top:1px solid #ddd}
+
+.txt-lt {text-align:left !important}
+.txt-ct {text-align:center !important}
+.txt-rt {text-align:right !important}
+
+.txt-info {color:#888; font-size:12px}
+.txt-info.space {margin-top:10px}
+
+.layout-flex {display:flex}
+.justify-between {justify-content:space-between}
+.justify-start {justify-content:flex-start !important}
+.justify-center {justify-content:center !important}
+.justify-end {justify-content:flex-end !important}
+.align-item-start {align-items:flex-start !important}
+.align-item-center {align-items:center !important}
+.align-item-end {align-items:flex-end !important}
+
+.bul-dot {margin-top:15px}
+.bul-dot p,
+.bul-dot li {position:relative; padding-left:10px; color:#888; font-size:14px}
+.bul-dot p::before,
+.bul-dot li::before {content:''; position:absolute; top:8px; left:0; width:2px; height:2px; background:#888}
+.bul-dot p + p,
+.bul-dot li + li {margin-top:5px}
+
+/* badge */
+.badge-defalut {display:inline-flex; align-items:center; justify-content:center; min-width:50px; height:24px; margin:0; padding:0 10px; border:1px solid #ddd; border-radius:3px; background:#fff; color:#888; font-weight:normal; font-size:12px; line-height:1; box-sizing:border-box}
+.badge-danger {display:inline-flex; align-items:center; justify-content:center; min-width:50px; height:24px; margin:0; padding:0 10px; border:1px solid #ee4c4c; border-radius:3px; background:#fff1f1; color:#ee4c4c; font-weight:normal; font-size:12px; line-height:1; box-sizing:border-box}
+.badge-warning {display:inline-flex; align-items:center; justify-content:center; min-width:50px; height:24px; margin:0; padding:0 10px; border:1px solid #ff7000; border-radius:3px; background:#fff4ec; color:#ff7000; font-weight:normal; font-size:12px; line-height:1; box-sizing:border-box}
+
+/* button */
+.koreamarket .btn-default {display:inline-flex; align-items:center; justify-content:center; height:35px; padding:0 23px 1px; border:1px solid #ddd; border-radius:8px; background:#fff; font-size:14px; box-sizing:border-box; white-space:nowrap; vertical-align:middle}
+.koreamarket .btn-primary {display:inline-flex; align-items:center; justify-content:center; height:35px; padding:0 23px 1px; border-radius:8px; background:#4c88b6; color:#fff; font-size:14px; box-sizing:border-box; white-space:nowrap; vertical-align:middle}
+.koreamarket .btn-reset {display:inline-flex; align-items:center; justify-content:center; height:35px; padding:0 23px 1px; border-radius:8px; background:#888; color:#fff; font-size:14px; box-sizing:border-box; white-space:nowrap; vertical-align:middle}
+/* button: size */
+.koreamarket .btn-xsm {min-width:44px; height:24px; padding:0 10px; border-radius:3px; font-size:12px}
+.koreamarket .btn-sm {height:30px; padding:0 10px 1px; border-radius:5px; font-size:14px}
+.koreamarket .btn-lg {height:50px; padding-top:2px; font-weight:bold; font-size:16px}
+/* button: color */
+.koreamarket .btn-defalut-danger {color:#ee4c4c}
+.koreamarket .btn-defalut-warning {color:#ff7000}
+
+
+
+
+
+/* button: each */
+.koreamarket .btn-link-point {display:inline-flex; align-items:center; justify-content:center; height:24px; margin:0; padding:0 15px; border-radius:5px; background:#02b349; color:#fff; font-weight:normal; font-size:12px; line-height:1; box-sizing:border-box; vertical-align:middle}
+.koreamarket a.btn-link-point {text-decoration:none}
+
+.koreamarket .btn-link-arr {display:inline-flex; align-items:center; justify-content:center; height:33px; margin:0; padding:0 20px; border-radius:25rem; background:#02b349; color:#fff; font-weight:normal; font-size:14px; line-height:1; box-sizing:border-box; vertical-align:middle}
+.koreamarket .btn-link-arr::after {content:''; display:inline-block; width:8px; height:8px; margin-left:25px; border-top:1px solid #fff; border-right:1px solid #fff; transform:rotate(45deg)}
+
+.koreamarket .btn-like {padding:0 13px; vertical-align:middle}
+.koreamarket .btn-like svg {margin-right:6px}
+/* .koreamarket .btn-like::before {content:''; display:inline-block; width:15px; height:15px; margin-right:6px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-like.svg') no-repeat 0 0/contain} */
+.koreamarket .btn-like.on {border-color:#03a754; color:#03a754}
+.koreamarket .btn-like.on .svg-icon {fill:#03a754}
+.koreamarket .btn-like .num {margin-left:6px}
+.koreamarket .btn-hate {padding:0 13px; vertical-align:middle}
+.koreamarket .btn-hate svg {position:relative; top:2px; margin-right:6px}
+/* .koreamarket .btn-hate::before {content:''; display:inline-block; width:15px; height:15px; margin-right:6px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-hate.svg') no-repeat 0 0/contain} */
+.koreamarket .btn-hate.on {border-color:#df1f51; color:#df1f51}
+.koreamarket .btn-hate.on .svg-icon {fill:#df1f51}
+.koreamarket .btn-hate .num {margin-left:6px}
+
+.koreamarket .btn-subscribe {display:inline-flex; align-items:center; justify-content:center; width:90px; height:35px; padding:0 0 1px; border:1px solid #ddd; border-radius:6px; background:#fff; font-size:14px; box-sizing:border-box; vertical-align:middle}
+.koreamarket .btn-subscribe svg {margin-left:5px}
+.koreamarket .btn-subscribe.on .svg-icon {fill:#ff761b}
+
+/* modal */
+.overflow-hidden {height:100vh; overflow:hidden}
+[class^="mybtn-"] {display:inline-flex; align-items:center; box-sizing:border-box}
+.mybtn-outline {padding:0 11px; border:1px solid #ddd; border-radius:6px; line-height:33px; font-size:14px}
+.mybtn-circle {justify-content:center; width:40px; height:40px; border:1px solid #ddd; border-radius:20px}
+.myicon-plus {width:12px; height:12px; background-image:linear-gradient(to bottom, #121212 0%, #121212 100%), linear-gradient(to left, #121212 0%, #121212 100%); background-size:100% 2px,2px 100%; background-position:center; background-repeat:no-repeat}
+
+.hk-modal {position:fixed; top:0; left:0; right:0; bottom:0; z-index:999999999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.8)}
+.hk-modal .hk-modal-inner {position:relative; width:420px; padding:30px 0; border:1px solid #eee; border-radius:10px; box-shadow:3px 3px 6px rgba(0,0,0,0.1); background:#fff; box-sizing:border-box}
+.hk-modal .mybtn-close-modal {position:absolute; top:31px; right:30px}
+.hk-modal .mybtn-close-modal::before {content:''; display:inline-block; width:20px; height:20px; background-image:linear-gradient(to bottom, #121212 0%, #121212 100%), linear-gradient(to left, #121212 0%, #121212 100%); background-size:100% 1px,1px 100%; background-position:center; background-repeat:no-repeat; transform:rotate(45deg)}
+.hk-modal .hk-modal-header {padding:0 30px 20px}
+.hk-modal .hk-modal-header .mybtn-circle {position:absolute; top:22px; left:30px}
+.hk-modal .hk-modal-tit {font-size:20px; line-height:1.15; text-align:center}
+.hk-modal .hk-modal-body {padding:0 30px}
+.hk-modal .hk-modal-body.scroll-area {height:270px}
+.hk-modal .hk-modal-footer {display:flex; align-items:center; justify-content:space-between; padding:20px 30px 0; text-align:center}
+.hk-modal .hk-modal-footer [class^="mybtn-"] {flex:0 0 auto; width:calc(50% - 5px); display:inline-flex; align-items:center; box-sizing:border-box; justify-content:center; height:40px; border-radius:8px; font-size:16px}
+.hk-modal .hk-modal-footer [class^="mybtn-"]:only-child {width:100%}
+.mybtn-confirm {background-color:#ff761b; color:#fff}
+.mybtn-cancel {background-color:#666; color:#fff}
+.hk-modal .hk-modal-footer .mybtn-outline {justify-content:center; min-width:70px; height:30px; margin:0 3px; padding:0 10px; border-radius:5px; font-size:14px}
+.hk-modal .scroll-area {overflow-x:hidden; overflow-y:auto}
+.hk-modal .scroll-area::-webkit-scrollbar {width:6px}
+.hk-modal .scroll-area::-webkit-scrollbar-track {background-color:#fafafa}
+.hk-modal .scroll-area::-webkit-scrollbar-thumb {border-radius:3px; background-color:#7d7d7d}
+.hk-modal .scroll-area::-webkit-scrollbar-button {width:0; height:0}
+.hk-modal .hk-modal-body.scroll-area {padding-right:24px}
+/* modal: alert */
+.modal-alert .hk-modal-inner {width:380px}
+.modal-alert .hk-modal-body {font-size:18px; text-align:center}
+/* modal: 관식종목 */
+.modal-interest .hk-modal-inner {width:400px}
+.modal-interest .stock-group-list {padding-top:5px; font-size:15px}
+.modal-interest .stock-group-list > li + li {margin-top:20px}
+.modal-interest .stock-group-list .txt-num {margin-left:4px; color:#ff761b; font-size:12px}
+.modal-interest .stock-group-list .check-style {display:flex; padding-right:30px}
+.modal-interest .stock-group-list .check-style .label-txt::before {position:absolute; top:0; right:0; margin:0}
+.modal-interest .btn-add-group {position:absolute; top:23px; right:20px; width:30px; height:30px; border:1px solid #ddd; border-radius:15px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-add.svg') no-repeat 50% 50%/12px 12px}
+.modal-addgroup .hk-modal-inner {width:400px}
+
+/* 하단 슬라이드월 팝업 */
+.layer-fullpopup {visibility:hidden; z-index:-1; opacity:0; position:fixed; top:0; right:0; bottom:0; left:0; background:rgba(0,0,0,0.5)}
+.layer-fullpopup.show {visibility:visible; z-index:999999999; opacity:1; -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px); transition:all ease-in .3s}
+
+.layer-offcanvas {position:fixed; display:flex; flex-direction:column; justify-content:center;  background:#fff}
+.layer-offcanvas .para {font-size:18px}
+.layer-offcanvas .txt-point {color:#ff761b}
+.layer-offcanvas .txt-underline {text-decoration:underline}
+.layer-offcanvas .offcanvas-foot {margin-top:25px}
+.layer-offcanvas .offcanvas-foot .btn {display:inline-block; min-width:170px; line-height:50px; margin:0 3px; padding:0 10px; border-radius:25px; color:#fff; font-size:18px; text-align:center; box-sizing:border-box}
+.layer-offcanvas .offcanvas-foot .btn-pramary {background-color:#ff761b}
+.layer-offcanvas .offcanvas-foot .btn-secondary {background-color:#666}
+.layer-offcanvas .offcanvas-etc {margin-top:27px}
+.layer-offcanvas .btn-link {font-size:16px}
+.layer-offcanvas .btn-link::after {content:''; display:inline-block; width:6px; height:6px; margin-left:6px; border-top:1px solid #121212; border-right:1px solid #121212; transform:rotate(45deg); vertical-align:2px}
+.layer-offcanvas.bottom {right:0; bottom:-100%; left:0; padding:50px 0; text-align:center}
+.layer-fullpopup.show .layer-offcanvas.bottom {bottom:0; transition:bottom 1s}
+@media all and (min-height:900px){
+	.layer-fullpopup.show .layer-offcanvas.bottom {top:690px}
+}
+
+/* 콘텐츠 하단 로그인 유도 안내  */
+.contents-more-info {padding:40px 0 0; text-align:center}
+.contents-more-info .para {font-size:18px}
+.contents-more-info .txt-point {color:#ff761b}
+.contents-more-info .txt-underline {text-decoration:underline}
+.contents-more-info .more-foot {margin-top:25px}
+.contents-more-info .more-foot .btn {display:inline-block; min-width:170px; line-height:50px; margin:0 3px; padding:0 10px; border-radius:25px; color:#fff; font-size:18px; text-align:center; box-sizing:border-box}
+.contents-more-info .more-foot .btn-pramary {background-color:#ff761b}
+.contents-more-info .more-foot .btn-secondary {background-color:#666}
+.contents-more-info .more-etc {margin-top:27px}
+.contents-more-info .btn-link {font-size:16px}
+.contents-more-info .btn-link::after {content:''; display:inline-block; width:6px; height:6px; margin-left:6px; border-top:1px solid #121212; border-right:1px solid #121212; transform:rotate(45deg); vertical-align:2px}
+
+/* theme */
+.mytheme-orange .theme-color-primary {color:#ff761b}
+.mytheme-orange .theme-bg-primary {background-color:#ff761b}
+.mytheme-orange .myicon-plus {background-image:linear-gradient(to bottom, #ff761b 0%, #ff761b 100%), linear-gradient(to left, #ff761b 0%, #ff761b 100%); background-size:100% 2px,2px 100%}
+.mytheme-orange .myicon-user {background-color:#ff761b}
+
+/* tab */
+.tab-wrap {position:relative}
+.tab-wrap .tab-etc-lt,
+.tab-wrap .tab-etc-rt {position:absolute; top:50%; transform:translateY(-50%)}
+.tab-wrap .tab-etc-lt {left:0}
+.tab-wrap .tab-etc-rt {right:0}
+
+.tab-type1-wrap {margin-bottom:40px}
+.tab-type1 {display:flex}
+.tab-type1 > li {flex:1 1 auto}
+.tab-type1 > li > a {display:block; height:50px; margin:0 -1px; border:1px solid #ddd; background:#fff; font-size:16px; line-height:48px; text-align:center; box-sizing:border-box}
+.tab-type1 > li:first-child > a {border-radius:10px 0 0 10px}
+.tab-type1 > li:last-child > a {border-radius:0 10px 10px 0}
+.tab-type1 > li.on > a {position:relative; border-color:#121212; font-weight:bold}
+
+.tab-type2-wrap {min-height:35px}
+.tab-type2-wrap .tab-etc-lt {top:0; transform:none}
+.tab-type2-wrap .tab-type2 {margin-bottom:30px}
+.tab-type2 {display:flex; justify-content:center}
+.tab-type2 > li {flex:0 0 auto}
+.tab-type2 > li > a {display:inline-block; position:relative; height:40px; padding:8px 15px 0; color:#888; font-size:16px; line-height:1.2; box-sizing:border-box; text-decoration:none}
+.tab-type2 > li > a::after {content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:#121212}
+.tab-type2 > li.on > a {color:#121212; font-weight:bold}
+.tab-type2 > li.on > a::after {height:4px}
+
+.tab-type3-wrap {margin:30px 0}
+.tab-type3 {display:flex; justify-content:center}
+.tab-type3 > li {flex:0 0 auto}
+.tab-type3 > li > a {display:inline-block; position:relative; min-width:130px; height:35px; margin-right:1px; padding:9px 15px 0; font-size:14px; background:#eee; line-height:1.2; box-sizing:border-box; text-decoration:none; text-align:center}
+.tab-type3 > li.on > a {margin-right:0; background:#121212; color:#fff; font-weight:bold}
+.tab-type3 > li:first-child > a {border-radius:8px 0 0 8px}
+.tab-type3 > li:last-child > a {border-radius:0 8px 8px 0}
+
+.tab-type4-wrap {margin:30px 0}
+.tab-type4 {display:flex}
+.tab-type4 > li {flex:0 0 auto; position:relative}
+.tab-type4 > li > a {padding:0 15px; font-size:14px}
+.tab-type4 > li + li::before {content:''; position:absolute; top:50%; left:0; width:1px; height:13px; background:#ddd; transform:translateY(-50%)}
+.tab-type4 > li.on > a {color:#436f91; font-weight:bold}
+
+.tab-type-btns {display:flex; align-items:center}
+.tab-type-btns .tab-tit {margin-right:10px; font-weight:bold; font-size:15px}
+.tab-type-btns .tab-link {display:inline-block; height:30px; padding:0 15px 2px; border-radius:15px; font-size:14px; line-height:28px; box-sizing:border-box}
+.tab-type-btns .on .tab-link {background:#eee; text-decoration:none}
+
+.tab-type-toggle {display:flex}
+.tab-type-toggle .radio,
+.tab-type-toggle .check {position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:none; overflow:hidden; clip:rect(0 0 0 0); color:transparent}
+.tab-type-toggle > label {position:relative; cursor:pointer}
+.tab-type-toggle > label > .txt {display:inline-flex; align-items:center; justify-content:center; min-width:85px; height:30px; border:1px solid #ddd; background:#fff; box-sizing:border-box; font-size:12px;}
+.tab-type-toggle > label:first-child > .txt {border-left:1px solid #ddd; border-radius:8px 0 0 8px}
+.tab-type-toggle > label:last-child > .txt {border-radius:0 8px 8px 0}
+.tab-type-toggle > label:not(:first-child) > .txt {margin-left:-1px}
+.tab-type-toggle > label > .radio:checked + .txt,
+.tab-type-toggle > label > .check:checked + .txt {position:relative; z-index:2; border-color:#4c88b6; background:#eef5fb; font-weight:bold}
+.tab-type-toggle.large > label > .txt {min-width:160px; height:40px; font-size:16px}
+
+.tab-group-wrap {display:flex; align-items:center}
+.tab-group-wrap .tab + .tab {margin-left:15px}
+
+.bg-dark .tab-type1 > li > a {border-color:#444; background:#262931}
+.bg-dark .tab-type1 > li.on > a {border-color:#888; color:#fff}
+
+.bg-dark .tab-type-btns .on .tab-link {background:#444; color:#fff}
+
+/* 탭 콘텐츠 (탭 동작 유형) */
+.tab-contents .tab-content {position:absolute; height:0; overflow:hidden; visibility:hidden; opacity:0}
+.tab-contents .tab-content.active {position:static; height:auto; overflow:visible; visibility:visible; opacity:1}
+
+.tab-content-tit {font-weight:bold; font-size:24px}
+.tab-content-desc {font-size:24px}
+
+/* table */
+.table-wrap {margin-top:15px}
+
+.table-col-wrap {display:flex; justify-content:space-between}
+.table-col-wrap > .col {flex:0 0 auto; width:calc(50% - 10px)}
+
+.table-desc {color:#888; font-size:12px}
+table + .table-desc,
+.table-desc + table {margin-top:10px}
+
+.table-style1 {position:relative}
+.table-style1::before {content:''; position:absolute; top:0; left:0; right:0; height:48px; border:1px solid #ddd; border-radius:10px; box-sizing:border-box; pointer-events:none}
+.table-style1 table {width:100%}
+.table-style1 thead th {padding:15px; font-size:14px; text-align:center; font-weight:normal}
+.table-style1 td {padding:12px 15px; font-size:18px}
+.table-style1 tr:first-child td {padding-top:40px}
+.table-style1 .num {font-style:italic; font-size:22px; font-family:Tahoma, sans-serif}
+.table-style1 .sbj {width:450px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+
+.stock-item-list .item {display:flex; align-items:center; justify-content:space-between}
+.stock-item-list .item .stock-title {margin-right:10px}
+.stock-item-list .item .stock-title .name {color:#121212; font-size:15px; line-height:1.1}
+.stock-item-list .item .stock-title .name a {color:#121212}
+.stock-item-list .item .stock-title .code {color:#888; font-size:11px}
+.stock-item-list .item .stock-nums {display:flex; align-items:center; text-align:right}
+.stock-item-list .item .stock-nums > .col + .col {margin-left:8px}
+.stock-item-list .item .stock-nums .price {color:#121212; font-size:15px}
+.stock-item-list .item .stock-nums .stock-point {font-size:11px}
+.stock-item-list .item .stock-point::before {margin-right:4px}
+.stock-item-list .item .stock-nums .rate {display:inline-flex; align-items:center; justify-content:center; min-width:70px; height:29px; padding:0 5px; border-radius:6px; color:#fff; vertical-align:top; font-size:14px; line-height:1.2; box-sizing:border-box}
+.stock-item-list .item.up .stock-nums .rate {background-color:#ff0000}
+.stock-item-list .item.up .stock-point::before {border-left-width:4px; border-right-width:4px; border-bottom-width:7px; vertical-align:baseline}
+.stock-item-list .item.down .stock-nums .rate {background-color:#2175ff}
+.stock-item-list .item.down .stock-point::before {border-left-width:4px; border-right-width:4px; border-top-width:7px}
+.stock-item-list .item.hold .stock-nums .rate {background-color:#888}
+.stock-item-list .item.hold .stock-point::before {width:7px; height:2px; vertical-align:.2em}
+
+.table-stock-wrap {margin-bottom:40px}
+.table-stock {width:100%}
+.table-stock th,
+.table-stock td {padding:15px 10px; border:1px solid #eee; border-bottom-color:#ddd; font-weight:normal; font-size:15px; text-align:left}
+.table-stock th.vline,
+.table-stock td.vline {border-right-color:#ddd}
+.table-stock thead th {padding:13px 10px; color:#888; font-size:14px}
+.table-stock thead th.sort {cursor:pointer}
+.table-stock thead th.sort::after {content:''; display:inline-block; width:9px; height:12px; margin-left:4px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-arr-sort.svg') no-repeat 0 0/contain; vertical-align:-1px}
+.table-stock thead th.sort.ascend::after {background-image:url('https://static.hankyung.com/img/www/w/koreamarket/icon-arr-sort-ascend.svg')}
+.table-stock thead th.sort.descend::after {background-image:url('https://static.hankyung.com/img/www/w/koreamarket/icon-arr-sort-descend.svg')}
+.table-stock th:first-child,
+.table-stock td:first-child {position:relative; padding-left:19px}
+.table-stock tbody tr:not(.row-collapse) th:first-child::before,
+.table-stock tbody tr:not(.row-collapse) td:first-child::before {content:''; position:absolute; top:0; left:-1px; bottom:0; width:5px}
+.table-stock tbody tr:not(.row-collapse).up th:first-child::before,
+.table-stock tbody tr:not(.row-collapse).up td:first-child::before {background:#ff4040}
+.table-stock tbody tr:not(.row-collapse).down th:first-child::before,
+.table-stock tbody tr:not(.row-collapse).down td:first-child::before {background:#2175ff}
+.table-stock tbody tr:not(.row-collapse).hold th:first-child::before,
+.table-stock tbody tr:not(.row-collapse).hold td:first-child::before {background:#888}
+.table-stock tbody tr:not(.row-collapse):nth-child(even),
+.table-accordion tbody tr:not(.row-collapse):nth-child(4n+3) {background:#fafcfe}
+table.table-stock tbody tr:not(.row-collapse):hover {background:#e5eaf4}
+.table-stock .stock-name,
+.table-stock .stock-name a {color:#121212}
+.table-stock .code {color:#888; font-size:11px}
+.table-stock .txt-sm {color:#888; font-size:12px}
+
+.table-accordion tbody tr:not(.row-collapse) {cursor:pointer}
+.table-accordion tbody tr.row-collapse td {padding:30px; background:#fff linear-gradient(180deg, rgba(229,229,229,1) 0%, rgba(255,255,255,1) 7px, rgba(255,255,255,1) 100%)}
+.table-accordion .row-collapse:not(.show) {display:none}
+.table-accordion .row-collapse.show {display:table-row}
+.table-accordion .stock-item-list {display:flex; flex-wrap:wrap; position:relative}
+.table-accordion .stock-item-list > li {flex:0 0 auto; width:320px; margin-left:79px; padding:10px 0}
+.table-accordion .stock-item-list > li:nth-child(3n + 1) {margin-left:0}
+.table-accordion .stock-item-list::before,
+.table-accordion .stock-item-list::after {content:''; position:absolute; top:10px; bottom:10px; width:1px; background:#eee}
+.table-accordion .stock-item-list::before {left:360px}
+.table-accordion .stock-item-list::after {right:360px}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* for IE */
+	.table-stock .stock-name.ellip {white-space:nowrap; display:inline-block; max-width:250px}
+    .table-col-wrap .table-stock .stock-name.ellip {max-width:100px}
+    .table-accordion .stock-item-list {width:1118px}
+    .table-accordion .stock-item-list .ellip {white-space:nowrap; display:inline-block; max-width:100px}
+}
+
+.table-list {width:100%}
+.table-list th,
+.table-list td {padding:10px 20px; border-bottom:1px solid #ddd; font-size:14px; text-align:left; vertical-align:top}
+.table-list th {font-weight:normal}
+.table-list .txt-standard {margin-top:3px; color:#888; font-size:12px}
+.table-list + .table-desc {padding:0 10px; word-break:keep-all}
+
+.table-data {width:100%}
+.table-data th,
+.table-data td {padding:13px 10px; border:1px solid #eee; border-bottom-color:#ddd; font-weight:normal; font-size:15px; text-align:left}
+
+.table-v-striped th:nth-child(even),
+.table-v-striped td:nth-child(even) {background:#fafcfe}
+
+/* paging */
+.paging {margin-top:30px; text-align:center}
+/* .paging a, .paging strong {display:inline-block; min-width:40px; height:35px; padding:0 9px 0 8px; margin-right:-.34em; border:1px solid transparent; background:#fff; font-size:13px; line-height:34px; box-sizing:border-box; *display:inline; *zoom:1} */
+.paging strong, .paging a:hover {position:relative; z-index:2; border-color:#121212}
+.paging a:hover {text-decoration:none}
+.paging .btn-page-first,
+.paging .btn-page-prev,
+.paging .btn-page-next,
+.paging .btn-page-end {position:relative; padding:0; border-color:#e5e5e5}
+.paging .btn-page-first::before,
+.paging .btn-page-prev::before,
+.paging .btn-page-next::before,
+.paging .btn-page-end::before {content:''; display:inline-block; background:url('https://static.hankyung.com/img/www/w/common/spr-paging.png') no-repeat}
+.paging .btn-page-prev::before,
+.paging .btn-page-next::before {margin:-3px 0 0; width:5px; height:7px}
+.paging .btn-page-first::before,
+.paging .btn-page-end::before {margin:-3px 0 0; width:9px; height:7px}
+.paging .btn-page-first::before {background-position:0 0}
+.paging .btn-page-prev::before {background-position:-38px 0}
+.paging .btn-page-next::before {background-position:-53px 0}
+.paging .btn-page-end::before {background-position:-19px 0}
+
+/* 하단 안내 문구 */
+.txt-etc {margin-top:10px; color:#888; font-size:14px; line-height:1.5}
+.txt-etc.type-bar {margin-top:20px; padding-top:25px; border-top:1px solid #ddd}
+.txt-etc a {color:#888; text-decoration:underline}
+.bg-dark + .txt-etc.type-bar {padding-top:0; border-top:none}
+
+/* 슬라이드 공통 (swiper.js) */
+.koreamarket .swiper-slider-wrap {position:relative}
+.koreamarket .swiper-button-arrow {position:absolute; top:calc(50% + 25px); opacity:0; width:50px; height:50px; border-radius:50%; background:#888; color:transparent; font-size:0; overflow:hidden; transform:translateY(-50%); transition:all ease .3s}
+.koreamarket .swiper-button-arrow::before {content:''; display:inline-block; width:10px; height:10px; margin-left:5px; border-width:1px; border-style:solid}
+.koreamarket .swiper-button-prev {left:-25px}
+.koreamarket .swiper-button-prev::before {border-color:#fff transparent transparent #fff; transform:rotate(-45deg)}
+.koreamarket .swiper-button-next {right:-25px}
+.koreamarket .swiper-button-next::before {margin-left:10px; border-color:#fff #fff transparent transparent; transform:rotate(45deg) translate(-5px, 5px)}
+.koreamarket .swiper-slider-wrap:hover .swiper-button-arrow {opacity:1}
+.koreamarket .swiper-button-prev:after,
+.koreamarket .swiper-button-next:after {display:none}
+.koreamarket .swiper-pagination .swiper-pagination-bullet {width:10px; height:10px; margin:0 5px; background:#ddd; opacity:1; vertical-align:top}
+.koreamarket .swiper-pagination .swiper-pagination-bullet-active {background:#121212}
+
+/* 별점 */
+.star-score {display:inline-flex; flex-direction:row-reverse}
+.star-score .star-unit {display:inline-block; width:22px; height:22px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-star.svg') no-repeat 0 0/contain}
+.star-score .star-unit ~ .star-unit {margin-right:18px}
+.star-score input[type="radio"] {display:none}
+.star-score input[type="radio"]:checked ~ .star-unit,
+.star-score .star-unit.on {background-image:url('https://static.hankyung.com/img/www/w/koreamarket/icon-star-on.svg')}
+.star-score.type-readonly {flex-direction:row}
+.star-score.type-readonly .star-unit ~ .star-unit {margin:0 0 0 18px}
+.star-score:not(.type-readonly) .star-unit {cursor:pointer}
+
+/* 별점 소수점 가능 */
+.fiq-star-score {width:150px; height:20px; background:url('https://static.hankyung.com/img/www/w/koreamarket/bg-star.svg') repeat 0 0}
+.fiq-star-score .score {height:20px; background:url('https://static.hankyung.com/img/www/w/koreamarket/bg-star-on.svg') repeat 0 0}
+.fiq-star-score .score1 {width:calc(10% - 5px)}
+.fiq-star-score .score2 {width:20%}
+.fiq-star-score .score3 {width:calc(30% - 5px)}
+.fiq-star-score .score4 {width:40%}
+.fiq-star-score .score5 {width:calc(50% - 5px)}
+.fiq-star-score .score6 {width:60%}
+.fiq-star-score .score7 {width:calc(70% - 5px)}
+.fiq-star-score .score8 {width:80%}
+.fiq-star-score .score9 {width:calc(90% - 5px)}
+.fiq-star-score .score10 {width:100%}
+
+
+/* 별 토글 */
+.star-toggle {display:inline-block; cursor:pointer; position:relative; vertical-align:top}
+.star-toggle .check {position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:none; overflow:hidden; clip:rect(0 0 0 0); color:transparent}
+.star-toggle > .star {display:inline-block; width:23px; height:22px; color:transparent; overflow:hidden; vertical-align:top}
+.star-toggle > .star::before {content:''; display:inline-block; width:23px; height:22px; background:url('https://static.hankyung.com/resource/www/common/img/icon/icon-star-fill.svg') no-repeat 50% 50%/contain}
+.star-toggle > .check:checked + .star::before {background-image:url('https://static.hankyung.com/resource/www/common/img/icon/icon-star-fill-on.svg')}
+
+.btn-star-toggle {display:inline-block; width:22px; height:21px; color:transparent; overflow:hidden; vertical-align:top}
+.btn-star-toggle::before {content:''; display:inline-block; width:22px; height:22px; background:url('https://static.hankyung.com/resource/www/common/img/icon/icon-star-fill.svg') no-repeat 50% 50%/contain}
+.btn-star-toggle.on::before {background-image:url('https://static.hankyung.com/resource/www/common/img/icon/icon-star-fill-on.svg')}
+
+
+/* range slider */
+.ui-widget.ui-widget-content {background:#eee}
+.ui-widget-header {background:#4c88b6}
+.ui-state-default {border:1px solid #ddd; background:#fff}
+.ui-slider {position:relative; text-align:left}
+.ui-slider .ui-slider-handle {position:absolute; top:-5px; z-index:10; width:16px; height:16px; border-radius:8px; margin-left:-8px; cursor:default; -ms-touch-action:none; touch-action:none; outline:none; box-sizing:border-box; cursor:pointer}
+.ui-slider .ui-slider-handle:last-child {margin-left:-8px}
+.ui-slider .ui-slider-range {position:absolute; z-index:1; display:block; border:none}
+.ui-slider-horizontal {height:6px; border-radius:3px}
+.ui-slider-horizontal .ui-slider-range {top:0; height:100%}
+.ui-slider-horizontal .ui-slider-range-min {left:0}
+.ui-slider-horizontal .ui-slider-range-max {right:0}
+
+.range-slider-wrap .vue-slider {height:6px !important}
+.range-slider-wrap .vue-slider-rail {background:#eee; border-radius:3px}
+.range-slider-wrap .vue-slider-process {background:#4c88b6}
+
+/*===== 메인 =====*/
+/* 지수 슬라이드 */
+.stock-graph {height:95px; padding:15px 0; background:#202027; box-sizing:border-box; overflow:hidden}
+.stock-graph-inner {position:relative; max-width:1180px; min-width:1180px; margin:0 auto; padding:0 40px; box-sizing:border-box}
+.stock-graph [class^="btn-stock-"] {position:absolute; top:0; width:40px; height:100%; overflow:hidden}
+.stock-graph [class^="btn-stock-"]::before {content:''; display:inline-block; width:18px; height:18px; background-repeat:no-repeat; background-size:contain}
+.stock-graph .btn-stock-prev {left:0; text-align:left}
+.stock-graph .btn-stock-prev::before {background-image:url('https://static.hankyung.com/img/www/w/koreamarket/icon-arrow-prev.svg')}
+.stock-graph .btn-stock-next {right:0; text-align:right}
+.stock-graph .btn-stock-next::before {background-image:url('https://static.hankyung.com/img/www/w/koreamarket/icon-arrow-next.svg')}
+.stock-graph-list .item {display:block; height:65px; margin:0 5px; padding:10px 15px; border-radius:6px; background-color:rgba(32, 42, 65, 0.702); color:#fff; box-sizing:border-box; text-decoration:none}
+.stock-graph-list .item-title-area {display:flex; justify-content:space-between; height:20px; overflow:hidden}
+.stock-graph-list .item-title-area .item-title {width:calc(100% - 75px); font-size:16px}
+.stock-graph-list .item-title-area .chart-area {width:75px}
+.stock-graph-list .item-title-area .chart-area svg {vertical-align:top}
+.stock-graph-list .item-info {position:relative; display:flex; align-items:center; margin-top:10px}
+.stock-graph-list .item-info .point,
+.stock-graph-list .item-info .updown {letter-spacing:0; font-family:Tahoma, sans-serif; font-weight:bold}
+.stock-graph-list .item-info .updown:before {content:''; display:inline-block; width:1px; height:12px; margin:0 14px; background:#555; vertical-align:-2px}
+.stock-graph-list .item-info::after {content:''; position:absolute; top:0; right:0; width:18px; height:18px; background-repeat:no-repeat; background-size:contain}
+.stock-graph-list .up .item-info::after {background-image:url('https://static.hankyung.com/img/www/w/koreamarket/icon-arrow-up.svg')}
+.stock-graph-list .up .updown {color:#ff4f53}
+.stock-graph-list .down .updown {color:#4f90ee}
+.stock-graph-list .down .item-info::after {background-image:url('https://static.hankyung.com/img/www/w/koreamarket/icon-arrow-down.svg')}
+.stock-graph-list .hold .updown {color:#888}
+.stock-graph-list .hold .item-info::after {top:7px; width:12px; height:2px; background:#888}
+
+.stock-graph-list .item2 .item-info::after {display:none}
+.stock-graph-list .item2 .item-title::after {
+    content:'';
+    display:inline-block;
+	background-image:url('https://static.hankyung.com/img/www/w/main/2020/spr-main-20210811.svg');
+    background-repeat:no-repeat;
+    background-size:auto;
+    margin-left:8px;
+}
+.stock-graph-list .item2.up .item-title::after {position:relative; top:1px; width:10px; height:10px; background-position: -39px -41px;}
+.stock-graph-list .item2.down .item-title::after {width:10px; height:10px; background-position:-59px -41px}
+.stock-graph-list .item2.hold .item-title::after {position:relative; top:-3px; width:10px; height:3px; background:#888}
+.stock-graph-list .item2 .item-title-area .item-title {width:auto}
+
+.stock-graph ~ #container > .inner {padding:30px 0}
+/* 메인톱 */
+.main-top-wrap {display:flex; justify-content:space-between}
+.main-top {flex:0 0 auto; width:780px}
+.main-top .main-headline > .thumb,
+.main-top .main-headline .iframe-youtube {border-radius:10px}
+.main-top .main-headline .thumb {height:360px}
+.main-top .main-headline .thumb > .thumb-icon {width:69px; height:69px}
+.main-top .main-headline .news-tit {max-height:38px; margin:20px 0 10px; font-size:34px; line-height:38px; letter-spacing:-0.12em; -webkit-line-clamp:1; font-weight:bold; text-align:center}
+.main-top .main-headline .lead {max-height:22px; font-weight:bold; font-size:20px; line-height:22px; overflow:hidden; -webkit-line-clamp:1; text-align:center}
+.main-top .main-top-major {margin-top:27px; padding:30px 0 0; border-top:1px solid #ddd}
+/* .main-top .main-top-major .thumb {border-radius:8px} */
+.main-top .main-top-major .thumb > a::after {content:''; position:absolute; top:0; left:0; right:0; bottom:0; border:1px solid rgba(0,0,0,.1); border-radius:10px; box-sizing:border-box; pointer-events:none}
+/* .main-top .main-top-major .thumb img {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:auto; max-width:100%; min-height:auto; max-height:100%} */
+.main-top .main-top-major ul {display:flex; flex-wrap:wrap; margin:-10px}
+.main-top .main-top-major ul > li {flex:0 0 auto; width:calc(50% - 20px); margin:10px}
+.main-top .main-top-major .news-item {display:flex; align-items:center}
+.main-top .main-top-major .news-item > .thumb {flex:0 0 auto; width:110px; height:69px; margin-right:10px}
+.main-top .main-top-major .news-item > .txt-cont {flex:1 0 auto; width:calc(100% - 120px)}
+.main-top .main-top-major .news-item .news-tit {position:relative; top:-2px; max-height:56px; padding-right:1px; font-weight:normal; font-size:20px; line-height:28px; -webkit-line-clamp:2}
+.main-realtime {flex:0 0 auto; width:340px}
+.main-realtime .main-tit {height:30px; padding-top:5px; box-sizing:border-box}
+.main-realtime .realtime-news-list {position:relative}
+.main-realtime .realtime-news-list::before {content:''; position:absolute; left:3px; top:0; bottom:0; width:3px; background-color:#ddd;}
+.main-realtime .realtime-news-list > .timeline {height:626px; padding-top:7px; padding-right:20px; overflow-y:auto; box-sizing:border-box}
+.main-realtime .timeline > li {position:relative; padding-left:15px}
+.main-realtime .timeline > li::before {content:''; position:absolute; top:3px; left:0; width:10px; height:10px; border-radius:50%; background:#ee4c4c}
+.main-realtime .timeline > li > .item {position:relative; top:-7px; padding:7px 10px; border-radius:5px; transition:background ease .3s}
+.main-realtime .timeline > li > .item.on {background:#fef0f0}
+.main-realtime .timeline > li + li {margin-top:15px}
+.main-realtime .timeline .time {font-weight:normal; font-size:14px; letter-spacing:0; font-family:Tahoma, sans-serif}
+.main-realtime .timeline .news-tit {max-height:40px; font-size:16px; line-height:20px; -webkit-line-clamp:2}
+.main-realtime .timeline-scroll {width:100%; height:626px; overflow:hidden; overflow-y:auto; box-sizing:border-box}
+.main-realtime .timeline-scroll .timeline {padding-top:7px; padding-right:10px}
+.main-realtime .timeline-scroll .jspVerticalBar {width:4px; background:none}
+.main-realtime .timeline-scroll .jspTrack {margin:0 1px; background:rgba(0,0,0,.1)}
+.main-realtime .timeline-scroll .jspDrag {margin:0 -1px; border-radius:2px; background:rgba(0,0,0,0.75)}
+
+.marketpro-wrap {position:relative; margin:2px 0 20px; height:100px; padding:20px 20px 0; border:4px solid #182a6c; box-sizing:border-box}
+.marketpro-wrap .logo__marketpro::before {width:90px; height:20px}
+.marketpro-wrap .tit {position:absolute; top:-11px; left:15px; padding:0 5px; background:#fff; font-size:14px; line-height:20px}
+.marketpro-wrap .tit,
+.marketpro-wrap .tit a {color:#ee4c4c}
+.marketpro-wrap .news-tit {height:40px; font-size:16px; line-height:20px; -webkit-line-clamp:2}
+.marketpro-wrap .marketpro-slider {height:60px; overflow:hidden}
+.marketpro-wrap .slick-list {height:40px; overflow:hidden}
+.marketpro-wrap .slick-slide {outline:none}
+.marketpro-wrap .slick-dots {margin-top:10px; text-align:center; line-height:1}
+.marketpro-wrap .slick-dots li {display:inline-block; margin-left:8px; vertical-align:top}
+.marketpro-wrap .slick-dots li:first-child {margin-left:0}
+.marketpro-wrap .slick-dots button {width:6px; height:6px; border-radius:3px; overflow:hidden; background:#ddd; color:transparent; vertical-align:top}
+.marketpro-wrap .slick-dots .slick-active button {background-color:#121212}
+.main-realtime .marketpro-wrap ~ .realtime-news-list .timeline-scroll {height:505px}
+/* 주코노미TV */
+/* .major-thumb-news .thumb {border-radius:8px} */
+.major-thumb-news .thumb > .thumb-icon {width:46px; height:46px}
+.major-thumb-news .news-tit {max-height:68px; font-size:24px; line-height:34px; -webkit-line-clamp:2}
+.major-thumb-news.col-4 ul {margin:0 -10px}
+.major-thumb-news.col-4 ul > li {float:left; width:280px; margin:0 10px}
+.major-thumb-news.col-4 ul:after {content:''; display:block; clear:both}
+.major-thumb-news.col-4 .thumb {width:280px; height:175px}
+.major-thumb-news.col-4 .thumb + .news-tit {margin-top:11px}
+
+.main-jooconomy-slide {margin:0 -10px}
+.main-jooconomy-slide .item {margin:0 10px}
+.main-jooconomy-slide .thumb {height:0; padding-bottom:56.25%}
+.main-jooconomy-slide .thumb > a {position:absolute; top:0; left:0}
+.main-jooconomy-slide .news-tit {margin-top:11px}
+
+.hover-slide {position:relative}
+.hover-slide .slick-arrow {position:absolute; top:60px; z-index:2; width:50px; height:50px; border-radius:100%; background:#888; overflow:hidden; visibility:hidden; opacity:0; transition:all ease .3s; color:transparent}
+.hover-slide .slick-arrow::before {content:''; position:absolute; top:50%; left:50%; width:15px; height:15px}
+.hover-slide .slick-prev {left:-15px}
+.hover-slide .slick-prev::before {margin:-8px 0 0 6px; border-top:1px solid #fff; border-left:1px solid #fff; transform:rotate(-45deg) translate(-50%, -50%)}
+.hover-slide .slick-next {right:-15px}
+.hover-slide .slick-next::before {margin:4px 0 0 -12px; border-top:1px solid #fff; border-right:1px solid #fff; transform:rotate(45deg) translate(-50%, -50%)}
+.hover-slide:hover .slick-arrow {visibility:visible; opacity:1}
+
+/* 시장 종합 */
+.main-module-market .main-tit {display:inline-flex; margin-right:26px}
+.chart-btns {display:inline-flex; position:relative; top:-1px}
+.chart-btns > .btn {min-width:70px; height:28px; margin-right:10px; padding:0 10px; border:1px solid #ddd; border-radius:5px; font-size:13px; box-sizing:border-box}
+.chart-btns > .btn::before {content:''; display:inline-block; width:1px; height:26px; vertical-align:-8px}
+.chart-btns > .btn.on {border-color:#121212}
+.main-module-market .exchange-rates {position:absolute; top:30px; right:0; font-size:16px}
+.main-module-market .exchange-rates .item > a {text-decoration:none}
+.main-module-market .exchange-rates .item > a:hover .name {text-decoration:underline}
+.main-module-market .exchange-rates .name {color:#121212; font-weight:normal}
+.main-module-market .exchange-rates .price {font-weight:bold}
+.main-module-market .exchange-rates .item .price,
+.main-module-market .exchange-rates .item .stock-point,
+.main-module-market .exchange-rates .item .rate {margin-left:13px; letter-spacing:0; font-family:Tahoma, sans-serif}
+.main-module-market .exchange-rates .item .txt-standard {position:relative; top:-1px; color:#888; margin-left:3px; font-size:12px}
+.market-general {margin-top:30px; padding-bottom:10px}
+.market-general .itme-list.stock-list li {width:33.33336%}
+.market-general .itme-list.market-map li {width:50%}
+.market-general .stock-price {font-size:16px; letter-spacing:0; font-family:Tahoma, sans-serif}
+.market-general .stock-price .price {font-weight:bold; font-size:26px}
+.market-general .stock-price .stock-point {margin-left:15px}
+.market-general .stock-price .rate {margin-left:15px}
+.market-general .invest-info {display:flex; margin-top:20px; padding:20px 0; border-top:1px solid #ddd}
+.market-general .invest-info dl {display:flex; flex:0 0 auto; flex-wrap:wrap; width:50%; font-size:16px; box-sizing:border-box}
+.market-general .invest-info dt {flex:0 0 auto; width:70px}
+.market-general .invest-info dd {flex:1 0 auto; text-align:right; width:90px}
+.market-general .invest-info dt ~ dt,
+.market-general .invest-info dd ~ dd {margin-top:10px}
+.market-general .invest-info dl:first-child {padding-right:20px}
+.market-general .invest-info dl:first-child dt {width:40px}
+.market-general .change-info dl {display:flex; font-size:14px}
+.market-general .change-info dd {padding:2px 7px 0 4px; letter-spacing:0; font-family:Tahoma, sans-serif}
+.market-general .change-info dt ~ dt {position:relative; padding-left:8px}
+.market-general .change-info dt ~ dt::before {content:''; position:absolute; top:2px; left:0; width:1px; height:13px; background:#ddd}
+.market-general .txt-info {position:relative; right:29px; bottom:20px; text-align:right}
+
+.main-module-consensus .btn-pdf {display:inline-block; width:25px; height:29px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-pdf.svg') no-repeat 0 0/contain}
+.main-module-starwars .btn-pay {display:inline-flex; align-items:center; margin-top:2px; font-size:14px}
+.main-module-starwars .btn-pay::before {content:''; display:inline-block; width:20px; height:20px; margin-right:5px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-pay.svg') no-repeat 0 0/contain}
+.starwars-ranking {display:flex; margin-top:30px}
+.starwars-ranking > li {position:relative; display:flex; justify-content:space-between; flex:0 0 auto; width:33.33336%; padding:0 20px; box-sizing:border-box}
+.starwars-ranking > li::before {content:''; position:absolute; top:2px; bottom:0; left:-.5px; width:1px; background-color:#ddd;}
+.starwars-ranking > li:first-child::before {display:none}
+.starwars-ranking .rank {margin-bottom:5px; font-weight:bold; font-size:18px}
+.starwars-ranking .rank .num {display:block; font-style:italic; font-size:22px; font-family:Tahoma, sans-serif}
+.starwars-ranking .rank .name {margin-left:10px}
+.starwars-ranking .rank a {text-decoration:none}
+.starwars-ranking .rank a:hover {border-bottom:1px solid #121212}
+.starwars-ranking .profile {flex:0 0 auto; width:260px}
+.starwars-ranking .profile .rate dl {display:flex; align-items:center; font-size:14px}
+.starwars-ranking .profile .rate dt {flex:0 0 auto; width:80px}
+.starwars-ranking .profile .rate dd {flex:0 0 auto}
+.starwars-ranking .profile .rate dd.progress-wrap {width:calc(100% - 140px); height:15px}
+.starwars-ranking .profile .rate dd.num {width:60px; text-align:right; letter-spacing:0; font-family:Tahoma, sans-serif}
+.starwars-ranking .profile .rate .progress-bar {position:relative; width:100%; height:15px; background-color:#eee}
+.starwars-ranking .profile .rate .progress-bar .progress {position:absolute; top:0; right:0; height:15px; background-color:#ff0000}
+.starwars-ranking .profile .rate .progress-bar.up .progress {background-color:#ff0000}
+.starwars-ranking .profile .rate .progress-bar.down .progress {background-color:#2175ff}
+.starwars-ranking .thumb {flex:0 0 auto; width:80px; height:80px; border-radius:50%}
+
+.main-module-rassiro {margin-top:40px}
+.main-module-rassiro .order {display:inline-flex; margin:0 20px}
+.main-module-rassiro .order .item {flex:1; height:28px;padding:0 15px;color:#fff;font-size:15px;white-space:nowrap; line-height:1}
+.main-module-rassiro .order .item::before {content:''; display:inline-block; width:1px; height:28px; vertical-align:-8px}
+.main-module-rassiro .order .item:first-child {border-radius:7px 0 0 7px}
+.main-module-rassiro .order .item:last-child {border-radius:0 7px 7px 0}
+.main-module-rassiro .order .sell {background:#fc0005}
+.main-module-rassiro .order .buy {background:#236cff}
+.rassiro-list {position:relative; display:flex; justify-content:space-between; margin-top:15px}
+.rassiro-list::before {content:''; position:absolute; top:0; bottom:15px; left:50%; width:1px; background-color:#ddd; transform:translateX(-50%)}
+.rassiro-list .table-wrap {flex:0 0 auto; width:calc(50% - 30px); margin-top:0}
+.rassiro-list .table-style1 td {padding:10px 15px; white-space:nowrap; vertical-align:middle}
+.rassiro-list .table-style1 tr:first-child td {padding-top:25px}
+.rassiro-list .stock-name .name {display:inline-block; max-width:260px; padding-right:1px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; box-sizing:border-box}
+.rassiro-list .change-ratio {letter-spacing:0; text-align:right; font-family: Tahoma, sans-serif;}
+.rassiro-list .trade-count {padding-right:25px; color:#888; font-size:16px; text-align:right}
+
+.main-module-eureka {margin-top:40px}
+.main-module-eureka .order {display:inline-flex; margin:0 20px}
+.main-module-eureka .order .item {flex:1; height:28px;padding:0 15px;color:#fff;font-size:15px;white-space:nowrap; line-height:1}
+.main-module-eureka .order .item::before {content:''; display:inline-block; width:1px; height:28px; vertical-align:-8px}
+.main-module-eureka .order .item:first-child {border-radius:7px 0 0 7px}
+.main-module-eureka .order .item:last-child {border-radius:0 7px 7px 0}
+.main-module-eureka .order .sell {background:#fc0005}
+.main-module-eureka .order .buy {background:#236cff}
+.eureka-list {position:relative; display:flex; justify-content:space-between; margin-top:15px}
+.eureka-list::before {content:''; position:absolute; top:0; bottom:15px; left:50%; width:1px; background-color:#ddd; transform:translateX(-50%)}
+.eureka-list .table-wrap {flex:0 0 auto; width:calc(50% - 30px); margin-top:0}
+.eureka-list .table-style1 td {padding:10px 15px; white-space:nowrap; vertical-align:middle}
+.eureka-list .table-style1 tr:first-child td {padding-top:25px}
+.eureka-list .company .name {display:inline-block; max-width:150px; padding-right:1px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; box-sizing:border-box}
+.eureka-list .stock-name .name {display:inline-block; max-width:220px; padding-right:1px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; box-sizing:border-box}
+.eureka-list .change-ratio,
+.eureka-list .trade-count {letter-spacing:0; text-align:right; font-family: Tahoma, sans-serif;}
+.eureka-list .trade-count {padding-right:25px; font-size:16px}
+
+.eureka-cont-wrap {display:flex; justify-content:space-between; margin-top:20px}
+.eureka-cont-wrap .eureka-article {flex:0 0 auto; width:780px; padding-top:10px}
+.eureka-cont-wrap .cont-row {display:flex}
+.eureka-cont-wrap .cont-row .col {flex:1}
+.eureka-cont-wrap .cont-row:nth-child(1) {gap:0 40px}
+.eureka-cont-wrap .cont-row:nth-child(2) {gap:0 45px; margin-top:30px; padding-top:30px; border-top:1px solid #ddd}
+.eureka-cont-wrap .cont-row:nth-child(2) > .col {position:relative}
+.eureka-cont-wrap .cont-row:nth-child(2) > .col:not(:first-child)::before {content:''; position:absolute; left:-22px; top:0; width:1px; height:60px; background:#ddd}
+.eureka-cont-wrap .eureka-article .news-item {display:flex; align-items:center; gap:15px}
+.eureka-cont-wrap .eureka-article .news-item > .thumb {position:relative; flex:0 0 auto; width:100px; height:63px}
+.eureka-cont-wrap .eureka-article .news-item > .thumb > .thumb-icon {right:5px; bottom:5px; width:25px; height:25px}
+.eureka-cont-wrap .eureka-article .news-item > .thumb > a::after {content:''; position:absolute; top:0; left:0; right:0; bottom:0; border:1px solid rgba(0,0,0,.1); border-radius:10px; box-sizing:border-box; pointer-events:none}
+.eureka-cont-wrap .eureka-article .news-item > .thumb img[src*="thumb-default.svg"] {transform:scale(1.2)}
+.eureka-cont-wrap .eureka-article .news-item > .txt-cont {flex:1 1 auto; width:calc(100% - 115px); height:auto}
+.eureka-cont-wrap .eureka-article .news-item > .txt-cont .news-tit {-webkit-line-clamp:2; font-size:19px; line-height:28px; word-break:break-all}
+.eureka-cont-wrap .eureka-item-list {flex:0 0 auto; width:360px}
+.eureka-cont-wrap .stocks-menu {display:flex; margin-bottom:10px}
+.eureka-cont-wrap .stocks-menu button {flex:1 1 auto; width:50%; padding:10px 5px; border:1px solid #ddd; font-size:15px; text-align:center; box-sizing:border-box}
+.eureka-cont-wrap .stocks-menu button.on {position:relative; margin:0 -1px; border-color:#121212; font-weight:700; background-color:#fff}
+.eureka-cont-wrap .stocks-menu button:first-child.on {margin:0 -1px 0 0}
+.eureka-cont-wrap .stocks-menu button:last-child.on {margin:0 0 0 -1px}
+.eureka-cont-wrap .stocks-menu button:first-child {border-top-left-radius:8px; border-bottom-left-radius:8px}
+.eureka-cont-wrap .stocks-menu button:last-child {border-top-right-radius:8px; border-bottom-right-radius:8px}
+.eureka-cont-wrap .stock-table {width:100%; table-layout:fixed}
+.eureka-cont-wrap .stock-table td {padding:5px; font-size:15px}
+.eureka-cont-wrap .stock-table .name {display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.eureka-cont-wrap .stock-table td.change-ratio,
+.eureka-cont-wrap .stock-table td.trade-count {letter-spacing:0; text-align:right; font-family: Tahoma, sans-serif}
+
+/* 뉴스리스트 */
+.news-list > li + li {margin-top:30px}
+.news-list .rel-stock {font-size:14px}
+.news-list .rel-stock > span,
+.news-list .rel-stock > a {display:inline-block; margin:0 7px 7px 0}
+.news-list .news-cont {display:flex}
+.news-list .txt-cont {flex:1 0 auto; width:calc(100% - 200px)}
+.news-list .txt-cont .news-tit {max-height:68px; font-weight:normal; font-size:24px; line-height:34px; -webkit-line-clamp:2}
+.news-list .txt-cont .lead {margin-top:7px; max-height:42px; font-size:14px; line-height:21px; -webkit-line-clamp:2}
+.news-list .txt-cont .date {margin-top:10px; color:#888; font-size:14px; letter-spacing:0; font-family:Tahoma, sans-serif}
+.news-list .thumb {flex:0 0 auto; width:180px; height:113px; margin-left:20px}
+.news-list .thumb > a::after {content:''; position:absolute; top:0; left:0; right:0; bottom:0; border:1px solid rgba(0,0,0,.1); border-radius:10px; box-sizing:border-box; pointer-events:none}
+/* .news-list .thumb img {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:auto; max-width:100%; min-height:auto; max-height:100%} */
+
+.news-list-wrap.col-2 .news-list {display:flex; flex-wrap:wrap; justify-content:space-between}
+.news-list-wrap.col-2 .news-list > li {flex:0 0 auto; width:550px; margin:0; padding:20px 0}
+.news-list-wrap.col-2 .news-list > li:nth-child(2) ~ li {border-top:1px solid #ddd}
+.news-list-wrap.col-2 .news-list .news-cont {align-items:center}
+.news-list-wrap.col-2 .news-list .txt-cont .date {font-size:12px}
+
+.list-loading {display:none; margin:45px 0 0; text-align:center}
+.loading-spinner {display:none; margin:30px 0; text-align:center}
+.spinner {width:70px; height:70px}
+.btn-more-wrap {margin:45px 0 0; text-align:center}
+.btn-more {min-width:410px; height:45px; border:1px solid #ddd; border-radius:8px; font-weight:bold; font-size:15px; box-sizing:border-box}
+.btn-more:before {content:''; display:inline-block; height:43px; width:1px; vertical-align:-15px}
+/* .btn-more:after {content:''; display:inline-block; width:6px; height:6px; margin-left:6px; border-bottom:1px solid #121212; border-left:1px solid #121212; vertical-align:4px; transform:rotate(-45deg)}
+.btn-more.type-link::after {content:''; border:none; border-top:1px solid #121212; border-right:1px solid #121212; transform:rotate(45deg); vertical-align:2px} */
+
+.nodata {padding:55px 0; color:#888; font-size:20px; text-align:center}
+.nodata strong {color:#121212}
+
+.no-data {padding:40px 20px 60px; text-align:center}
+.no-data > .txt {margin:0 auto; padding:10px 30px; border-radius:25rem; background:#eee; color:#888; font-size:13px}
+.aside-cont .no-data > .txt {max-width:260px}
+
+/*===== 서브 =====*/
+/* 서브 : 공통 */
+.page-tit-wrap {margin-bottom:45px}
+.page-tit-wrap .page-tit {font-size:34px}
+.page-desc {font-size:15px}
+
+.sub-tit-wrap {display:flex; align-items:center; justify-content:space-between; margin-bottom:17px}
+.sub-tit-wrap .sub-tit-area {display:flex; align-items:center}
+.sub-tit-wrap .sub-tit-area .sub-tit-info {position:relative; bottom:2px; margin-left:20px}
+.sub-tit-wrap .sub-tit {font-size:20px}
+.sub-tit-wrap .etc {display:flex; align-items:center}
+.sub-tit-wrap .etc > span {color:#888}
+.sub-tit-wrap .etc > span + span::before {content:''; display:inline-block; width:1px; height:13px; margin:0 10px; background:#777; vertical-align:-2px}
+.sub-tit-wrap.has-line {padding-bottom:17px; border-bottom:1px solid #ddd}
+
+.sub-stit {margin-bottom:10px; font-size:17px}
+.sub-stit.line {padding-bottom:10px; border-bottom:1px solid #ddd}
+/* 서브 : asdie */
+.aside-module ~ .aside-module {margin-top:30px}
+.aside-box .fiq-tooltip2 {max-width:260px}
+
+.aside-box {padding:27px 19px; border:1px solid #ddd; border-radius:10px; background:#fff; box-shadow:3px 3px 6px rgba(0,0,0,.1)}
+.aside-cont-tit-wrap {display:flex; align-items:center}
+.aside-cont-tit {font-weight:bold; font-size:16px}
+.aside-cont-subtit {margin-top:5px;  color:#888; font-size:11px}
+.aside-box .txt-date {color:#888; font-size:12px}
+.aside-cont-tit-wrap .txt-date {margin-left:10px}
+
+.aside-cont-wrap + .aside-cont-wrap,
+.aside-cont {margin-top:15px}
+.aside-cont-wrap + .aside-cont-wrap,
+.aside-cont + .aside-cont {padding-top:15px; border-top:1px solid #ddd}
+.aside-cont .desc {font-size:12px; line-height:2}
+.aside-cont-wrap.row-type {display:flex; align-items:center}
+.aside-cont-wrap.row-type .aside-cont {margin:0}
+
+.consensus-scale {position:relative; padding-top:30px}
+.consensus-scale-bar {display:flex; margin-left:-1px}
+.consensus-scale-bar > .item {flex:1 1 20%; padding-left:1px; box-sizing:border-box}
+.consensus-scale-bar > .item::before {content:''; display:block; height:10px; background:#ddd}
+.consensus-scale-bar > .item:first-child::before {border-radius:5px 0 0 5px}
+.consensus-scale-bar > .item:last-child::before {border-radius:0 5px 5px 0}
+.consensus-scale-bar > .item .txt {margin-top:10px; color:#888; font-size:11px; text-align:center}
+.consensus-scale .val {position:absolute; top:0; width:42px; margin-left:-21px; padding:5px 7px; border-radius:3px; background:#888; color:#fff; font-weight:bold; font-size:12px; line-height:1; text-align:center; box-sizing:border-box}
+.consensus-scale .val::before {content:''; display:block; position:absolute; left:50%; bottom:-3px; width:8px; height:8px; margin-left:-4px; border-radius:.15em; background:#888; transform:rotate(45deg)}
+.consensus-scale .val .txt-num {position:relative; z-index:2}
+.consensus-scale-bar > .item:nth-child(1)::before {background:#2175ff}
+.consensus-scale-bar > .item:nth-child(2)::before {background:#94be21}
+.consensus-scale-bar > .item:nth-child(3)::before {background:#eabb00}
+.consensus-scale-bar > .item:nth-child(4)::before {background:#f68700}
+.consensus-scale-bar > .item:nth-child(5)::before {background:#ff0000}
+.consensus-scale.step1 .val,
+.consensus-scale.step1 .val::before {background:#2175ff}
+.consensus-scale.step2 .val,
+.consensus-scale.step2 .val::before {background:#94be21}
+.consensus-scale.step3 .val,
+.consensus-scale.step3 .val::before {background:#eabb00}
+.consensus-scale.step4 .val,
+.consensus-scale.step4 .val::before {background:#f68700}
+.consensus-scale.step5 .val,
+.consensus-scale.step5 .val::before {background:#ff0000}
+
+
+/* .consensus-scale.up .val,
+.consensus-scale .val::before,
+.consensus-scale.up .item.on::before {background:#ff0000}
+.consensus-scale.down .val,
+.consensus-scale.down .val::before,
+.consensus-scale.down .item.on::before {background:#2175ff}
+.consensus-scale.hold .val,
+.consensus-scale.hold .val::before,
+.consensus-scale.hold .item.on::before {background:#888} */
+.aside-module .consensus-scale {margin-top:-10px}
+
+.aside-module .period-change-rate {display:flex; justify-content:space-between; padding:0 10px; font-size:12px; text-align:right}
+.aside-module .period-change-rate dt {color:#888}
+.aside-module .period-change-rate dd {margin-top:3px; font-size:14px}
+
+.aside-module .stock-count {display:flex; justify-content:space-between; padding:0 10px; font-size:12px; text-align:center}
+.aside-module .stock-count dt {color:#888}
+.aside-module .stock-count dd {margin-top:3px; font-size:14px}
+
+.aside-module .define-list {display:flex; justify-content:space-between; flex-wrap:wrap; word-break:break-all}
+.aside-module .define-list > dt {color:#888; font-size:12px}
+.aside-module .define-list > dd .txt-num {font-size:14px}
+.aside-module .define-list + .define-list {margin-top:7px}
+
+.aside-module .futures-data dl {display:flex; align-items:center}
+.aside-module .futures-data dt {margin-right:10px; color:#888}
+.aside-module .futures-data dd {font-size:14px}
+.aside-module .futures-data dd + dt {margin-left:20px}
+
+/* 서브: 콘텐츠 공통 */
+.stock-view-container .news-list .rel-stock {display:none}
+.swiper-stock-module > .container-inner {/*height:210px;*/ padding:0 25px; overflow:hidden}
+.swiper-stock-module > .container-inner + .container-inner {margin-top:30px}
+.swiper-stock-module .swiper-slider-wrap .swiper-button-arrow {top:calc(50% + 15px)}
+.swiper-stock-module .swiper-container.swiper-stock {overflow:visible}
+.swiper-stock .swiper-slide {width:210px}
+.swiper-stock .item {display:block; position:relative; margin-bottom:20px; padding:20px; background:#fff; border:1px solid #ddd; border-radius:10px; box-sizing:border-box; box-shadow:3px 3px 6px rgba(0,0,0,.1); text-decoration:none; transition:box-shadow ease .3s}
+.swiper-stock .swiper-slide-prev .item {border:none; box-shadow:none; background:none}
+.swiper-stock .swiper-slide:hover .item {box-shadow:4px 4px 6px rgb(0 0 0 / 20%)}
+/* .swiper-stock .item:hover .name {text-decoration:underline} */
+.swiper-stock .stock-title {height:55px; padding-right:25px}
+.swiper-stock .stock-title > .name {font-weight:bold; font-size:16px}
+.swiper-stock .stock-title > .name .ellip {padding-right:1px}
+.swiper-stock .stock-title > .code,
+.swiper-stock .stock-title > .cate {margin-top:3px; color:#888; font-size:14px}
+.swiper-stock .stock-nums > .price {font-weight:bold; font-size:24px}
+.swiper-stock .stock-nums > .rate {font-weight:bold; margin-top:5px; font-size:16px}
+.swiper-stock .swiper-slide > .interest-check,
+.swiper-stock .swiper-slide > .btn-star-toggle {position:absolute; top:20px; right:20px}
+.swiper-stock::before,
+.swiper-stock::after {content:''; display:block; position:absolute; top:0; bottom:0; width:25px; z-index:99}
+.swiper-stock::before {left:-25px; background:-moz-linear-gradient(left, rgba(247,247,247,1) 0%, rgba(247,247,247,0.75) 51%, rgba(247,247,247,0) 100%); background:-webkit-linear-gradient(left, rgba(247,247,247,1) 0%, rgba(247,247,247,0.75) 51%, rgba(247,247,247,0) 100%); background:linear-gradient(to right, rgba(247,247,247,1) 0%, rgba(247,247,247,0.75) 51%, rgba(247,247,247,0) 100%)}
+.swiper-stock::after {right:-25px; background:-moz-linear-gradient(left, rgba(247,247,247,0) 0%, rgba(247,247,247,0.75) 51%, rgba(247,247,247,1) 100%); background:-webkit-linear-gradient(left, rgba(247,247,247,0) 0%, rgba(247,247,247,0.75) 51%, rgba(247,247,247,1) 100%); background: linear-gradient(to right, rgba(247,247,247,0) 0%, rgba(247,247,247,0.75) 51%, rgba(247,247,247,1) 100%)}
+.swiper-stock .interest-check:hover .fiq-tooltip {opacity:0}
+.swiper-stock .swiper-slide:not(.swiper-slide-duplicate) .interest-check:hover .fiq-tooltip {opacity:1}
+
+
+/* 서브 : 시장지표 메인 */
+.fiq__marketmain .swiper-stock .stock-title {height:auto; padding:0}
+.fiq__marketmain .swiper-stock .up .stock-title .stock-point::before {border-bottom-width:11px}
+.fiq__marketmain .down .stock-title .stock-point::before {border-top-width:11px}
+
+.main-module.marketmain-top {margin:-40px 0 0 0; padding:40px 0}
+.marketmain-top .exchange-rates {font-size:12px}
+.marketmain-top .exchange-rates .item > a {text-decoration:none}
+.marketmain-top .exchange-rates .item > a:hover .name {text-decoration:underline}
+.marketmain-top .exchange-rates .name {color:#fff; font-weight:normal}
+.marketmain-top .exchange-rates .price {font-weight:normal}
+.marketmain-top .exchange-rates .item .price,
+.marketmain-top .exchange-rates .item .stock-point,
+.marketmain-top .exchange-rates .item .rate {margin-left:13px}
+.marketmain-top .exchange-rates .item .txt-standard {position:relative; top:-1px; margin-left:3px; color:#888; font-size:12px}
+.marketmain-top .market-general {margin-top:40px; padding:40px 0 0 0; border:none; border-top:1px solid #3a3b42; border-radius:0}
+.marketmain-top .market-general .itme-list > li {padding-top:0; padding-bottom:0}
+.marketmain-top .market-general .itme-list > li::before {top:0; bottom:0; background-color:#3a3b42}
+.marketmain-top .market-general .invest-info {margin:30px 0 20px 0; padding:0; border-top:none}
+.marketmain-top .market-general .stock-price .price {font-size:24px}
+.marketmain-top .market-general .change-info dt ~ dt::before {background-color:#3a3b42}
+.marketmain-table-wrap {display:flex; justify-content:space-between; margin-top:30px}
+.marketmain-table-wrap > .item {position:relative; flex:0 0 auto; width:540px}
+.marketmain-table-wrap > .item::before {content:''; position:absolute; top:0; bottom:8px; left:-50px; width:1px; background:#ddd}
+.marketmain-table-wrap > .item:first-child:before {display:none}
+.marketmain-table-wrap .tab-type1 > li > a {min-width:130px; height:35px; line-height:33px; font-size:14px}
+.marketmain-table {width:100%; table-layout:fixed}
+.marketmain-table th,
+.marketmain-table td {text-align:left}
+.marketmain-table thead th {padding:9px 0; border-bottom:1px solid #ddd; color:#888; font-weight:normal; font-size:14px}
+.marketmain-table td {padding:8px 0; font-size:15px; vertical-align:top}
+.marketmain-table tr:first-child td {padding-top:18px}
+.marketmain-table .stock-name {font-weight:bold}
+.marketmain-table td strong {font-weight:normal}
+.marketmain-table .code {margin-top:2px; color:#888; font-size:12px}
+.marketmain-table tr.on {background:#e5eaf4}
+.marketmain-globalmarket {margin-top:0}
+.marketmain-globalmarket .swiper-stock .stock-title {display:flex; align-items:center}
+.marketmain-globalmarket .swiper-stock .stock-title .name {color:#121212}
+.marketmain-globalmarket .swiper-stock .stock-title .stock-point {margin-left:8px}
+.marketmain-globalmarket .swiper-stock .up .stock-title .stock-point::before {vertical-align:-1px}
+.marketmain-globalmarket .swiper-stock .down .stock-title .stock-point::before {vertical-align:-1px}
+.marketmain-globalmarket .swiper-stock .stock-nums {margin-top:10px}
+.marketmain-globalmarket .swiper-stock .stock-nums > .price {font-weight:normal; font-size:16px}
+.marketmain-globalmarket .swiper-stock .stock-nums > .rate  {margin-left:10px; font-weight:normal}
+.marketmain-industry .swiper-stock .stock-nums {margin-top:10px}
+.marketmain-industry .swiper-stock .stock-nums > .rate {font-weight:normal}
+.marketmain-indexinfo .tab-type1-wrap {margin-top:30px}
+.marketmain-indexinfo .marketmain-table-wrap > .item::before {top:4px}
+.marketmain-hk-equities .news-list .thumb {width:140px; height:88px}
+.marketmain-etf .swiper-stock .stock-title > .name {overflow:hidden; display:block; display:-webkit-box; text-overflow:clip; -webkit-box-orient:vertical; height:40px; line-height:20px; -webkit-line-clamp:2}
+.marketmain-etf .swiper-stock .stock-nums {margin-top:10px}
+.marketmain-etf .swiper-stock .stock-nums > .rate {font-weight:normal}
+
+.marketmain-coin .news-cont > .coin-list {float:left; width:580px; border-right:1px solid #ddd; box-sizing:border-box}
+.marketmain-coin .coin-list ul {position:relative}
+.marketmain-coin .coin-list li {position:relative; float:left; width:33.33336%; margin:14px 0 5px; text-align:center; box-sizing:border-box}
+.marketmain-coin .coin-list li a {display:block; min-height:83px; text-decoration:none}
+.marketmain-coin .coin-list .name {display:block; font-size:16px}
+.marketmain-coin .coin-list .price {display:block; margin-top:3px; color:#121212; font-weight:bold; font-size:20px; letter-spacing:0}
+.marketmain-coin .coin-list .rate {display:inline-block; min-width:70px; height:23px; margin-top:7px; padding:0 10px; border-radius:5px; font-size:14px; box-sizing:border-box}
+.marketmain-coin .coin-list .rate:after {content:''; display:inline-block; width:1px; height:23px; vertical-align:-6px}
+.marketmain-coin .coin-list .up .rate {background:#ffecec}
+.marketmain-coin .coin-list .down .rate {background:#ebf2ff}
+.marketmain-coin .coin-list .hold .rate {background:#eee}
+.marketmain-coin .coin-list li:nth-child(3n + 1) {border-left:none}
+.marketmain-coin .coin-list ul:after {content:''; display:block; clear:both}
+.marketmain-coin .card-news {float:right; width:580px}
+.marketmain-coin .card-news > ul {position:relative}
+.marketmain-coin .card-news > ul::before {content:''; position:absolute; left:0; top:50%; right:0; height:1px; background:#ddd}
+.marketmain-coin .card-news li {position:relative; float:left; height:120px; box-sizing:border-box}
+.marketmain-coin .card-news li:nth-child(2n)::before {content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:#ddd}
+.marketmain-coin .card-news .card1 {border-radius:10px 0 0 0}
+.marketmain-coin .card-news .card2 {padding-left:20px; border-radius:0 10px 0 0}
+.marketmain-coin .card-news .card3 {margin-top:40px; border-radius:0 0 0 10px}
+.marketmain-coin .card-news .card4 {margin-top:40px; padding-left:20px; border-radius:0 0 10px 0}
+.marketmain-coin .card-news .news-item {display:table-cell; height:118px; padding:10px 30px}
+.marketmain-coin .card-news .news-tit {width:218px; max-height:102px; font-size:24px; line-height:34px; -webkit-line-clamp:3}
+.marketmain-coin .card-news > ul::after {content:''; display:block; clear:both}
+.marketmain-coin .news-cont:after {content:''; display:block; clear:both}
+.marketmain-screener .filter-wrap {display:flex}
+.marketmain-screener .filter-wrap > .col + .col {margin-left:10px}
+.marketmain-screener .filter-wrap dt {height:14px; margin-bottom:5px; padding-left:8px; line-height:1}
+.marketmain-screener .filter-wrap .form-label {color:#888; font-size:12px}
+.marketmain-screener .filter-wrap .form-element select {width:200px}
+.marketmain-screener .marketmain-table-wrap .item:nth-child(2) {position:relative; width:580px}
+.marketmain-screener .marketmain-table-wrap .item:nth-child(2)::before {display:none}
+.marketmain-screener .marketmain-table-wrap .item:nth-child(2) .stock-name {position:absolute; top:8px; left:8px; font-size:14px;}
+.marketmain-screener .marketmain-table th,
+.marketmain-screener .marketmain-table td {padding-left:8px; padding-right:8px}
+
+/* 서브 : 주코노미TV */
+.iframe-youtube {position:relative; height:0; padding-bottom:56.25%; overflow:hidden}
+.iframe-youtube iframe {position: absolute; top:0; left:0; width:100%; height:100%}
+
+#container.vod-container {max-width:100%; background:#111; color:#fff}
+.vod-container > .inner {width:1180px; margin:0 auto; padding:40px 0}
+.vod-container .news-tit > a {display:block; display:-webkit-box; text-overflow:clip; overflow:hidden; word-break:keep-all; word-wrap:break-word; -webkit-box-orient:vertical}
+.vod-container a {color:#fff}
+.vod-container .news-tit {font-weight:normal}
+.vod-container + .ad-bottom {margin-top:20px}
+.vod-container .thumb > a::after {content:''; width:69px; height:69px; position:absolute; right:10px; bottom:10px; background:url('https://static.hankyung.com/img/www/w/common/spr-icon-thumb@2x.png') no-repeat 0 0/400px 68px; overflow:hidden; text-indent:-9999px; pointer-events:none; transform-origin:right bottom}
+.vod-top {display:table; width:100%; table-layout:fixed}
+.vod-top .video-cont {display:table-cell; width:780px}
+.vod-top .iframe-youtube,
+.vod-top .thumb {border-radius:10px}
+.vod-top .txt-cont {position:relative; display:table-cell; vertical-align:middle; width:360px; padding-left:40px; box-sizing:border-box}
+.vod-top .txt-cont .youtube-buttons {position:absolute; top:0; right:0; white-space:nowrap}
+.vod-top .txt-cont .youtube-buttons .btn-subscribe {display:flex; align-items:center; width:auto; border:none; background:none}
+.vod-top .txt-cont .youtube-buttons .btn-subscribe .txt {display:inline-block; margin:1px 7px 0 0; color:#777; font-size:14px; line-height:24px}
+.vod-container .news-category {display:block; margin-bottom:10px; color:#436f91; font-size:20px}
+.vod-container .news-category a {color:#436f91}
+.vod-top .news-tit {width:320px}
+.vod-top .news-tit > a {max-height:144px; font-size:34px; line-height:48px; -webkit-line-clamp:3;}
+.vod-component {margin-top:30px; border-top:2px solid #555}
+.vod-component::before {content:''; display:block; width:100%; height:1px; margin-top:2px; background:#555}
+.vod-component .component-inner {position:relative; padding-top:25px}
+.vod-component .component-tit {margin-bottom:15px; font-size:20px}
+.vod-component .thumb,
+.vod-component .iframe-youtube {border-radius:10px}
+.vod-component .thumb > a {position:relative; height:0; padding-bottom:56.25%; overflow:hidden}
+.vod-component .thumb > a > img {position:absolute; top:50%; left:0; width:100%; min-height:100%; transform:translateY(-50%)}
+.vod-component .thumb > a::after {transform:scale(0.5)}
+.vod-component .news-tit {width:280px; margin-top:10px}
+.vod-component .news-tit > a {max-height:68px; font-size:24px; line-height:34px; -webkit-line-clamp:2}
+.vod-component .vod-slide-page {position:absolute; top:30px; right:0; font-size:15px; letter-spacing:0}
+.vod-component .vod-slide {position:relative; margin:0 -10px; height:236px; overflow:hidden}
+.vod-component .vod-slide .item {width:280px; margin:0 10px}
+.vod-component .vod-slide .slick-arrow {position:absolute; top:82px; z-index:-1; opacity:0; width:50px; height:50px; border-radius:50%; background:#888; color:transparent; font-size:0; overflow:hidden; transition:all ease .3s}
+.vod-component .vod-slide .slick-arrow::before {content:''; display:inline-block; width:10px; height:10px; margin-left:5px; border-width:1px; border-style:solid}
+.vod-component .vod-slide .slick-prev {left:20px}
+.vod-component .vod-slide .slick-prev:before {border-color:#fff transparent transparent #fff; transform:rotate(-45deg)}
+.vod-component .vod-slide .slick-next {right:20px}
+.vod-component .vod-slide .slick-next:before {margin-left:10px; border-color:#fff #fff transparent transparent; transform:rotate(45deg) translate(-5px, 5px)}
+.vod-component .vod-slide:hover .slick-arrow {z-index:2; opacity:1;}
+.vod-components .vod-component {float:left}
+.vod-components .vod-component .component-tit {text-overflow:ellipsis;  overflow:hidden; white-space:nowrap; max-width:280px}
+.vod-component .vod-list {margin:0 -10px}
+.vod-component .vod-list > .item {float:left; width:280px; margin:0 10px}
+.vod-components .vod-component:first-child ~ .vod-component .component-inner {padding-left:20px}
+.vod-components::after,
+.vod-components .vod-list::after {content:''; display:block; clear:both}
+
+/* 서브 : 암호화폐 */
+.coin-icon {display:inline-block; width:21px; height:21px; vertical-align:middle; background:url('https://static.hankyung.com/img/finance/stock_coin_sprite.png') no-repeat}
+.coin-icon.btc {background-position:0 0}
+.coin-icon.bch {background-position:-30px 0}
+.coin-icon.eth {background-position:-60px 0}
+.coin-icon.etc {background-position:0 -30px}
+.coin-icon.xrp {background-position:-30px -32px}
+.coin-icon.qtum {background-position:-61px -32px}
+.coin-icon.ltc {background-position:-30px -61px}
+.coin-icon.iota {background-position:0 -61px}
+.coin-icon.btg {background-position:-61px -63px}
+
+.btn-dropdown-wrap {position:relative}
+.btn-dropdown-wrap .dropdown-tit {height:40px; padding:0 15px; border:1px solid #ddd; border-radius:5px; font-size:15px; font-weight:bold; box-sizing:border-box}
+.btn-dropdown-wrap .dropdown-tit::after {content:''; display:inline-block; width:8px; height:8px; margin-left:15px; border-right:1px solid #121212; border-bottom:1px solid #121212; transform:rotate(45deg); vertical-align:5px}
+.btn-dropdown-wrap .layer-dropdown-cont {display:none; position:absolute; top:-5px; left:0}
+.btn-dropdown-wrap .layer-dropdown-cont ul {min-width:140px; padding:8px 10px; background:#fff; border:1px solid #e5e5e5}
+.btn-dropdown-wrap .layer-dropdown-cont ul li + li {border-top:1px solid #e5e5e5}
+.btn-dropdown-wrap .layer-dropdown-cont ul li button {width:100%; padding:7px 7px 7px 5px; font-size:15px; text-align:left}
+.btn-dropdown-wrap .layer-dropdown-cont ul li.on button {font-weight:bold}
+.btn-dropdown-wrap .layer-dropdown-cont ul li button:hover {background:#f7f7f7}
+.btn-dropdown-wrap.active .layer-dropdown-cont {display:block}
+
+.vm-item-list {display:flex; flex-wrap:wrap; margin:-6px}
+.vm-item-list .item {flex:0 0 auto; width:385px; margin:6px; border:1px solid #ddd; box-sizing:border-box}
+.vm-item-list .item-tit {display:flex; align-items:center; justify-content:center; height:50px}
+.vm-item-list .item-tit .coin-icon {margin-right:5px}
+.vm-item-list .item-tit .name {font-size:17px}
+.vm-item-list .price-wrap {height:70px; padding:12px 0 0; background:#f7f7f7; text-align:center; box-sizing:border-box}
+.vm-item-list .price {display:block; font-size:20px}
+.vm-item-list .rate {display:block; margin-top:2px}
+.vm-item-list .rate .stock-point {display:inline-flex; align-items:center}
+
+.vm-chart-wrap {margin-top:30px}
+.vm-chart-wrap .btn-dropdown-wrap {margin-bottom:5px}
+
+.vm-news-wrap {margin-top:30px}
+.vm-newslist {display:flex; justify-content:space-between; flex-wrap:wrap}
+.vm-newslist li {flex:0 0 auto; display:flex; align-items:center; flex-direction:row-reverse; width:552px; padding:30px 0}
+.vm-newslist li:nth-child(2) ~ li {border-top:1px solid #ddd}
+.vm-newslist .thumb {flex:0 0 auto; width:140px; height:88px; margin-left:40px; border-radius:8px}
+.vm-newslist .txt-cont {flex:1 1 auto; width:calc(100% - 180px)}
+.vm-newslist .news-tit {position:relative; top:-5px; max-height:68px; font-size:24px; line-height:34px; -webkit-line-clamp:2}
+.vm-newslist .date {position:relative; top:2px; margin-top:3px; color:#666; font-size:14px}
+
+.vm-rate-wrap {margin-top:30px}
+.sorting-table table {width:100%; table-layout:fixed}
+.sorting-table th {padding:11px 15px 10px; border-top:1px solid #ddd; border-bottom:1px solid #ddd; color:#777; font-size:15px; font-weight:normal; background-color:#f7f7f7; user-select:none}
+.sorting-table .order {text-align:right; cursor:pointer}
+.sorting-table .order:after {content:''; display:inline-block; width:8px; height:12px; margin-left:5px; background-image:url('https://static.hankyung.com/img/finance/btn_sorting_g.png'); background-repeat:no-repeat; vertical-align:-1px}
+.sorting-table .order.ascend:after {height:6px; vertical-align:1px}
+.sorting-table .order.descend:after {height:6px; background-position:0px -6px;  vertical-align:1px}
+.sorting-table td {padding:8px 15px; border-top:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #efefef; font-size:15px}
+.sorting-table th:first-child,
+.sorting-table td:first-child {border-left:1px solid #ddd}
+.sorting-table td:not(:first-child) {letter-spacing:0}
+.sorting-table th:last-child,
+.sorting-table td:last-child {border-right:1px solid #ddd}
+.sorting-table tr:hover td {background-color:#f7f7f7}
+.sorting-table td + td {text-align:right}
+.sorting-table .coin-icon {margin-right:10px}
+
+.vm-coin-info {margin-top:30px}
+.coin-slide-mn {position:relative; padding:0 30px; border:1px solid #ddd; border-bottom:none}
+.coin-slide-mn .slick-arrow {position:absolute; top:0; z-index:2; width:30px; height:50px; border-bottom:1px solid #ddd; overflow:hidden; text-indent:-9999px; background:#fff; box-sizing:border-box}
+.coin-slide-mn .slick-arrow::before {content:''; position:absolute; top:50%; width:10px; height:16px; background:url('https://static.hankyung.com/img/finance/stock_coin_sprite.png') no-repeat; transform:translateY(-50%)}
+.coin-slide-mn .slick-prev {left:0; border-right:1px solid #ddd}
+.coin-slide-mn .slick-prev::before {right:11px; background-position:-28px -94px}
+.coin-slide-mn .slick-next {right:0; border-left:1px solid #ddd}
+.coin-slide-mn .slick-next::before {left:9px; background-position:-51px -94px}
+.coin-slide-mn .mn {height:50px; border-bottom:1px solid #ddd; font-size:15px; box-sizing:border-box}
+.coin-slide-mn .mn + .mn {border-left:1px solid #ddd}
+.coin-slide-mn .mn.slick-current {border-bottom-color:#fff; font-weight:bold}
+.coin-slide-info {border:1px solid #ddd; border-top:none}
+.coin-slide-info .item {padding:40px 30px}
+.coin-slide-info .item .coin-name {display:flex; align-items:center; justify-content:center; margin-bottom:30px}
+.coin-slide-info .item .coin-name strong {font-size:19px}
+.coin-slide-info .item .coin-name .coin-icon {width:33px; height:33px; margin-right:5px; vertical-align:middle}
+.coin-slide-info .item .coin-name .coin-icon.btc {background-position: 0 -130px}
+.coin-slide-info .item .coin-name .coin-icon.bch {background-position: -51px -130px}
+.coin-slide-info .item .coin-name .coin-icon.eth {background-position: -100px -130px}
+.coin-slide-info .item .coin-name .coin-icon.etc {background-position: -152px -130px}
+.coin-slide-info .item .coin-name .coin-icon.xrp {background-position: -205px -130px}
+.coin-slide-info .item .coin-name .coin-icon.qtum {background-position: 0px -176px}
+.coin-slide-info .item .coin-name .coin-icon.ltc {background-position: -51px -176px}
+.coin-slide-info .item .coin-name .coin-icon.iota {background-position: -101px -176px}
+.coin-slide-info .item .coin-name .coin-icon.btg {background-position: -152px -176px}
+.coin-slide-info .item .coin-info-cont {font-size:15px; line-height:1.5; word-break:keep-all}
+.stock-reference {margin-top:30px}
+.stock-reference > p {position:relative; padding-left:15px; font-size:12px; line-height:1.5}
+.stock-reference > p::before {content:'※'; position:absolute; top:0; left:0}
+.stock-reference > p + p {margin-top:8px}
+
+/* 서브 : 한경머니 */
+.koreamarket-moneyapp .visual-top {background-color:#f9f4e5}
+.koreamarket-moneyapp .visual-top .layout-inner {max-width:1180px; height:330px; margin:0 auto; background:url('https://static.hankyung.com/img/www/w/koreamarket/img-moneyapp.png') no-repeat right bottom}
+.koreamarket-moneyapp .visual-top .page-tit {margin-bottom:25px; padding-top:55px; font-size:34px}
+.koreamarket-moneyapp .visual-top .desc {font-size:22px; line-height:40px; letter-spacing:-.1em}
+.koreamarket-moneyapp .main-module {margin:0}
+.koreamarket-moneyapp .main-module > .layout-inner::before {margin-bottom:45px}
+.moneyapp-module {position:relative; padding-left:210px}
+.moneyapp-module .sub-tit {position:absolute; top:20px; left:0; font-size:22px}
+.moneyapp-module + .moneyapp-module {margin-top:45px; padding-top:45px; border-top:1px solid #ddd}
+.moneyapp-module + .moneyapp-module .sub-tit {top:41px}
+.moneyapp-service-list {display:flex; flex-wrap:wrap; margin:-10px}
+.moneyapp-service-list li {flex:0 0 auto; width:310px; height:90px; margin:10px; border:1px solid #ddd; border-radius:10px; box-shadow:6px 6px 8px rgba(0,0,0,.05); font-size:20px; text-align:center; box-sizing:border-box}
+.moneyapp-service-list li::after {content:''; display:inline-block; width:1px; height:88px; vertical-align:-36px}
+.moneyapp-contact .msg {margin-bottom:30px; font-size:17px}
+.moneyapp-contact .contact-us {display:flex; justify-content:space-between}
+.moneyapp-contact .contact-us .item {flex:0 0 auto; width:calc(50% - 10px); height:160px; border-radius:10px; background:#e3ab3d}
+.moneyapp-contact .contact-us .item > a {display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:#fff; font-size:28px}
+.moneyapp-contact .contact-us .item > a::before {content:''; display:inline-block; width:100%; height:55px}
+.moneyapp-contact .contact-us .item.tel > a::before {background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-tel.svg') no-repeat 50% 0/22px 33px}
+.moneyapp-contact .contact-us .item.mail > a::before {background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-mail.svg') no-repeat 50% 5px/34px 26px}
+
+/* 서브 : 마켓맵 */
+.marketmap-wrap {padding:30px 0}
+.marketmap-wrap > div {max-width:1180px; margin-left:auto; margin-right:auto}
+.marketmap-wrap > div.map-area {max-width:1210px; padding-left:10px}
+.marketmap-option-wrap {margin-bottom:30px; padding-bottom:30px; border-bottom:1px solid #444}
+.marketmap-info {display:flex; align-items:center; justify-content:space-between; margin-top:30px}
+.marketmap-info .map-color {display:flex; align-items:center}
+.marketmap-info .map-color > dt {margin-right:10px; font-size:14px}
+.marketmap-info .map-color > dd {display:inline-flex; align-items:center; height:25px; padding:1px 15px 2px; color:#fff; font-size:12px}
+
+
+/* 서브 : 컨센서스 */
+/* 서브 : 컨센서스(공통) */
+.badge-consensus {display:inline-flex; align-items:center; justify-content:center; min-width:50px; height:25px; margin:0; padding:0 10px; border-radius:5px; background:#888; color:#fff; font-weight:normal; font-size:12px; line-height:1; box-sizing:border-box}
+.badge-consensus.corporation {background:#35c876} /* 기업 */
+.badge-consensus.industry {background:#8623e3} /* 산업 */
+.badge-consensus.market {background:#f71b73} /* 시장 */
+.badge-consensus.economy {background:#2e4bca} /* 경제 */
+.badge-consensus.derivation {background:#3a9dd6} /* 파생 */
+
+.consensus-main .main-module {margin-top:35px; margin-bottom:35px}
+.consensus-main .main-module:first-child {margin-top:0}
+
+.chart-donut {position:relative}
+.chart-donut svg {vertical-align:top}
+.chart-donut .progress {-ms-transform:rotate(-90deg); transform:rotate(-90deg); transform-origin:50% 50%; stroke:#02b349}
+.chart-donut > .val {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-weight:normal; font-size:16px}
+
+.daterangepicker td.in-range {background-color:#eef5fb}
+.daterangepicker td.active,
+.daterangepicker td.active:hover {background-color:#74a3c7}
+.daterangepicker .calendar-table td,
+.daterangepicker .drp-selected {font-family:Tahoma, sans-serif; letter-spacing:0}
+.daterangepicker .drp-buttons .btn-default,
+.daterangepicker .drp-buttons .btn-primary {height:auto; padding:6px 10px 7px; border:none; border-radius:6px}
+.daterangepicker .drp-buttons .btn-default {background:#888; color:#fff}
+.daterangepicker .drp-buttons .btn-primary {background:#4b88b5; color:#fff}
+
+.select2-container .select2-selection--single {height:35px !important; border-color:#ddd !important; box-sizing:border-box}
+.koreamarket select[class^="form-select"] {width:100%; outline:none}
+.select2-container .select2-selection--single,
+.select2-container .select2-selection--single {border-radius:8px !important}
+
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple,
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single {border-bottom-left-radius:0 !important; border-bottom-right-radius:0 !important;}
+
+.select2-container .select2-selection--single .select2-selection__rendered {padding-left:18px !important; padding-right:35px !important; font-size:14px !important; line-height:33px !important}
+.select2-container--default .select2-selection--single .select2-selection__arrow {right:18px !important; height:33px !important}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {width:8px !important; height:8px !important; margin-top:-6px !important; border:none !important; border-right:1px solid #121212 !important; border-bottom:1px solid #121212 !important; transform: rotate(45deg) !important}
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {border-color:#121212 !important; border-width:1px !important; transform:rotate(225deg) !important; margin-top:0px !important}
+.select2-container--default.select2-container--disabled .select2-selection--single {cursor:not-allowed !important}
+.select2-container--default .select2-dropdown {border-color:#ddd !important; border-radius:0 0 8px 8px !important; z-index:995 !important}
+.select2-container--default .select2-dropdown.select2-dropdown--above {border-radius:8px 8px 0 0 !important}
+.select2-container--default .select2-results__option[aria-selected=true] {background:#eef5fb !important; color:#121212 !important}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {background:none !important; color:#121212 !important}
+.select2-container--default .select2-results__option--highlighted[aria-selected]:hover {background:#eef5fb !important}
+.select2-container--default .select2-dropdown.select2-dropdown--below .select2-results__option--highlighted[aria-selected]:last-child,
+.select2-container--default .select2-dropdown.select2-dropdown--below .select2-results__option[aria-selected=true]:last-child {border-radius:0 0 8px 8px !important}
+.select2-container--default .select2-dropdown.select2-dropdown--above .select2-results__option--highlighted[aria-selected]:first-child,
+.select2-container--default .select2-dropdown.select2-dropdown--above .select2-results__option[aria-selected=true]:first-child {border-radius:8px 8px 0 0 !important}
+.select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple,
+.select2-container--default.select2-container--open.select2-container--above .select2-selection--single {border-radius:0 0 8px 8px !important}
+.select2-container--default .select2-results__option {font-size:13px !important}
+.select2-container--default .select2-results>.select2-results__options {max-height:500px !important}
+.select2-container--default .select2-results>.select2-results__options::-webkit-scrollbar {width:6px !important}
+.select2-container--default .select2-results>.select2-results__options::-webkit-scrollbar-track {background-color:#fafafa !important}
+.select2-container--default .select2-results>.select2-results__options::-webkit-scrollbar-thumb {border-radius:3px; background-color:#7d7d7d !important}
+.select2-container--default .select2-results>.select2-results__options::-webkit-scrollbar-button {width:0 !important; height:0 !important}
+.select2-container--default .select2-results>.select2-results__options {scrollbar-width:thin !important}
+.select2-container--default .select2-search--dropdown .select2-search__field {padding:10px !important; border-color:#ddd !important; border-radius:4px !important; box-sizing:border-box !important; font-size:15px !important; outline:none !important}
+.select2-container--default .select2-search--dropdown {padding:7px !important}
+.select2-container--default .select2-search--dropdown .code {margin-right:20px !important}
+.select2-rendered__match {color:#4c88b6}
+
+.form-select-sm + .select2-container .select2-selection--single {height:30px !important}
+.form-select-sm + .select2-container .select2-selection--single .select2-selection__rendered {line-height:28px !important; font-size:14px !important}
+.form-select-sm + .select2-container--default .select2-selection--single .select2-selection__arrow {height:28px !important}
+
+.form-select-lg + .select2-container .select2-selection--single {height:50px !important}
+.form-select-lg + .select2-container .select2-selection--single .select2-selection__rendered {line-height:48px !important; font-size:15px !important}
+.form-select-lg + .select2-container--default .select2-selection--single .select2-selection__arrow {height:48px !important}
+
+/* 서브 : 컨센서스(매인) */
+.main-week-top10 {position:relative}
+.main-week-top10 .swiper-pagination {position:absolute; top:-30px; right:5px}
+.main-week-top10 .swiper-container {margin:0 -10px}
+.main-week-top10 .swiper-slide > a {text-decoration:none}
+.main-week-top10 .item {display:block; padding:0 10px 10px}
+.main-week-top10 .item .item-inner {display:flex; padding:29px 0 19px 39px; border:1px solid #ddd; border-radius:10px; background:#fff; box-shadow:3px 3px 6px rgba(0,0,0,.1)}
+.main-week-top10 .rank-info {text-align:center}
+.main-week-top10 .rank-info .rank {height:90px; padding-top:5px; box-sizing:border-box}
+.main-week-top10 .rank-info .rank .txt {font-weight:bold; font-size:20px}
+.main-week-top10 .rank-info .rank .num {font-weight:bold; font-size:34px}
+.main-week-top10 .rank-info .category {margin-top:3px}
+.main-week-top10 .thumb-pdf {width:140px; height:210px; margin-left:20px; border:1px solid #ddd; box-sizing:border-box; overflow:hidden}
+.main-week-top10 .thumb-pdf img {width:100%; height:100%; object-fit:cover}
+.main-week-top10 .cont-info {width:260px; margin-left:30px}
+.main-week-top10 .stock-title {height:90px; padding-top:5px; box-sizing:border-box}
+.main-week-top10 .stock-title .name {font-size:24px}
+.main-week-top10 .stock-title .code {margin-top:3px; color:#888; font-weight:bold; font-size:14px}
+.main-week-top10 .report-info {display:flex; position:relative; padding-left:8px; font-size:16px}
+.main-week-top10 .report-info::before {content:''; position:absolute; left:0; top:10px; width:2px; height:2px; background:#121212}
+.main-week-top10 .report-info dt {flex:0 0 auto; width:80px; font-weight:bold}
+.main-week-top10 .report-info dd {text-overflow:ellipsis; overflow:hidden; white-space:nowrap}
+.main-week-top10 .report-info + .report-info {margin-top:15px}
+
+.main-analyst-ranking {background:#f7f7f7}
+.main-analyst-ranking .analyst-ranking {display:flex; justify-content:space-between}
+.main-analyst-ranking .analyst-ranking > li {flex:0 0 auto; width:380px; height:160px; background:#fff; border:1px solid #ddd; border-radius:10px; box-sizing:border-box; box-shadow:3px 3px 6px rgba(0,0,0,.1)}
+.main-analyst-ranking .analyst-ranking > li > a {text-decoration:none}
+.main-analyst-ranking .analyst-ranking .item {display:block; position:relative; padding:30px 120px 0 30px}
+.main-analyst-ranking .profile-wrap {display:flex; align-items:center}
+.main-analyst-ranking .profile-wrap .rank {display:none; flex:0 0 auto; width:45px; font-size:42px; line-height:1}
+.main-analyst-ranking .profile-wrap .profile {width:calc(100% - 45px)}
+.main-analyst-ranking .profile-wrap .profile .name,
+.main-analyst-ranking .profile-wrap .profile .company {display:block; text-overflow:ellipsis; overflow:hidden; white-space:nowrap}
+.main-analyst-ranking .profile-wrap .profile .name {font-size:20px}
+.main-analyst-ranking .profile-wrap .profile .company {margin-top:3px; font-size:14px}
+.main-analyst-ranking .star-score,
+.main-analyst-ranking .fiq-star-score {margin-top:17px; pointer-events:none}
+/* .main-analyst-ranking .define-star {margin:10px 0 0 45px} */
+.main-analyst-ranking .define-star {margin:10px 0 0 0}
+.main-analyst-ranking .define-star .fiq-star-score {margin:0}
+.main-analyst-ranking .evaluation-accuracy {position:absolute; top:35px; right:30px; text-align:center}
+.main-analyst-ranking .evaluation-accuracy > .tit {display:block; margin-bottom:10px; color:#888; font-size:14px}
+.define-star dt {margin-bottom:5px; color:#02b349; font-weight:bold; font-size:14px}
+
+.define-star dt .txt-num,
+.star .define dt .txt-num {display:none}
+
+.koreamarket .inp-txt {display:block; width:100%; height:35px; line-height:33px; padding:0 10px; border:1px solid #ddd; border-radius:5px; background:#fff; box-sizing:border-box; outline:none; font-size:14px}
+.koreamarket .inp-txt::placeholder {color:#888}
+.koreamarket .inp-txt:-ms-input-placeholder {color:#888}
+.koreamarket .inp-txt::-ms-input-placeholder {color:#888}
+.koreamarket .inp-txt.sm {height:30px; line-height:28px}
+.koreamarket .inp-txt.lg {height:50px; line-height:48px; padding:0 18px; border-radius:8px; font-size:15px}
+.koreamarket .inp-txt:disabled,
+.koreamarket .inp-txt[readonly] {background:#eee; cursor:not-allowed}
+
+.radio-style .inp-radio,
+.check-style .inp-check {position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:none; overflow:hidden; clip:rect(0 0 0 0); color:transparent}
+
+.check-style {display:inline-flex; align-items:center; position:relative; cursor:pointer; margin-right:10px}
+.check-style label {cursor:pointer}
+.check-style .label-txt {display:inline-flex; align-items:center}
+.check-style .label-txt::before {content:''; display:inline-block; width:20px; height:20px; margin-right:6px; border:1px solid #ddd; border-radius:10px; background:#fff; box-sizing:border-box}
+.check-style .inp-check:checked + .label-txt::before {border:none; background:#ff761b url('https://static.hankyung.com/img/www/w/common/form/icon-check-fff.svg') no-repeat center center/10px 9px}
+.check-style .inp-check:disabled + .label-txt::before,
+.check-style .inp-check[readonly] + .label-txt::before {background-color:#eee; cursor:not-allowed}
+.check-style:last-child {margin-right:0}
+
+.radio-style {display:inline-flex; align-items:center; position:relative; cursor:pointer; margin-right:10px}
+.radio-style label {cursor:pointer}
+.radio-style .label-txt {display:inline-flex; align-items:center}
+.radio-style .label-txt::before {content:''; display:inline-block; width:20px; height:20px; margin-right:6px; border:1px solid #ddd; border-radius:10px; background:radial-gradient(circle, rgba(221,221,221,1) 4px, rgba(255,255,255,1) 4px); box-sizing:border-box}
+.radio-style .inp-radio:checked + .label-txt::before {border:none; background:radial-gradient(circle, rgba(255,255,255,1) 4px, rgba(255,118,27,1) 4px);}
+.radio-style .inp-radio:disabled + .label-txt::before,
+.radio-style .inp-radio[readonly] + .label-txt::before {background:radial-gradient(circle, rgba(211,211,211,1) 4px, rgba(238,238,238,1) 4px); cursor:not-allowed}
+.radio-style .inp-radio:checked:disabled + .label-txt::before,
+.radio-style .inp-radio:checked[readonly] + .label-txt::before {background:radial-gradient(circle, rgba(255,255,255,1) 4px, rgba(238,238,238,1) 4px);}
+.radio-style:last-child {margin-right:0}
+
+.report-search-option {display:flex; justify-content:space-between; margin-bottom:30px; padding:26px 39px 29px 39px; border:1px solid #ddd; border-radius:10px; box-sizing:border-box; box-shadow:3px 3px 6px rgba(0,0,0,.1)}
+.report-search-option .report-category {display:flex; flex-wrap:wrap; align-content:flex-start; width:360px; padding-top:19px}
+.report-search-option .report-category > li {position:relative; flex:0 0 auto; width:33.33336%; height:50%; box-sizing:border-box}
+.report-search-option .report-category > li::before {content:''; position:absolute; top:0; right:0; bottom:0; left:-1px; border:1px solid #ddd; background:#fff; box-sizing:border-box}
+.report-search-option .report-category > li > a {position:relative; z-index:2; display:flex; align-items:center; justify-content:center; height:100%; font-size:14px; text-decoration:none}
+.report-search-option .report-category > li.on a {font-weight:bold}
+.report-search-option .report-category > li:nth-child(1)::before {border-radius:8px 0 0 0}
+.report-search-option .report-category > li:nth-child(3)::before {border-radius:0 8px 0 0}
+.report-search-option .report-category > li:nth-child(4)::before {border-radius:0 0 0 8px}
+.report-search-option .report-category > li:nth-child(6)::before {border-radius:0 0 8px 0}
+.report-search-option .report-category > li.on::before,
+.report-search-option .report-category > li:hover::before {z-index:2; border-color:#4c88b6; background:#eef5fb}
+.report-search-option .report-category > li:nth-child(3n + 1)::before {left:0}
+.report-search-option .report-category > li:nth-child(3) ~ li::before {top:-1px}
+.report-search-option .report-search-field {width:700px}
+.report-search-option .filed-group {display:flex; justify-content:space-between}
+.report-search-option .filed-group .form-label {color:#888; font-size:12px}
+.report-search-option .filed-group > .col {flex:0 0 auto}
+.report-search-option .filed-group > .col:only-child {width:100%}
+.report-search-option .filed-group + .filed-group {margin-top:10px}
+.report-search-option .form-element:not(.form-report-search) select {width:220px}
+.report-search-option .form-element-wrap > dt {height:14px; margin-bottom:5px; padding-left:8px; line-height:1}
+.report-search-option .form-stock-search .select2-container .select2-selection--single .select2-selection__rendered.form-select-stockSearch {padding-right:18px !important}
+.report-search-option .form-stock-search .select2-container .select2-selection__arrow {display:none !important}
+.report-search-option .form-report-search {display:flex; width:460px}
+.report-search-option .form-report-search > .inp-txt-wrap {display:flex; flex:1 0 auto; width:calc(100% - 100px); border:1px solid #ddd; border-radius:8px; box-sizing:border-box}
+.report-search-option .form-report-search select {width:115px}
+.report-search-option .form-report-search .select2-container {margin:-1px 0 0 -1px !important}
+.report-search-option .form-report-search .select2-container--default .select2-selection--single {border:none !important; border-top:1px solid #ddd !important; border-left:1px solid #ddd !important; border-radius:8px 0 0 8px !important}
+.report-search-option .form-report-search .select2-container .select2-selection--single .select2-selection__rendered {padding-right:10px !important}
+.report-search-option .select2-container--default .select2-selection--single .select2-selection__arrow {right:10px !important}
+.report-search-option .select2-container--default.select2-container--open.select2-container--below .select2-selection--single {border-radius:8px 8px 0 0 !important}
+.report-search-option .form-report-search .inp-txt {flex:1 0 auto; width:calc(100% - 115px); height:100%; padding:0 18px 0 10px; border:none; border-radius:0; background:none; outline:none}
+.report-search-option .form-report-search .btn-primary {width:90px; margin-left:10px}
+.report-search-option .form-report-search .select2-container--default.select2-container--open.select2-container--above .select2-selection--single {border-radius:0 0 0 8px !important}
+.report-search-option .form-report-search .select2-container--default.select2-container--open.select2-container--below .select2-selection--single {border-radius:8px 0 0 0 !important}
+
+/* .report-search-option .report-search-field.wide .form-element:not(.form-report-search) select {width:345px} */
+.report-search-option .report-search-field.wide .filed-group {justify-content:flex-start}
+.report-search-option .report-search-field.wide .filed-group > .col + .col {margin-left:10px}
+.report-search-option .report-search-field.wide .form-report-search {width:700px}
+
+
+.report-list {display:flex; flex-wrap:wrap; justify-content:space-between}
+.report-list > li {display:flex; flex:0 0 auto; width:50%; padding:30px 0; border-bottom:1px solid #ddd}
+.report-list .thumb {flex:0 0 auto; position:relative; width:140px; height:210px; margin-right:20px; border-radius:8px; border:1px solid #ddd; box-sizing:border-box}
+.report-list .thumb .badge-consensus {position:absolute; top:-1px; left:-1px; border-radius:0 0 5px}
+.report-list .txt-cont {flex:0 0 auto; width:400px; padding-top:15px}
+.report-list .txt-cont .report-item {display:flex; align-items:center; height:27px; margin-bottom:5px; font-weight:bold}
+.report-list .txt-cont .report-item .stock-name {font-size:20px}
+.report-list .txt-cont .report-item .code {margin:2px 0 0 10px; color:#888; font-size:14px}
+.report-list .txt-cont .report-content {overflow:hidden; display:block; display:-webkit-box; text-overflow:clip; -webkit-box-orient:vertical; font-weight:normal; height:60px; margin-bottom:30px; font-weight:normal; font-size:20px; line-height:30px; -webkit-line-clamp:2}
+.report-list .txt-cont .report-info {display:flex; flex-wrap:wrap}
+.report-list .txt-cont .report-info > dl {flex:0 0 auto; display:flex; width:200px; margin-bottom:12px; font-size:14px}
+.report-list .txt-cont .report-info > dl dt {flex:0 0 auto; width:70px; position:relative; padding-left:7px; font-weight:bold; box-sizing:border-box}
+.report-list .txt-cont .report-info > dl dt::before {content:''; position:absolute; top:8px; left:0; width:2px; height:2px; background:#121212}
+.report-list .txt-cont .report-info > dl dd {flex:0 0 auto; width:130px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden}
+
+.report-list.type-row > li {width:100%; align-items:center; justify-content:space-between}
+.report-list.type-row .thumb {height:140px}
+.report-list.type-row .txt-cont {width:700px; padding:0}
+.report-list.type-row .txt-cont .report-content {height:auto; max-height:60px; margin-bottom:25px}
+.report-list.type-row .txt-cont .report-info > dl {width:auto; margin:0}
+.report-list.type-row .txt-cont .report-info > dl dt {width:auto; margin-right:10px}
+.report-list.type-row .txt-cont .report-info > dl dd {width:auto;}
+.report-list.type-row .txt-cont .report-info > dl + dl {margin-left:30px}
+.report-list.type-row .report-opinion {flex:0 0 auto; width:230px; margin-left:90px}
+.report-list.type-row .report-opinion dl {display:flex; align-items:center; justify-content:space-between; color:#888; font-size:16px}
+.report-list.type-row .report-opinion dd {display:inline-flex; align-items:center; justify-content:flex-end; min-width:130px}
+.report-list.type-row .report-opinion .rate,
+.report-list.type-row .report-opinion .price {margin-top:-2px; color:#121212; font-weight:normal; font-size:20px}
+.report-list.type-row .report-opinion .rate.up {color:#ff0000}
+.report-list.type-row .report-opinion .rate.down {color:#2175ff}
+.report-list.type-row .report-opinion .rate.hold {color:#888}
+.report-list.type-row .report-opinion dl + dl {margin-top:10px}
+.sub-tit-wrap.has-line + .report-list-wrap .report-list.type-row > li:first-child {padding-top:13px}
+
+.report-search-result .table-stock .report-sbj {display:flex; align-items:center}
+.report-search-result .table-stock .badge-consensus {min-width:40px; height:21px; margin:0 10px 0 0; padding:0}
+.report-search-result .table-stock th:first-child,
+.report-search-result .table-stock td:first-child {padding-left:10px}
+.report-search-result .table-stock th,
+.report-search-result .table-stock td {font-size:14px}
+.report-search-result .table-stock .report-sbj {font-size:16px}
+
+
+/* 서브 : 컨센서스(뷰) */
+.consensus-view-header {padding:30px 69px; background:#fff; border:1px solid #ddd; border-radius:10px; box-sizing:border-box; box-shadow:3px 3px 6px rgba(0,0,0,.1)}
+.consensus-view-header .report-tit {padding:0 10px; font-size:34px}
+.consensus-view-header .report-detail {display:flex; align-items:center; justify-content:space-between; padding:0 10px}
+.consensus-view-header .report-detail .report-info .report-item {display:flex; align-items:center; margin-top:6px}
+.consensus-view-header .report-detail .report-info .report-item > span {margin-left:10px}
+.consensus-view-header .report-detail .report-info .report-item .stock-name {font-size:20px}
+.consensus-view-header .report-detail .report-info .report-item .code {color:#888; font-weight:bold; font-size:14px}
+.consensus-view-header .report-detail .report-info .report-info-etc {display:flex; position:relative; margin-top:17px}
+.consensus-view-header .report-detail .report-info .report-info-etc dl {display:flex; align-items:center; font-size:14px}
+.consensus-view-header .report-detail .report-info .report-info-etc dt {position:relative; padding-left:7px; font-weight:bold}
+.consensus-view-header .report-detail .report-info .report-info-etc dt::before {content:''; position:absolute; top:8px; left:0; width:2px; height:2px; background:#121212}
+.consensus-view-header .report-detail .report-info .report-info-etc dd {margin-left:12px}
+.consensus-view-header .report-detail .report-info .report-info-etc dl + dl {margin-left:30px}
+.consensus-view-header .report-detail .report-info .report-info-etc .fiq-tooltip {position:absolute; top:25px; left:0}
+.consensus-view-header .report-detail .report-info .report-info-etc .fiq-tooltip::before {left:75px; transform:none}
+
+.consensus-view-header .report-detail .report-opinion {padding-top:5px}
+.consensus-view-header .report-detail .report-opinion dl {display:flex; align-items:center; justify-content:space-between; font-size:14px}
+.consensus-view-header .report-detail .report-opinion dt {width:95px; color:#888}
+.consensus-view-header .report-detail .report-opinion dd {display:flex; align-items:center}
+.consensus-view-header .report-detail .report-opinion dd .unit {color:#888}
+.consensus-view-header .report-detail .report-opinion dd .arrow {font-weight:bold; margin-left:10px}
+.consensus-view-header .report-detail .report-opinion dl + dl {margin-top:9px}
+.consensus-view-header .report-content {margin-top:33px; padding:30px 10px 0; border-top:1px solid #ddd; font-size:16px}
+.consensus-view-container .pdf-view-wrap {margin-top:60px; text-align:center}
+.consensus-view-container .pdf-view-wrap .option {margin-bottom:10px}
+.consensus-view-container .pdf-view-wrap .img + .img {margin-top:10px}
+.consensus-view-container .pdf-view-wrap img {max-width:100%}
+.consensus-view-container .contents-more-info {padding:70px 0 50px}
+
+/* 서브 : 애널리스트 랭킹 */
+.analyst-ranking-container .sub-tit-wrap .select-range {display:flex; align-items:center}
+.analyst-ranking-container .sub-tit-wrap .select-range dt {margin-right:10px; font-size:14px}
+.analyst-ranking-container .sub-tit-wrap .select-range select {width:120px}
+.analyst-ranking-header {padding:39px 0 29px; background:#fff; border:1px solid #ddd; border-radius:10px; box-sizing:border-box; box-shadow:3px 3px 6px rgba(0,0,0,.1); text-align:center}
+.analyst-ranking-header .total-status {display:flex; justify-content:space-around}
+.analyst-ranking-header .total-status > dl {flex:1 1 auto; display:flex; flex-direction:column; justify-content:space-between; padding:5px 20px}
+.analyst-ranking-header .total-status > dl > dt {margin-bottom:20px; font-weight:bold; font-size:20px}
+.analyst-ranking-header .total-status > dl > dd {display:flex; justify-content:center; align-items:flex-end}
+.analyst-ranking-header .total-status > dl.total-opinion > dd {justify-content:space-around}
+.analyst-ranking-header .total-status .val-num {font-size:40px}
+.analyst-ranking-header .total-status .unit {position:relative; top:-5px; color:#888; font-size:24px}
+.analyst-ranking-header .total-status > dl.total-opinion .tit,
+.analyst-ranking-header .total-status > dl.total-opinion .val-num {display:block}
+.analyst-ranking-header .total-status > dl.total-opinion .tit {color:#888; font-size:16px}
+.analyst-ranking-header .total-status > dl.total-opinion .val-num {font-size:30px}
+.analyst-ranking-header .total-status > dl + dl {border-left:1px solid #ddd}
+.analyst-ranking-header .txt-info {margin-top:38px; color:#888; font-size:14px}
+
+.list-option-area {margin-bottom:10px}
+.list-option-area .lt {float:left}
+.list-option-area .rt {float:right; display:inline-flex; align-items:center; gap:10px}
+.list-option-area::after {content:''; display:block; clear:both}
+.list-option-area select {width:120px}
+.analyst-list > li {display:flex; justify-content:space-between; align-items:center; padding:15px 35px 15px 30px; border:1px solid #ddd; border-radius:10px}
+.analyst-list > li + li {margin-top:20px}
+/* .analyst-list > li.first {border-color:#02b349; background:#f2fbf6} */
+.analyst-list dl.define:not(.type-vertical) {display:flex; align-items:center}
+.analyst-list dl.define:not(.type-vertical) dt {flex:0 0 auto; margin-right:15px; color:#888; font-size:14px; white-space:nowrap}
+.analyst-list dl.define.type-vertical dt {margin-bottom:3px}
+.analyst-list .star dl.define:not(.type-vertical) dt {color:#02b349; font-weight:bold; font-size:16px}
+
+.analyst-list .rank {display:none; min-width:45px; margin-right:10px; font-size:20px; text-align:center}
+.analyst-list > li.first .rank,
+.analyst-list > li.first + li .rank,
+.analyst-list > li.first + li + li .rank {font-size:30px}
+.analyst-list .name,
+.analyst-list .company {overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.analyst-list .name {width:120px; font-size:20px}
+.analyst-list .company {width:180px; font-size:16px}
+.analyst-list .chart {margin:0 50px}
+.analyst-list .chart-donut .val {font-size:14px}
+.analyst-list .rate {text-align:right}
+.analyst-list .rate dl {justify-content:space-between; width:180px}
+.analyst-list .rate dt {width:50px}
+.analyst-list .rate dd {font-size:16px}
+.analyst-list .rate dd .txt-num {font-weight:normal}
+/* 서브 : 애널리스트 */
+.analyst-view-header {padding:30px 79px; background:#fff; border:1px solid #ddd; border-radius:10px; box-sizing:border-box; box-shadow:3px 3px 6px rgba(0,0,0,.1)}
+.analyst-view-header .analyst-profile-wrap {position:relative; display:flex; align-items:center}
+.analyst-view-header .analyst-profile {margin-right:30px}
+.analyst-view-header .analyst-profile .analyst-name {font-size:34px}
+.analyst-view-header .analyst-profile .company {margin-top:5px; font-weight:bold; font-size:20px}
+.analyst-view-header .empathy-btns {display:flex; align-items:center}
+.analyst-view-header .empathy-btns button + button {margin-left:10px}
+.analyst-view-header .select-range {position:absolute; top:50%; right:0; display:flex; align-items:center; transform:translateY(-50%)}
+.analyst-view-header .select-range dt {margin-right:10px; font-size:14px}
+.analyst-view-header .select-range select {width:120px}
+.analyst-view-header .analyst-portfolio {display:flex; justify-content:space-between; margin-top:30px}
+.analyst-view-header .analyst-portfolio > .col {display:flex; align-items:center}
+.analyst-view-header .analyst-portfolio > .col + .col {padding-left:30px; border-left:1px solid #ddd}
+.analyst-view-header .analyst-portfolio dl {color:#888; font-size:16px}
+.analyst-view-header .analyst-portfolio dt {margin-bottom:10px}
+.analyst-view-header .analyst-portfolio dd {display:flex; align-items:center}
+.analyst-view-header .analyst-portfolio .val-num {color:#121212}
+.analyst-view-header .analyst-portfolio .val-num.up {color:#ff0000}
+.analyst-view-header .analyst-portfolio .val-num.down {color:#2175ff}
+.analyst-view-header .analyst-portfolio .val-num.hold {color:#888}
+/* .analyst-view-header .analyst-portfolio .star-score,
+.analyst-view-header .analyst-portfolio .fiq-star-score {margin-left:10px} */
+.analyst-view-header .analyst-portfolio .define-star dt {font-size:16px}
+.analyst-view-header .star-score.type-readonly .star-unit ~ .star-unit {margin:0 0 0 8px}
+.analyst-view-header .analyst-portfolio .chart-donut {margin-left:20px}
+.analyst-view-header .analyst-portfolio .evaluation-accuracy .val-num,
+.analyst-view-header .analyst-portfolio .investment-opinion .txt-num {margin-left:5px}
+.analyst-view-header .analyst-portfolio .evaluation-accuracy dl {width:180px}
+.analyst-view-header .analyst-portfolio .evaluation-accuracy .chart-donut .val {font-size:14px}
+.analyst-view-header .analyst-portfolio .investment-opinion .txt-num + .tit {margin-left:7px}
+.analyst-view-header .analyst-portfolio .investment-opinion .chart-donut {width:60px; height:60px; margin-left:20px}
+.analyst-view-header .txt-info {margin-top:15px}
+
+/* 서브 : 스크리너 */
+.screener-filter {border:1px solid #ddd; border-radius:10px; box-sizing:border-box; box-shadow:3px 3px 6px rgba(0,0,0,.1)}
+.screener-filter .filter-header {display:flex; justify-content:space-between; padding:15px 29px}
+.screener-filter .filter-header .txt {font-size:16px}
+.screener-filter .filter-header .txt::before {content:''; display:inline-block; width:15px; height:24px; margin-right:15px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-filter.svg') no-repeat 0 50%/contain; vertical-align:-5px}
+.screener-filter .filter-header .btn-toggle-filter {width:30px; margin-right:-7px}
+.screener-filter .filter-header .btn-toggle-filter::before {content:''; display:inline-block; position:relative; top:-4px; width:10px; height:10px; border-style:none solid solid none; border-width:1px; border-color:#121212; transform:rotate(45deg)}
+.screener-filter .filter-content {padding:29px; border-top:1px solid #ddd}
+.screener-filter .filter-content .filter-tab-cont {display:flex; justify-content:space-between}
+.screener-filter .filter-content .filter-tab-cont > .col {width:530px}
+.screener-filter .filter-content .filter-tab-cont > .col:nth-child(2) {width:500px}
+.screener-filter .filter-content .filter-option {display:flex; align-items:flex-start; margin:30px 0 20px}
+.screener-filter .filter-content .filter-option > dt {flex:0 0 auto; display:inline-flex; align-items:center; width:130px; padding-top:3px; color:#888; font-weight:bold}
+.screener-filter .filter-content .filter-option > dt .txt-num {margin-right:10px; font-size:20px}
+.screener-filter .filter-content .filter-option > dt .txt {font-size:14px}
+.screener-filter .filter-content .filter-option > dd {flex:1 1 auto}
+.screener-filter .filter-content .filter-option.filter-technical > dd {padding-top:3px}
+.screener-filter .filter-content .filter-option.filter-technical > dd .tit {margin-bottom:7px; color:#888}
+.screener-filter .filter-content .filter-option.filter-technical > dd .tab-type-toggle + .tit {margin-top:15px}
+.screener-filter .filter-content .range-slider-wrap {margin-top:13px}
+.screener-filter .filter-content .tab-type-toggle + .range-slider-wrap {margin-top:17px}
+.screener-filter .filter-content .range-slider-wrap .tick {display:flex; justify-content:space-around; padding:8px 40px; pointer-events:none}
+.screener-filter .filter-content .range-slider-wrap .tick > span {position:relative}
+.screener-filter .filter-content .range-slider-wrap .tick > span::before {content:''; position:absolute; left:5px; z-index:2; width:1px; height:6px; top:-14px; background:#fff}
+.screener-filter .filter-content .filter-option.filter-market-capitalization .range-slider-wrap .tick {justify-content:flex-start; padding:8px 0 0}
+.screener-filter .filter-content .filter-option.filter-market-capitalization .range-slider-wrap .tick > span {display:inline-block; width:78px; left:-2px}
+.screener-filter .filter-content .filter-option.filter-market-capitalization .range-slider-wrap .tick > span:first-child::before {display:none; left:0}
+.screener-filter .filter-action {display:flex; justify-content:center; margin-top:30px}
+.screener-filter .filter-action button {min-width:160px}
+.screener-filter .filter-action button + button {margin-left:10px}
+.screener-filter.active .filter-header .btn-toggle-filter::before {top:4px; border-style:solid none none solid}
+.screener-search-result .txt-star-info {color:#888; font-size:12px}
+.screener-search-result .txt-star-info::before {content:''; display:inline-block; width:16px; height:16px; margin-right:6px; background:url('https://static.hankyung.com/resource/www/common/img/icon/icon-star-fill.svg') no-repeat 50% 50%/contain; vertical-align:-2px}
+.screener-search-result .table-stock th:first-child,
+.screener-search-result .table-stock td:first-child {border-right:none}
+.screener-search-result .table-stock th:nth-child(2),
+.screener-search-result .table-stock td:nth-child(2) {border-left:none}
+.screener-search-result .table-stock .consensus-price {display:flex; justify-content:space-between; align-items:center}
+
+/* 서브 : 종목뷰 */
+.fiq-tooltip {display:inline-block; position:relative; padding:4px 9px; border-radius:3px; background-color:#121212; color:#fff; font-size:12px; white-space:nowrap; box-sizing:border-box}
+.fiq-tooltip::before {content:''; display:inline-block; position:absolute; pointer-events:none}
+.fiq-tooltip.top::before {bottom:-5px; left:50%; border-top:5px solid #121212; border-left:5px solid transparent; border-right:5px solid transparent; transform:translateX(-50%)}
+.fiq-tooltip.bottom::before {top:-5px; left:50%; border-bottom:5px solid #121212; border-left:5px solid transparent; border-right:5px solid transparent; transform:translateX(-50%)}
+.fiq-tooltip.left::before {top:50%; left:-10px; border-top:5px solid transparent; border-left:5px solid transparent; border-bottom:5px solid transparent; border-right:5px solid #121212; transform:translateY(-50%)}
+.fiq-tooltip.right::before {top:50%; right:-10px; border-top:5px solid transparent; border-left:5px solid #121212; border-bottom:5px solid transparent; border-right:5px solid transparent; transform:translateY(-50%)}
+.fiq-tooltip .btn-close {position:relative; top:-2px; width:11px; height:11px; margin-left:8px}
+.fiq-tooltip .btn-close::before,
+.fiq-tooltip .btn-close::after {content:''; position:absolute; left:50%; top:0; width:1px; height:12px; background-color:#fff}
+.fiq-tooltip .btn-close:before {transform:translate(-50%) rotate(45deg)}
+.fiq-tooltip .btn-close:after {transform:translate(-50%) rotate(-45deg)}
+
+.fiq-tooltip2 {display:none; position:absolute; top:-15px; left:25px; z-index:10; padding:15px; border:1px solid #eee; border-radius:10px; box-shadow:3px 3px 6px rgba(0,0,0,0.1); background:#fff; box-sizing:border-box}
+.fiq-tooltip2 > .tooltip-tit {margin-bottom:10px}
+.fiq-tooltip2 > .tooltip-tit .tit {float:left; font-size:15px; max-width:calc(100% - 30px)}
+.fiq-tooltip2 > .tooltip-tit .btn-close-tooltip {float:right}
+.fiq-tooltip2 .btn-close-tooltip::before {content:''; display:inline-block; width:20px; height:20px; background-image:linear-gradient(to bottom, #121212 0%, #121212 100%), linear-gradient(to left, #121212 0%, #121212 100%); background-size:100% 1px,1px 100%; background-position:center; background-repeat:no-repeat; transform:rotate(45deg)}
+.fiq-tooltip2 > .tooltip-tit::after {content:''; display:block; clear:both}
+.fiq-tooltip2 > .cont {font-size:12px; line-height:20px}
+.fiq-tooltip2 .para-unit + .para-unit {margin-top:10px}
+.fiq-tooltip2 dl.para-unit dt {font-weight:bold}
+.fiq-tooltip2 dl.para-unit dd {position:relative; padding-left:5px}
+.fiq-tooltip2 dl.para-unit dd::before {content:''; position:absolute; top:9px; left:0; width:2px; height:1px; background:#121212}
+
+.icon-help {display:inline-block; width:16px; height:16px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-help.svg') no-repeat 50% 50%/contain; overflow:hidden; vertical-align:top; cursor:pointer}
+.help-msg {position:relative; display:inline-block; vertical-align:top}
+.help-msg .fiq-tooltip {display:none; position:absolute; left:-12px; z-index:10}
+.help-msg .fiq-tooltip.top::before,
+.help-msg .fiq-tooltip.bottom::before {left:20px}
+.help-msg:not(.type-click) .icon-help:hover + .fiq-tooltip {display:block}
+.help-msg.bottom .fiq-tooltip {top:25px}
+.help-msg.top .fiq-tooltip {bottom:30px}
+.help-msg.left .fiq-tooltip {top:-4px; left:25px}
+.help-msg.right .fiq-tooltip {top:-4px; left:auto; right:calc(100% + 8px)}
+.help-msg.on .fiq-tooltip2 {display:block}
+/* 안내 위치별 조정 */
+.table-data .help-msg,
+.table-list .help-msg {top:2px; margin-left:5px}
+.sub-tit-area .help-msg {margin-left:5px}
+.aside-cont-tit-wrap {position:relative}
+.aside-cont-tit-wrap .help-msg {position:static; margin-left:5px}
+.aside-cont-tit-wrap .help-msg .fiq-tooltip2 {top:30px; left:0}
+.hk-equities-container .aside-cont-tit-wrap .help-msg {position:relative}
+.hk-equities-container .help-msg .fiq-tooltip2 {top:-15px; left:25px}
+
+.interest-check {position:relative}
+.interest-check .fiq-tooltip {position:absolute; top:-33px; left:50%; transition:.2s linear all; opacity:0; transform:translateX(-50%)}
+.interest-check:hover .fiq-tooltip {opacity:1}
+
 .stock-view-header .stock-item-wrap {display:flex; align-items:flex-end; justify-content:space-between}
 .stock-view-header .stock-item-wrap .stock-item {display:flex; align-items:center}
 .stock-view-header .stock-item-wrap .stock-item .interest-check {margin-right:10px}
@@ -30,3 +1689,161 @@
 .stock-view-header .option-data-wrap .select-date dt {margin-bottom:5px; color:#888; font-size:12px}
 .stock-view-header .option-data-wrap .select-date .form-select {width:220px}
 
+.stock-view-content {padding-bottom:50px}
+.stock-view-content .tab-type2-wrap {margin-top:25px; padding-top:10px; border-top:1px solid #ddd}
+.stock-view-content .tab-type2-wrap .tab-type2 {position:relative; margin-bottom:40px}
+.stock-view-content .tab-type2-wrap .tab-type2 > li {margin:0 13px}
+.stock-view-content .tab-type2-wrap .tab-type2::after {content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:#121212}
+.stock-view-content .consensus-report-list > li {padding:25px 29px; border:1px solid #ddd; border-radius:10px}
+.stock-view-content .consensus-report-list > li + li {margin-top:15px}
+.stock-view-content .consensus-report-list .report-tit {overflow:hidden; display:block; display:-webkit-box; text-overflow:clip; -webkit-box-orient:vertical; max-height:68px; font-weight:normal; font-size:24px; line-height:34px; -webkit-line-clamp:2}
+.stock-view-content .consensus-report-list .report-opinion {display:flex; margin-top:15px; font-size:16px;margin: 15px 0 15px;}
+.stock-view-content .consensus-report-list .report-opinion dt,
+.stock-view-content .consensus-report-list .report-opinion .txt-date {color:#666}
+.stock-view-content .consensus-report-list .report-opinion dt {margin-right:6px}
+.stock-view-content .consensus-report-list .report-opinion dd + dt {margin-left:30px}
+.stock-view-content .consensus-report-list .report-by {display:flex; margin-top:15px; color:#888; font-size:14px}
+.stock-view-content .consensus-report-list .report-by a {color:#888}
+.stock-view-content .consensus-report-list .report-by dt::after {content:' '; margin:0 2px}
+.stock-view-content .consensus-report-list .report-by dt.bar::after {content:':';}
+.stock-view-content .consensus-report-list .report-by dd + dt {margin-left:20px}
+.stock-view-content .consensus-report-list .report-by dd .price {color:#121212}
+#financialStatement {height:400px}
+
+
+
+.stock-view-chart .chart-info {margin:30px 0 40px}
+
+.cont-item-box .item-tit-wrap {display:flex; align-items:center; position:relative; margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid #ddd}
+.cont-item-box .item-tit-wrap .item-tit-area {display:flex; align-items:center}
+.cont-item-box .item-tit-wrap .item-tit-area .item-tit {margin-right:5px}
+.cont-item-box .item-tit-wrap .item-tit-area .help-msg,
+.cont-item-box .item-tit-wrap .item-tit-area .icon-help {vertical-align:middle}
+.cont-item-box .item-tit {font-weight:bold; font-size:20px}
+.cont-item-box .item-tit-wrap .tab {margin-top:2px}
+.cont-item-box .item-tit-wrap .txt-info {position:absolute; top:50%; right:0; color:#888; font-size:12px; transform:translateY(-50%)}
+.cont-item-box + .cont-item-box {margin-top:40px}
+
+.swiper-view-consensus {margin-bottom:60px}
+.swiper-view-consensus .swiper-container {margin:0 -10px}
+.swiper-view-consensus .swiper-button-arrow {top:calc(50% + 5px)}
+.swiper-view-consensus .swiper-pagination {position:static; margin-top:10px; line-height:1}
+.swiper-view-consensus .item {margin:0 10px 20px; padding:25px 29px 24px; border:1px solid #ddd; border-radius:10px; background:#fff; box-shadow:3px 3px 6px rgba(0,0,0,.1)}
+.swiper-view-consensus .report-tit {overflow:hidden; display:block; display:-webkit-box; text-overflow:clip; -webkit-box-orient:vertical; height:68px; font-weight:normal; font-size:24px; line-height:34px; -webkit-line-clamp:2}
+.swiper-view-consensus .report-by {display:flex; align-items:center; margin-top:15px}
+.swiper-view-consensus .report-by,
+.swiper-view-consensus .report-by a {color:#888; font-size:14px}
+.swiper-view-consensus .report-by > span {display:inline-block;white-space: nowrap; text-overflow:ellipsis; overflow:hidden}
+.swiper-view-consensus .report-by > span + span {flex:0 0 auto; margin-left:10px}
+.swiper-view-consensus .report-by .company {max-width:140px}
+.swiper-view-consensus .btn-area {margin-top:15px; text-align:center}
+.swiper-view-consensus .btn-area > a {margin:0 2px}
+.stock-view-consensus .cont-item-box {display:flex; justify-content:space-between; margin-top:40px}
+.stock-view-consensus .cont-item-box > .item {flex:0 0 auto; width:calc(50% - 10px)}
+
+.swiper-view-consensus.type-noswiper .swiper-wrapper {display:flex}
+.swiper-view-consensus.type-noswiper .swiper-wrapper .swiper-slide {flex:0 0 auto; width:33.33336%}
+
+.stock-view-company .company-info {margin-bottom:20px; font-size:24px; word-break:keep-all}
+.stock-view-company .company-info .tit {margin-bottom:15px; font-weight:bold}
+.stock-view-company .company-info .summary-cont {margin-top:10px; font-size:18px; line-height:1.5}
+.stock-view-company .company-info .link-homepage {color:#436f91; font-size:20px; letter-spacing:0}
+.stock-view-company .company-info .link-homepage::before {content:''; display:inline-block; width:20px; height:20px; margin-right:10px; background:url('https://static.hankyung.com/img/www/w/koreamarket/icon-homepage.svg') no-repeat 50% 50%/contain; vertical-align:-3px}
+/* .stock-view-company .tab-group-wrap {margin-bottom:30px} */
+.stock-view-company .chart-item-box {display:flex; position:relative; margin-bottom:50px; border-top:1px solid #e4e7eb; border-bottom:1px solid #e4e7eb; /*background:#fbfbfb*/}
+.stock-view-company .chart-item-box > .item {flex:0 0 50%; padding:20px; box-sizing:border-box}
+.stock-view-company .chart-item-box .chart-data dt {margin-bottom:20px; text-align:center}
+.stock-view-company .chart-item-box::after {content:''; position:absolute; top:0; bottom:0; left:50%; width:1px; background:#e4e7eb; transform:translateX(-50%)}
+.stock-view-company .summary-chart-wrap {margin:30px 0}
+.stock-view-company .cont-item-box .item-tit-wrap {padding-bottom:0; border:none}
+.stock-view-company .fiq-tooltip2 {min-width:540px}
+.stock-view-company .tab-type4-wrap {display:flex;  justify-content:center; align-items:center; padding-top:30px}
+.stock-view-company .tab-type4-wrap .fiq-tooltip2 {min-width:400px}
+#financialSummary {height:320px}
+
+.stock-view-dart .stock-view-iframe,
+.stock-view-krx .stock-view-iframe {width:780px; height:1000px; overflow:hidden}
+.stock-view-asp .stock-view-iframe {height:1680px; overflow:hidden}
+.stock-view-iframe iframe {width:calc(100% + 20px)}
+
+/* 한경종목 + */
+.hk-equities-container > .item {display:flex; justify-content:space-between}
+.hk-equities-container > .item > .equities-wrap {width:560px}
+.hk-equities-container > .item > .aside {width:570px}
+.hk-equities-container > .item + .item {margin-top:50px; padding-top:50px; border-top:1px solid #ddd}
+.hk-equities-container > .item:first-child {padding-top:10px}
+.hk-equities-container > .item:last-child {padding-bottom:30px}
+.hk-equities-container .equities-wrap {padding-top:6px}
+.hk-equities-container .equities-wrap .stock-name-wrap {display:flex; align-items:center}
+.hk-equities-container .equities-wrap .stock-name-wrap .stock-name {max-width:380px; margin-right:10px; font-weight:bold; font-size:30px}
+.hk-equities-container .equities-wrap .stock-name-wrap .code {margin-right:10px; color:#888; font-size:20px}
+.hk-equities-container .equities-wrap .stock-data-wrap {position:relative; min-height:105px; padding:10px 170px 0 0; box-sizing: border-box}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data {display:flex; align-items:center}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data .price {font-weight:bold; font-size:54px; line-height:1.1}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data .quot {margin:2px 0 0 20px; font-size:20px}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data .stock-point {display:block}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data .stock-point::before {margin-right:9px}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data.up .stock-point::before {border-left-width:9px; border-right-width:9px; border-bottom-width:14px}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data.down .stock-point::before {border-left-width:9px; border-right-width:9px; border-top-width:14px}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data.hold .stock-point::before {width:14px; height:6px}
+.hk-equities-container .equities-wrap .stock-data-wrap .stock-data .rate {display:block; margin-top:2px}
+.hk-equities-container .equities-wrap .stock-data-wrap .chart-area {position:absolute; top:-5px; right:0}
+.hk-equities-container .equities-wrap .stock-news > li {margin-top:10px}
+.hk-equities-container .equities-wrap .stock-news > li + li {margin-top:17px}
+.hk-equities-container .equities-wrap .stock-news .news-tit {display:block; font-size:24px; font-weight:normal; text-overflow:ellipsis; -webkit-box-orient:unset; white-space:nowrap}
+.hk-equities-container .equities-wrap .stock-news .txt-date {margin-top:5px; color:#888; font-size:12px}
+.hk-equities-container .aside-box {padding:37px 40px; border-top:none; border-right:none; border-bottom:none; box-shadow:none; border-radius:0}
+.hk-equities-container .aside-cont-tit {font-size:20px}
+.hk-equities-container .consensus-scale {padding-top:40px}
+.hk-equities-container .consensus-scale .val {width:50px; margin-left:-25px; padding:7px; font-size:16px}
+.hk-equities-container .consensus-scale-bar > .item .txt {font-size:14px}
+.hk-equities-container .consensus-opinion {display:flex; align-items:center; margin-top:20px}
+.hk-equities-container .consensus-opinion dl {flex:0 0 auto; display:flex; align-items:center; color:#888; font-size:16px; white-space:nowrap}
+.hk-equities-container .consensus-opinion dt {flex:0 0 auto; margin-right:10px; font-weight:bold}
+.hk-equities-container .consensus-opinion dd {flex:0 0 auto; display:flex; align-items:center}
+.hk-equities-container .consensus-opinion .price {flex:0 0 auto; color:#121212; font-weight:bold; font-size:24px}
+.hk-equities-container .consensus-opinion .txt-info {margin-left:10px; color:#888; font-size:12px; word-break:keep-all}
+.hk-equities-container .aside-cont-wrap + .aside-cont-wrap {margin-top:30px; padding-top:30px; border-top:1px solid #ddd}
+.hk-equities-container .period-change-rate {width:430px; padding:0}
+.hk-equities-container .period-change-rate > dl {flex:0 0 33.33336%}
+.hk-equities-container .period-change-rate dt {font-size:16px}
+.hk-equities-container .period-change-rate dd {font-size:24px}
+
+/* 회원전용 아이콘, P 아이콘 영역별 제어 */
+.main-top .main-headline .thumb .icon-membersonly {position:absolute; top:0; left:0; border-radius:0 0 4px 0}
+.main-top .main-headline .thumb .icon-premium-txt {position:absolute; top:0; left:0; border-radius:0 0 4px 0; padding:2px 8px 2px 7px; font-size:17px; vertical-align:7px}
+.main-top-major .news-tit .icon-membersonly,
+.main-jooconomy-slide .news-tit .icon-membersonly,
+.main-top-major .news-tit .icon-premium-txt {vertical-align:4px}
+.marketpro-wrap .news-tit .icon-premium-txt,
+.main-realtime .timeline .news-tit .icon-premium-txt {margin-right:4px; font-size:10px; padding:2px 4px 3px 5px; line-height:1}
+.main-jooconomy-slide .news-tit .icon-premium-txt,
+.news-list .txt-cont .news-tit .icon-premium-txt {font-size:13px; padding:2px 6px 2px 7px; vertical-align:4px}
+.news-list .txt-cont .news-tit .icon-membersonly {vertical-align:5px}
+
+/* 컨센서스 - 배너영역 추가 */
+.banner-area {margin:20px 0; text-align:center}
+
+/* 맥 사파리 대응 */
+@media not all and (min-resolution:.001dpcm) {
+    .main-top .main-headline .news-tit {letter-spacing:-0.012em}
+    .koreamarket-moneyapp .visual-top .desc {letter-spacing:-0.075em}
+}
+/* IE11 대응 */
+@media all and (-ms-high-contrast:none) {
+    .chart-donut .progress {transform:rotate(-90deg) translateX(-70px)}
+    .analyst-view-header .chart-donut .progress {transform:rotate(-90deg) translateX(-60px)}
+    .report-list .txt-cont .report-item .stock-name {max-width:335px; white-space:nowrap}
+    .swiper-stock .stock-title {max-width:145px; white-space:nowrap}
+    .stock-view-header .stock-item-wrap .stock-item .stock-name,
+    .swiper-view-consensus .report-by .company {white-space:nowrap}
+
+    .report-search-result .table-stock .report-sbj {max-width:540px; white-space:nowrap}
+    .report-search-result .table-stock .report-stock {max-width:140px; white-space:nowrap}
+    .marketmain-table .stock-name {max-width:172px; white-space:nowrap}
+
+    .hk-modal .hk-modal-body.scroll-area {padding-right:13px}
+}
+
+
+/* 2022.09.18 15:14 배포테스트 12234 */
