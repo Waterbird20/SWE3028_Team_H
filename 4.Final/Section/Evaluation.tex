@@ -58,12 +58,12 @@ where $ N $ is the number of stocks, $ \hat{y}_{\min} $ and $ \hat{y}_{\max} $ a
 											& Low	& 	0.9892& 	1.6502& 	0.5361& 
 													& 	0.9830& 	4.8531& 	0.4616& 							\\ 
 	\midrule
-	\multicolumn{ 2}{c|}{\textbf{BASELINE}}			& 	0.9815& 		 & 		 & 	
+	\multicolumn{ 2}{c|}{DP-LSTM(baseline)}			& 	0.9815& 		 & 		 & 	
 					  								& 	0.9815& 		 & 		 & 									\\
 	\bottomrule
 	\bottomrule
 	\end{tabular}
-	% \caption{Result of our models}
+	\caption{Performance of our models on the test set with MPA, MAE, TAC, and ACC.}
 \end{table}
 As shown in Table \ref{tab:result}, the performance of our models on the test set is quantified. Incorporating VADER into the model has resulted in MPA surpassing that of the baseline model, which is DP-LSTM. 
 Notably, the model's performance varies based on the stability of the stocks. For unstable stocks, the MAE significantly increases, and ACC decreases.
