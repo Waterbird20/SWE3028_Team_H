@@ -22,10 +22,10 @@ device          : cuda
 # seq_length    : how many days for prediction? 
 # output_length : shared with ModelArgs
 # predict_type  : high or low?
-stock_type      : us_unstable
+stock_type      : us_stable
 seq_length      : 30
 predict_type    : high
-data_path       : ./data/upload/us_unstable_vader
+data_path       : ./data/upload/us_stable_vader
 is_upload       : true
 
 
